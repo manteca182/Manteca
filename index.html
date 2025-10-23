@@ -125,6 +125,34 @@
       border-radius: 50%;
       font-weight: bold;
     }
+
+    .cart-modal {
+      position: fixed;
+      bottom: 80px;
+      right: 16px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      padding: 1rem;
+      width: 220px;
+      display: none;
+      z-index: 10;
+    }
+
+    .cart-modal h4 {
+      margin-bottom: 0.5rem;
+    }
+
+    .cart-modal ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .cart-modal li {
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
   </style>
 </head>
 <body>
@@ -135,32 +163,51 @@
   <section class="product-grid">
     <div class="product-card">
       <span class="price-badge">$5.99</span>
-      <img src="https://www.shutterstock.com/image-photo/hamburger-on-transparent-background-600nw-2585451645.jpg" alt="Hamburguesa" />
+      <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg" alt="Hamburguesa" />
       <h3>Hamburguesa</h3>
-      <button class="add-to-cart" onclick="addToCart()">Añadir</button>
+      <button class="add-to-cart" onclick="addToCart('Hamburguesa', 5.99)">Añadir</button>
     </div>
     <div class="product-card">
       <span class="price-badge">$1.99</span>
-      <img src="https://www.shutterstock.com/image-photo/cola-soft-drink-glass-bottle-600nw-2488507317.jpg" alt="Refresco" />
+      <img src="https://cdn.pixabay.com/photo/2016/11/21/15/46/cola-1845290_1280.jpg" alt="Refresco" />
       <h3>Refresco</h3>
-      <button class="add-to-cart" onclick="addToCart()">Añadir</button>
+      <button class="add-to-cart" onclick="addToCart('Refresco', 1.99)">Añadir</button>
     </div>
   </section>
 
-  <button class="cart-button" onclick="openCart()">
+  <button class="cart-button" onclick="toggleCart()">
     <i class="fas fa-shopping-cart"></i>
     <span class="cart-count" id="cartCount">0</span>
   </button>
 
+  <div class="cart-modal" id="cartModal">
+    <h4>Carrito</h4>
+    <ul id="cartList"></ul>
+  </div>
+
   <script>
-    let cartItems = 0;
-    function addToCart() {
-      cartItems++;
-      document.getElementById('cartCount').textContent = cartItems;
+    let cartItems = [];
+    const cartCount = document.getElementById('cartCount');
+    const cartList = document.getElementById('cartList');
+    const cartModal = document.getElementById('cartModal');
+
+    function addToCart(name, price) {
+      cartItems.push({ name, price });
+      cartCount.textContent = cartItems.length;
+      updateCartList();
     }
 
-    function openCart() {
-      alert(`Tienes ${cartItems} producto(s) en el carrito.`);
+    function updateCartList() {
+      cartList.innerHTML = '';
+      cartItems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+        cartList.appendChild(li);
+      });
+    }
+
+    function toggleCart() {
+      cartModal.style.display = cartModal.style.display === 'none' ? 'block' : 'none';
     }
   </script>
 </body>
