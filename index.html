@@ -24,14 +24,16 @@
       padding: 3rem 2rem;
       text-align: center;
     }
+    .menu-section img {
+      width: 100%;
+      border-radius: 10px;
+    }
     .form-section {
       background-color: white;
       border-radius: 15px;
       padding: 2rem;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      margin-top: -40px;
-      position: relative;
-      z-index: 1;
+      margin-top: 2rem;
     }
     .form-control, .form-select {
       border-radius: 10px;
@@ -65,8 +67,53 @@
     <p>Rápido, fácil y desde cualquier lugar</p>
   </section>
 
+  <section class="container menu-section">
+    <h4 class="mb-4 text-primary">Menú de productos</h4>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://source.unsplash.com/300x200/?pizza" alt="Pizza">
+          <div class="card-body">
+            <h5 class="card-title">Pizza</h5>
+            <p class="card-text">Deliciosa pizza artesanal con ingredientes frescos.</p>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Pizza" id="pizza">
+              <label class="form-check-label" for="pizza">Seleccionar</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://source.unsplash.com/300x200/?sushi" alt="Sushi">
+          <div class="card-body">
+            <h5 class="card-title">Sushi</h5>
+            <p class="card-text">Rolls frescos con pescado, arroz y vegetales.</p>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Sushi" id="sushi">
+              <label class="form-check-label" for="sushi">Seleccionar</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://source.unsplash.com/300x200/?burger" alt="Hamburguesa">
+          <div class="card-body">
+            <h5 class="card-title">Hamburguesa</h5>
+            <p class="card-text">Jugosa hamburguesa con queso, vegetales y salsas.</p>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Hamburguesa" id="burger">
+              <label class="form-check-label" for="burger">Seleccionar</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="container form-section">
-    <h4 class="mb-4 text-primary">Formulario de Pedido</h4>
+    <h4 class="mb-4 text-primary">Datos del Pedido</h4>
     <form>
       <div class="mb-3">
         <label class="form-label">Nombre completo</label>
@@ -105,16 +152,8 @@
         </div>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Pedido</label>
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-list-ul"></i></span>
-          <textarea class="form-control" rows="3" placeholder="Pizza grande, 2 jugos..." required></textarea>
-        </div>
-      </div>
-
       <button type="submit" class="btn btn-primary w-100 mt-3">
-        <i class="bi bi-send-fill me-2"></i>Enviar pedido
+        <i class="bi bi-send-fill me-2"></i>Confirmar pedido
       </button>
     </form>
   </section>
