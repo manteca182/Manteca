@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mini Tienda WebApp</title>
+  <title>Tienda WebApp</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     * {
       margin: 0;
@@ -16,7 +17,7 @@
     body {
       background: linear-gradient(to right, #ece9e6, #ffffff);
       padding: 1rem;
-      font-size: 18px;
+      font-size: 17px;
       color: #333;
       display: flex;
       flex-direction: column;
@@ -30,12 +31,12 @@
     }
 
     header h1 {
-      font-size: 1.8rem;
-      margin-bottom: 0.3rem;
+      font-size: 1.6rem;
+      margin-bottom: 0.2rem;
     }
 
     header p {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #666;
     }
 
@@ -52,8 +53,9 @@
       backdrop-filter: blur(10px);
       border-radius: 12px;
       padding: 0.8rem;
-      width: 140px;
+      width: 150px;
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      position: relative;
       transition: transform 0.3s ease;
     }
 
@@ -85,6 +87,13 @@
       border-radius: 6px;
       font-size: 0.9rem;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .add-to-cart i {
+      font-size: 0.9rem;
     }
 
     .cart {
@@ -96,30 +105,63 @@
       font-weight: 600;
       font-size: 1rem;
       margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background-color: #2ed573;
+      color: white;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .price-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background-color: #1e90ff;
+      color: white;
+      font-size: 0.75rem;
+      padding: 2px 6px;
+      border-radius: 12px;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>🛒 Tus productos</h1>
-    <p>Selecciona sin hacer scroll</p>
+    <h1><i class="fas fa-store"></i> Tienda</h1>
+    <p>Selecciona tus productos favoritos</p>
   </header>
 
   <section class="product-grid">
     <div class="product-card">
-      <img src="https://via.placeholder.com/140x100" alt="Producto 1" />
+      <span class="badge">Nuevo</span>
+      <span class="price-badge">$19.99</span>
+      <img src="https://via.placeholder.com/150x100" alt="Producto 1" />
       <h3>Producto 1</h3>
-      <p>$19.99</p>
-      <button class="add-to-cart">Añadir</button>
+      <p>Descripción breve</p>
+      <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Añadir</button>
     </div>
     <div class="product-card">
-      <img src="https://via.placeholder.com/140x100" alt="Producto 2" />
+      <span class="badge">Oferta</span>
+      <span class="price-badge">$14.99</span>
+      <img src="https://via.placeholder.com/150x100" alt="Producto 2" />
       <h3>Producto 2</h3>
-      <p>$29.99</p>
-      <button class="add-to-cart">Añadir</button>
+      <p>Edición limitada</p>
+      <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Añadir</button>
     </div>
   </section>
 
-  <div class="cart">🧺 Ver carrito (2)</div>
+  <div class="cart">
+    <i class="fas fa-shopping-cart"></i> Ver carrito (2)
+  </div>
 </body>
 </html>
