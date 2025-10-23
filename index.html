@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Pedidos Express</title>
+  <title>Pedidos WebApp</title>
   <!-- Google Fonts: Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <!-- Bootstrap CSS + Icons -->
@@ -11,42 +11,48 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #f9f9f9;
+      background-color: #f0f4f8;
     }
     header {
-      background-color: #198754;
+      background-color: #0d6efd;
       color: white;
       padding: 1rem 2rem;
     }
     .hero {
-      background-image: url('https://source.unsplash.com/featured/?food');
-      background-size: cover;
-      background-position: center;
-      height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: linear-gradient(to right, #0d6efd, #3b8beb);
       color: white;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+      padding: 3rem 2rem;
+      text-align: center;
     }
     .form-section {
       background-color: white;
       border-radius: 15px;
       padding: 2rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      margin-top: -50px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      margin-top: -40px;
       position: relative;
       z-index: 1;
     }
-    .form-control {
+    .form-control, .form-select {
       border-radius: 10px;
+    }
+    .input-group-text {
+      background-color: #e9f0ff;
+      border: none;
+    }
+    .btn-primary {
+      background-color: #0d6efd;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #0b5ed7;
     }
   </style>
 </head>
 <body>
 
   <header class="d-flex justify-content-between align-items-center">
-    <h2><i class="bi bi-bag-check-fill me-2"></i>Pedidos Express</h2>
+    <h2><i class="bi bi-basket-fill me-2"></i>Pedidos WebApp</h2>
     <nav>
       <i class="bi bi-facebook me-3"></i>
       <i class="bi bi-instagram me-3"></i>
@@ -54,39 +60,62 @@
     </nav>
   </header>
 
-  <section class="hero text-center">
-    <h1>¡Tu comida favorita en minutos!</h1>
+  <section class="hero">
+    <h1 class="mb-3">¡Pide tu comida favorita!</h1>
+    <p>Rápido, fácil y desde cualquier lugar</p>
   </section>
 
   <section class="container form-section">
-    <h3 class="mb-4">Haz tu pedido</h3>
+    <h4 class="mb-4 text-primary">Formulario de Pedido</h4>
     <form>
       <div class="mb-3">
         <label class="form-label">Nombre completo</label>
-        <input type="text" class="form-control" placeholder="Juan Pérez" required>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+          <input type="text" class="form-control" placeholder="Juan Pérez" required>
+        </div>
       </div>
+
       <div class="mb-3">
         <label class="form-label">Dirección de entrega</label>
-        <input type="text" class="form-control" placeholder="Calle 123, Ciudad" required>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+          <input type="text" class="form-control" placeholder="Calle 123, Ciudad" required>
+        </div>
       </div>
+
       <div class="mb-3">
         <label class="form-label">Teléfono</label>
-        <input type="tel" class="form-control" placeholder="+53 55555555" required>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
+          <input type="tel" class="form-control" placeholder="+53 55555555" required>
+        </div>
       </div>
+
       <div class="mb-3">
         <label class="form-label">Método de pago</label>
-        <select class="form-select" required>
-          <option value="">Selecciona uno</option>
-          <option>Tarjeta</option>
-          <option>Efectivo</option>
-          <option>Transferencia</option>
-        </select>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-credit-card-fill"></i></span>
+          <select class="form-select" required>
+            <option value="">Selecciona uno</option>
+            <option>Tarjeta</option>
+            <option>Efectivo</option>
+            <option>Transferencia</option>
+          </select>
+        </div>
       </div>
+
       <div class="mb-3">
         <label class="form-label">Pedido</label>
-        <textarea class="form-control" rows="3" placeholder="Pizza grande, 2 jugos..." required></textarea>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-list-ul"></i></span>
+          <textarea class="form-control" rows="3" placeholder="Pizza grande, 2 jugos..." required></textarea>
+        </div>
       </div>
-      <button type="submit" class="btn btn-success w-100"><i class="bi bi-send-fill me-2"></i>Enviar pedido</button>
+
+      <button type="submit" class="btn btn-primary w-100 mt-3">
+        <i class="bi bi-send-fill me-2"></i>Enviar pedido
+      </button>
     </form>
   </section>
 
