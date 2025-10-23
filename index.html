@@ -1,175 +1,126 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Pedidos App</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda WebApp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    body {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
-      background-color: #f0f4f8;
     }
+
+    body {
+      background: linear-gradient(to right, #ece9e6, #ffffff);
+      padding: 2rem;
+      color: #333;
+    }
+
     header {
-      background-color: #0d6efd;
-      color: white;
-      padding: 1rem 2rem;
       text-align: center;
+      margin-bottom: 2rem;
     }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
     .product-card {
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .product-card:hover {
-      transform: scale(1.02);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
     }
+
     .product-card img {
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
-      height: 180px;
-      object-fit: cover;
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
     }
-    .floating-cart {
+
+    .product-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .product-card p {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .add-to-cart {
+      background-color: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-to-cart:hover {
+      background-color: #ff4757;
+    }
+
+    .cart {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #0d6efd;
-      color: white;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      cursor: pointer;
-      z-index: 1000;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+      padding: 1rem 1.5rem;
+      border-radius: 50px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      font-weight: 600;
+      animation: fadeInUp 0.6s ease-out;
     }
-    .cart-count {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background-color: red;
-      color: white;
-      font-size: 12px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 20px;
-    }
-    .modal-content {
-      border-radius: 15px;
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <h2><i class="bi bi-basket-fill me-2"></i>Pedidos App</h2>
-    <p>Selecciona tus productos favoritos</p>
+    <h1>🛒 Selecciona tus productos</h1>
+    <p>Haz clic para añadir al carrito</p>
   </header>
 
-  <div class="container py-4">
-    <div class="row g-4" id="menu">
-      <!-- Productos generados por JS -->
+  <section class="product-grid">
+    <div class="product-card">
+      <img src="https://via.placeholder.com/220x150" alt="Producto 1" />
+      <h3>Producto 1</h3>
+      <p>$19.99</p>
+      <button class="add-to-cart">Añadir al carrito</button>
     </div>
-  </div>
-
-  <!-- Botón flotante del carrito -->
-  <div class="floating-cart" data-bs-toggle="modal" data-bs-target="#cartModal">
-    <i class="bi bi-cart-fill"></i>
-    <div class="cart-count" id="cartCount">0</div>
-  </div>
-
-  <!-- Modal del carrito -->
-  <div class="modal fade" id="cartModal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Tu pedido</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body" id="cartItems">
-          <p>No hay productos en el carrito.</p>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-success w-100" onclick="finalizeOrder()">Finalizar pedido</button>
-        </div>
-      </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/220x150" alt="Producto 2" />
+      <h3>Producto 2</h3>
+      <p>$29.99</p>
+      <button class="add-to-cart">Añadir al carrito</button>
     </div>
-  </div>
+    <!-- Puedes duplicar más tarjetas aquí -->
+  </section>
 
-  <!-- Bootstrap JS + lógica de carrito -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const products = [
-      { name: "Pizza Margarita", price: 8.00, image: "https://source.unsplash.com/300x200/?pizza" },
-      { name: "Hamburguesa Clásica", price: 6.50, image: "https://source.unsplash.com/300x200/?burger" },
-      { name: "Sushi Variado", price: 10.00, image: "https://source.unsplash.com/300x200/?sushi" },
-      { name: "Ensalada Fresca", price: 5.00, image: "https://source.unsplash.com/300x200/?salad" },
-      { name: "Tacos Mexicanos", price: 7.50, image: "https://source.unsplash.com/300x200/?tacos" }
-    ];
-
-    const cart = [];
-
-    function renderMenu() {
-      const menu = document.getElementById('menu');
-      products.forEach((product, index) => {
-        const card = document.createElement('div');
-        card.className = 'col-md-4';
-        card.innerHTML = `
-          <div class="card product-card">
-            <img src="${product.image}" class="card-img-top" alt="${product.name}">
-            <div class="card-body">
-              <h5 class="card-title">${product.name}</h5>
-              <p class="card-text fw-bold text-primary">Precio: $${product.price.toFixed(2)}</p>
-              <button class="btn btn-outline-primary w-100" onclick="addToCart(${index})">Añadir al carrito</button>
-            </div>
-          </div>
-        `;
-        menu.appendChild(card);
-      });
-    }
-
-    function addToCart(index) {
-      cart.push(products[index]);
-      document.getElementById('cartCount').textContent = cart.length;
-    }
-
-    document.getElementById('cartModal').addEventListener('show.bs.modal', () => {
-      const cartItems = document.getElementById('cartItems');
-      if (cart.length === 0) {
-        cartItems.innerHTML = '<p>No hay productos en el carrito.</p>';
-      } else {
-        let html = '<ul class="list-group mb-3">';
-        let total = 0;
-        cart.forEach(item => {
-          html += `<li class="list-group-item d-flex justify-content-between align-items-center">
-                    ${item.name}
-                    <span>$${item.price.toFixed(2)}</span>
-                  </li>`;
-          total += item.price;
-        });
-        html += `</ul><h5 class="text-end">Total: $${total.toFixed(2)}</h5>`;
-        cartItems.innerHTML = html;
-      }
-    });
-
-    function finalizeOrder() {
-      alert('¡Pedido confirmado! Gracias por tu compra.');
-      cart.length = 0;
-      document.getElementById('cartCount').textContent = '0';
-      document.getElementById('cartItems').innerHTML = '<p>No hay productos en el carrito.</p>';
-      const modal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
-      modal.hide();
-    }
-
-    renderMenu();
-  </script>
+  <div class="cart">🛍️ Ver carrito (2)</div>
 </body>
 </html>
