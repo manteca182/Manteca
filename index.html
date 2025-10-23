@@ -274,3 +274,40 @@
       cartList.innerHTML = '';
       cartItems.forEach(item => {
         const li = document[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/hoang0508/DoAnWeb-php/tree/e65ff8f9b70c7246b81a4564becdf7583c909561/.history%2Fadmin%2Findex_20210930211555.php?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054&citationId=1&citationId=2 "github.com")
+                                                                  
+.name} - $${item.price.toFixed(2)}`;
+        cartList.appendChild(li);
+      });
+    }
+
+    function toggleModal() {
+      const isVisible = cartModal.style.display === 'block';
+      cartModal.style.display = isVisible ? 'none' : 'block';
+      overlay.style.display = isVisible ? 'none' : 'block';
+    }
+
+    function closeModal() {
+      cartModal.style.display = 'none';
+      overlay.style.display = 'none';
+    }
+
+    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const address = document.getElementById('address').value;
+      const phone = document.getElementById('phone').value;
+      const note = document.getElementById('note').value;
+
+      // Aquí podrías enviar los datos a un servidor o procesarlos
+      alert(`Pedido enviado:\n\nNombre: ${name}\nDirección: ${address}\nTeléfono: ${phone}\nNota: ${note}\n\nProductos: ${cartItems.length}`);
+
+      // Reiniciar formulario y carrito
+      cartItems = [];
+      cartCount.textContent = '0';
+      updateCartList();
+      closeModal();
+      document.getElementById('checkoutForm').reset();
+    });
+  </script>
+</body>
+</html>
