@@ -2,10 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Pedidos WebApp</title>
-  <!-- Google Fonts: Poppins -->
+  <title>Menú de Pedidos</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Bootstrap CSS + Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <style>
@@ -13,152 +11,137 @@
       font-family: 'Poppins', sans-serif;
       background-color: #f0f4f8;
     }
-    header {
+    .product-card img {
+      border-radius: 10px;
+      height: 180px;
+      object-fit: cover;
+    }
+    .floating-cart {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
       background-color: #0d6efd;
       color: white;
-      padding: 1rem 2rem;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 1000;
     }
-    .hero {
-      background: linear-gradient(to right, #0d6efd, #3b8beb);
-      color: white;
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-    .menu-section img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .form-section {
-      background-color: white;
+    .modal-content {
       border-radius: 15px;
-      padding: 2rem;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      margin-top: 2rem;
-    }
-    .form-control, .form-select {
-      border-radius: 10px;
-    }
-    .input-group-text {
-      background-color: #e9f0ff;
-      border: none;
-    }
-    .btn-primary {
-      background-color: #0d6efd;
-      border: none;
-    }
-    .btn-primary:hover {
-      background-color: #0b5ed7;
     }
   </style>
 </head>
 <body>
 
-  <header class="d-flex justify-content-between align-items-center">
-    <h2><i class="bi bi-basket-fill me-2"></i>Pedidos WebApp</h2>
-    <nav>
-      <i class="bi bi-facebook me-3"></i>
-      <i class="bi bi-instagram me-3"></i>
-      <i class="bi bi-whatsapp"></i>
-    </nav>
-  </header>
+  <div class="container py-4">
+    <h2 class="text-center mb-4 text-primary">Menú disponible</h2>
+    <div class="row g-4" id="menu">
 
-  <section class="hero">
-    <h1 class="mb-3">¡Pide tu comida favorita!</h1>
-    <p>Rápido, fácil y desde cualquier lugar</p>
-  </section>
-
-  <section class="container menu-section">
-    <h4 class="mb-4 text-primary">Menú de productos</h4>
-    <div class="row g-4">
+      <!-- Producto 1 -->
       <div class="col-md-4">
-        <div class="card">
-          <img src="https://source.unsplash.com/300x200/?pizza" alt="Pizza">
+        <div class="card product-card">
+          <img src="https://source.unsplash.com/300x200/?pizza" class="card-img-top" alt="Pizza">
           <div class="card-body">
-            <h5 class="card-title">Pizza</h5>
-            <p class="card-text">Deliciosa pizza artesanal con ingredientes frescos.</p>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="Pizza" id="pizza">
-              <label class="form-check-label" for="pizza">Seleccionar</label>
-            </div>
+            <h5 class="card-title">Pizza Margarita</h5>
+            <p class="card-text">Precio: $8.00</p>
+            <button class="btn btn-outline-primary w-100" onclick="addToCart('Pizza Margarita', 8)">Añadir al carrito</button>
           </div>
         </div>
       </div>
+
+      <!-- Producto 2 -->
       <div class="col-md-4">
-        <div class="card">
-          <img src="https://source.unsplash.com/300x200/?sushi" alt="Sushi">
+        <div class="card product-card">
+          <img src="https://source.unsplash.com/300x200/?burger" class="card-img-top" alt="Burger">
           <div class="card-body">
-            <h5 class="card-title">Sushi</h5>
-            <p class="card-text">Rolls frescos con pescado, arroz y vegetales.</p>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="Sushi" id="sushi">
-              <label class="form-check-label" for="sushi">Seleccionar</label>
-            </div>
+            <h5 class="card-title">Hamburguesa Clásica</h5>
+            <p class="card-text">Precio: $6.50</p>
+            <button class="btn btn-outline-primary w-100" onclick="addToCart('Hamburguesa Clásica', 6.5)">Añadir al carrito</button>
           </div>
         </div>
       </div>
+
+      <!-- Producto 3 -->
       <div class="col-md-4">
-        <div class="card">
-          <img src="https://source.unsplash.com/300x200/?burger" alt="Hamburguesa">
+        <div class="card product-card">
+          <img src="https://source.unsplash.com/300x200/?sushi" class="card-img-top" alt="Sushi">
           <div class="card-body">
-            <h5 class="card-title">Hamburguesa</h5>
-            <p class="card-text">Jugosa hamburguesa con queso, vegetales y salsas.</p>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="Hamburguesa" id="burger">
-              <label class="form-check-label" for="burger">Seleccionar</label>
-            </div>
+            <h5 class="card-title">Sushi Variado</h5>
+            <p class="card-text">Precio: $10.00</p>
+            <button class="btn btn-outline-primary w-100" onclick="addToCart('Sushi Variado', 10)">Añadir al carrito</button>
           </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Botón flotante del carrito -->
+  <div class="floating-cart" data-bs-toggle="modal" data-bs-target="#cartModal">
+    <i class="bi bi-cart-fill"></i>
+  </div>
+
+  <!-- Modal del carrito -->
+  <div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Tu pedido</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="cartItems">
+          <p>No hay productos en el carrito.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success w-100" onclick="finalizeOrder()">Finalizar pedido</button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="container form-section">
-    <h4 class="mb-4 text-primary">Datos del Pedido</h4>
-    <form>
-      <div class="mb-3">
-        <label class="form-label">Nombre completo</label>
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-          <input type="text" class="form-control" placeholder="Juan Pérez" required>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Dirección de entrega</label>
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
-          <input type="text" class="form-control" placeholder="Calle 123, Ciudad" required>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Teléfono</label>
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-          <input type="tel" class="form-control" placeholder="+53 55555555" required>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Método de pago</label>
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-credit-card-fill"></i></span>
-          <select class="form-select" required>
-            <option value="">Selecciona uno</option>
-            <option>Tarjeta</option>
-            <option>Efectivo</option>
-            <option>Transferencia</option>
-          </select>
-        </div>
-      </div>
-
-      <button type="submit" class="btn btn-primary w-100 mt-3">
-        <i class="bi bi-send-fill me-2"></i>Confirmar pedido
-      </button>
-    </form>
-  </section>
-
-  <!-- Bootstrap JS -->
+  <!-- Bootstrap JS + lógica de carrito -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      alert(`${name} añadido al carrito`);
+    }
+
+    document.getElementById('cartModal').addEventListener('show.bs.modal', () => {
+      const cartItems = document.getElementById('cartItems');
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p>No hay productos en el carrito.</p>';
+      } else {
+        let html = '<ul class="list-group mb-3">';
+        let total = 0;
+        cart.forEach(item => {
+          html += `<li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${item.name}
+                    <span>$${item.price.toFixed(2)}</span>
+                  </li>`;
+          total += item.price;
+        });
+        html += `</ul><h5>Total: $${total.toFixed(2)}</h5>`;
+        cartItems.innerHTML = html;
+      }
+    });
+
+    function finalizeOrder() {
+      alert('¡Pedido confirmado! Gracias por tu compra.');
+      cart.length = 0;
+      document.getElementById('cartItems').innerHTML = '<p>No hay productos en el carrito.</p>';
+      const modal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
+      modal.hide();
+    }
+  </script>
 </body>
 </html>
