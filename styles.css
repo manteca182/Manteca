@@ -1708,7 +1708,22 @@ header {
 
 
   
-    
+ /* Agregar estos estilos al archivo styles.css */
+
+/* Efecto blur cuando el modal está abierto */
+.modal-open header,
+.modal-open .categories-header {
+    filter: blur(5px);
+    pointer-events: none;
+    transition: filter 0.3s ease;
+}
+
+/* Asegurar que el modal y sus elementos no tengan blur */
+.modal,
+.cart-button,
+.modal-header-blur {
+    filter: none !important;
+}   
  
 
     
