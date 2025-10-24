@@ -1,4 +1,4 @@
-// scripts.js - Gestión completa de la aplicación de menú
+// scripts.js - Gestión completa de la aplicación de menú (ACTUALIZADO)
 
 // Variables globales
 let cartItems = [];
@@ -45,10 +45,19 @@ function initializeEventListeners() {
     checkoutForm.addEventListener('submit', handleCheckout);
 
     // Botón de carrito
-    document.querySelector('.cart-button').addEventListener('click', toggleModal);
+    document.getElementById('cartButton').addEventListener('click', toggleModal);
 
     // Overlay para cerrar modal
     overlay.addEventListener('click', closeModal);
+
+    // Botones del modal del carrito
+    document.getElementById('continueShoppingBtn').addEventListener('click', closeModal);
+    document.getElementById('checkoutBtn').addEventListener('click', showCheckoutForm);
+    document.getElementById('backToCartBtn').addEventListener('click', showCartItems);
+
+    // Botones del modal de personalización
+    document.getElementById('cancelCustomizationBtn').addEventListener('click', closeItemModal);
+    document.getElementById('saveCustomizationBtn').addEventListener('click', saveItemCustomization);
 }
 
 // Manejo de cambio de categorías
@@ -153,10 +162,10 @@ function updateCartList() {
             <img src="${item.image}" alt="${item.name}">
             <div class="cart-item-details">
                 <div class="cart-item-name">${item.name}</div>
-                <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
                 ${item.note ? `<div class="cart-item-note">Nota: ${item.note}</div>` : ''}
                 ${item.addons.length > 0 ? `<div class="cart-item-addons">Agregos: ${item.addons.map(a => a.name).join(', ')}</div>` : ''}
             </div>
+            <div class="cart-item-price-badge">$${itemTotal.toFixed(2)}</div>
             <div class="cart-item-actions">
                 <button class="action-btn edit-item" data-index="${index}">
                     <i class="fas fa-edit"></i>
@@ -268,6 +277,11 @@ function showCartItems() {
 }
 
 function showCheckoutForm() {
+    if (cartItems.length === 0) {
+        alert('Tu carrito está vacío. Agrega algunos productos antes de realizar el pedido.');
+        return;
+    }
+    
     document.querySelector('.cart-items').style.display = 'none';
     document.getElementById('cartTotal').style.display = 'none';
     document.querySelector('.form-actions').style.display = 'none';
@@ -309,6 +323,8 @@ function handleCheckout(e) {
     updateCartList();
     closeModal();
     checkoutForm.reset();
+    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+    document.getElementById('paymentMethod').value = '';
     showCartItems();
 }
 
