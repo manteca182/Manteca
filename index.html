@@ -39,7 +39,7 @@
       justify-content: flex-start;
       min-height: 100vh;
       overflow-x: hidden;
-      padding-top: 100px;
+      padding-top: 180px;
     }
 
     /* Header mejorado */
@@ -113,6 +113,7 @@
     }
 
     .header-btn {
+      position: relative;
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -146,6 +147,119 @@
       text-align: center;
     }
 
+    /* Panel de notificaciones */
+    .notification-panel {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      width: 320px;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      z-index: 1001;
+      display: none;
+    }
+
+    .notification-item {
+      padding: 0.8rem;
+      border-bottom: 1px solid var(--light);
+      font-size: 0.9rem;
+    }
+
+    .notification-item:last-child {
+      border-bottom: none;
+    }
+
+    .notification-item.unread {
+      background: rgba(67, 97, 238, 0.05);
+    }
+
+    /* Panel de historial */
+    .history-panel {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      width: 350px;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      z-index: 1001;
+      display: none;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .history-item {
+      padding: 0.8rem;
+      border-bottom: 1px solid var(--light);
+      font-size: 0.9rem;
+    }
+
+    .history-item:last-child {
+      border-bottom: none;
+    }
+
+    /* Categorías */
+    .categories-header {
+      position: fixed;
+      top: 100px;
+      left: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      padding: 0.8rem 1rem;
+      box-shadow: var(--shadow);
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      overflow-x: auto;
+    }
+
+    .category-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      min-width: 70px;
+    }
+
+    .category-btn:hover {
+      background: rgba(67, 97, 238, 0.1);
+    }
+
+    .category-btn.active {
+      background: rgba(67, 97, 238, 0.15);
+    }
+
+    .category-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .category-name {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    /* Productos */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -153,6 +267,17 @@
       width: 100%;
       max-width: 1200px;
       margin-bottom: 5rem;
+    }
+
+    .product-category {
+      display: none;
+    }
+
+    .product-category.active {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
     }
 
     .product-card {
@@ -299,6 +424,19 @@
       animation: modalFadeIn 0.3s ease;
     }
 
+    .modal-header-blur {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      right: 1rem;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      z-index: 999;
+      display: none;
+    }
+
     @keyframes modalFadeIn {
       from {
         opacity: 0;
@@ -382,7 +520,17 @@
       text-align: center;
       color: var(--gray);
       font-style: italic;
-      padding: 1.5rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .empty-cart i {
+      font-size: 3rem;
+      color: var(--gray);
+      opacity: 0.5;
     }
 
     #cartTotal {
@@ -417,7 +565,8 @@
     }
 
     .input-group input,
-    .input-group textarea {
+    .input-group textarea,
+    .input-group select {
       padding: 0.7rem 0.7rem 0.7rem 2.5rem;
       border: 1px solid var(--gray);
       border-radius: 8px;
@@ -426,7 +575,8 @@
     }
 
     .input-group input:focus,
-    .input-group textarea:focus {
+    .input-group textarea:focus,
+    .input-group select:focus {
       outline: none;
       border-color: var(--primary);
       box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
@@ -437,6 +587,40 @@
       left: 0.8rem;
       top: 2.2rem;
       color: var(--gray);
+    }
+
+    .payment-methods {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .payment-method {
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
+      padding: 0.7rem;
+      border: 1px solid var(--gray);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .payment-method.selected {
+      border-color: var(--primary);
+      background: rgba(67, 97, 238, 0.1);
+    }
+
+    .municipio-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--light);
+    }
+
+    .municipio-item:last-child {
+      border-bottom: none;
     }
 
     .form-actions {
@@ -496,7 +680,7 @@
       to { opacity: 1; }
     }
 
-    /* Modal de notas y agregos */
+    /* Modal para notas y agregos */
     .item-modal {
       position: fixed;
       top: 50%;
@@ -576,6 +760,21 @@
         width: 36px;
         height: 36px;
       }
+      
+      .categories-header {
+        gap: 0.5rem;
+        padding: 0.5rem;
+      }
+      
+      .category-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+      
+      .category-name {
+        font-size: 0.7rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -594,6 +793,10 @@
       .user-greeting p {
         font-size: 0.7rem;
       }
+      
+      body {
+        padding-top: 160px;
+      }
     }
   </style>
 </head>
@@ -606,17 +809,50 @@
         <div class="status-indicator"></div>
       </div>
       <div class="user-greeting">
-        <h1>Hola, Usuario</h1>
+        <h1>Hola, Kike</h1>
         <p>Bienvenido de nuevo</p>
       </div>
     </div>
     <div class="header-actions">
-      <button class="header-btn">
+      <button class="header-btn" id="notificationBtn">
         <i class="fas fa-bell"></i>
         <span class="notification-badge">3</span>
+        <div class="notification-panel" id="notificationPanel">
+          <h4>Notificaciones</h4>
+          <div class="notification-item unread">
+            <strong>¡Nueva oferta!</strong><br>
+            Descuento del 20% en pizzas
+          </div>
+          <div class="notification-item unread">
+            <strong>Pedido en camino</strong><br>
+            Tu pedido #1234 está en reparto
+          </div>
+          <div class="notification-item">
+            <strong>Pedido completado</strong><br>
+            Tu pedido #1233 ha sido entregado
+          </div>
+        </div>
       </button>
-      <button class="header-btn">
+      <button class="header-btn" id="historyBtn">
         <i class="fas fa-history"></i>
+        <div class="history-panel" id="historyPanel">
+          <h4>Historial de Compras</h4>
+          <div class="history-item">
+            <strong>Pedido #1234</strong><br>
+            Hamburguesa + Refresco - $7.98<br>
+            <small>15 Mar 2024 - Entregado</small>
+          </div>
+          <div class="history-item">
+            <strong>Pedido #1233</strong><br>
+            Pizza + Ensalada - $7.74<br>
+            <small>14 Mar 2024 - Entregado</small>
+          </div>
+          <div class="history-item">
+            <strong>Pedido #1232</strong><br>
+            Sándwich + Café - $5.50<br>
+            <small>13 Mar 2024 - Entregado</small>
+          </div>
+        </div>
       </button>
       <button class="header-btn">
         <i class="fas fa-sign-out-alt"></i>
@@ -624,43 +860,198 @@
     </div>
   </header>
 
-  <!-- Productos -->
+  <!-- Categorías -->
+  <div class="categories-header">
+    <button class="category-btn active" data-category="hamburguesas">
+      <div class="category-icon">
+        <i class="fas fa-hamburger"></i>
+      </div>
+      <span class="category-name">Hamburguesas</span>
+    </button>
+    <button class="category-btn" data-category="pizzas">
+      <div class="category-icon">
+        <i class="fas fa-pizza-slice"></i>
+      </div>
+      <span class="category-name">Pizzas</span>
+    </button>
+    <button class="category-btn" data-category="bebidas">
+      <div class="category-icon">
+        <i class="fas fa-wine-bottle"></i>
+      </div>
+      <span class="category-name">Bebidas</span>
+    </button>
+    <button class="category-btn" data-category="postres">
+      <div class="category-icon">
+        <i class="fas fa-ice-cream"></i>
+      </div>
+      <span class="category-name">Postres</span>
+    </button>
+    <button class="category-btn" data-category="ensaladas">
+      <div class="category-icon">
+        <i class="fas fa-leaf"></i>
+      </div>
+      <span class="category-name">Ensaladas</span>
+    </button>
+  </div>
+
+  <!-- Efecto blur para header cuando el modal está abierto -->
+  <div class="modal-header-blur" id="modalHeaderBlur"></div>
+
+  <!-- Productos por categorías -->
   <section class="product-grid">
-    <div class="product-card">
-      <span class="price-badge">$5.99</span>
-      <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg" alt="Hamburguesa" />
-      <h3>Hamburguesa Clásica</h3>
-      <button class="add-to-cart" onclick="addToCart('Hamburguesa Clásica', 5.99, 'https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg')">
-        <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
-        Añadir
-      </button>
+    <!-- Hamburguesas -->
+    <div class="product-category active" id="hamburguesas">
+      <div class="product-card">
+        <span class="price-badge">$5.99</span>
+        <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg" alt="Hamburguesa Clásica" />
+        <h3>Hamburguesa Clásica</h3>
+        <button class="add-to-cart" onclick="addToCart('Hamburguesa Clásica', 5.99, 'https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$7.49</span>
+        <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg" alt="Hamburguesa BBQ" />
+        <h3>Hamburguesa BBQ</h3>
+        <button class="add-to-cart" onclick="addToCart('Hamburguesa BBQ', 7.49, 'https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$8.99</span>
+        <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg" alt="Hamburguesa Doble" />
+        <h3>Hamburguesa Doble</h3>
+        <button class="add-to-cart" onclick="addToCart('Hamburguesa Doble', 8.99, 'https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
     </div>
-    <div class="product-card">
-      <span class="price-badge">$1.99</span>
-      <img src="https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg" alt="Refresco" />
-      <h3>Refresco</h3>
-      <button class="add-to-cart" onclick="addToCart('Refresco', 1.99, 'https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg')">
-        <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
-        Añadir
-      </button>
+
+    <!-- Pizzas -->
+    <div class="product-category" id="pizzas">
+      <div class="product-card">
+        <span class="price-badge">$4.25</span>
+        <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza Pepperoni" />
+        <h3>Pizza Pepperoni</h3>
+        <button class="add-to-cart" onclick="addToCart('Pizza Pepperoni', 4.25, 'https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$5.50</span>
+        <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza Hawaiana" />
+        <h3>Pizza Hawaiana</h3>
+        <button class="add-to-cart" onclick="addToCart('Pizza Hawaiana', 5.50, 'https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$6.75</span>
+        <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza Cuatro Quesos" />
+        <h3>Pizza 4 Quesos</h3>
+        <button class="add-to-cart" onclick="addToCart('Pizza 4 Quesos', 6.75, 'https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
     </div>
-    <div class="product-card">
-      <span class="price-badge">$3.49</span>
-      <img src="https://cdn.pixabay.com/photo/2017/09/30/15/10/plate-2802332_1280.jpg" alt="Ensalada" />
-      <h3>Ensalada Fresca</h3>
-      <button class="add-to-cart" onclick="addToCart('Ensalada Fresca', 3.49, 'https://cdn.pixabay.com/photo/2017/09/30/15/10/plate-2802332_1280.jpg')">
-        <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
-        Añadir
-      </button>
+
+    <!-- Bebidas -->
+    <div class="product-category" id="bebidas">
+      <div class="product-card">
+        <span class="price-badge">$1.99</span>
+        <img src="https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg" alt="Refresco" />
+        <h3>Refresco</h3>
+        <button class="add-to-cart" onclick="addToCart('Refresco', 1.99, 'https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$2.50</span>
+        <img src="https://cdn.pixabay.com/photo/2015/09/05/23/34/coffee-926837_1280.jpg" alt="Café" />
+        <h3>Café</h3>
+        <button class="add-to-cart" onclick="addToCart('Café', 2.50, 'https://cdn.pixabay.com/photo/2015/09/05/23/34/coffee-926837_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$3.25</span>
+        <img src="https://cdn.pixabay.com/photo/2017/01/12/05/34/cocktail-1973567_1280.jpg" alt="Batido" />
+        <h3>Batido</h3>
+        <button class="add-to-cart" onclick="addToCart('Batido', 3.25, 'https://cdn.pixabay.com/photo/2017/01/12/05/34/cocktail-1973567_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
     </div>
-    <div class="product-card">
-      <span class="price-badge">$4.25</span>
-      <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza" />
-      <h3>Pizza Pepperoni</h3>
-      <button class="add-to-cart" onclick="addToCart('Pizza Pepperoni', 4.25, 'https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg')">
-        <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
-        Añadir
-      </button>
+
+    <!-- Postres -->
+    <div class="product-category" id="postres">
+      <div class="product-card">
+        <span class="price-badge">$3.99</span>
+        <img src="https://cdn.pixabay.com/photo/2018/03/04/21/16/cake-3198991_1280.jpg" alt="Pastel de Chocolate" />
+        <h3>Pastel Chocolate</h3>
+        <button class="add-to-cart" onclick="addToCart('Pastel Chocolate', 3.99, 'https://cdn.pixabay.com/photo/2018/03/04/21/16/cake-3198991_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$2.75</span>
+        <img src="https://cdn.pixabay.com/photo/2017/05/04/21/23/cupcakes-2285209_1280.jpg" alt="Cupcakes" />
+        <h3>Cupcakes</h3>
+        <button class="add-to-cart" onclick="addToCart('Cupcakes', 2.75, 'https://cdn.pixabay.com/photo/2017/05/04/21/23/cupcakes-2285209_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$4.50</span>
+        <img src="https://cdn.pixabay.com/photo/2015/09/09/20/12/ice-cream-933674_1280.jpg" alt="Helado" />
+        <h3>Helado Artesanal</h3>
+        <button class="add-to-cart" onclick="addToCart('Helado Artesanal', 4.50, 'https://cdn.pixabay.com/photo/2015/09/09/20/12/ice-cream-933674_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+    </div>
+
+    <!-- Ensaladas -->
+    <div class="product-category" id="ensaladas">
+      <div class="product-card">
+        <span class="price-badge">$3.49</span>
+        <img src="https://cdn.pixabay.com/photo/2017/09/30/15/10/plate-2802332_1280.jpg" alt="Ensalada Fresca" />
+        <h3>Ensalada Fresca</h3>
+        <button class="add-to-cart" onclick="addToCart('Ensalada Fresca', 3.49, 'https://cdn.pixabay.com/photo/2017/09/30/15/10/plate-2802332_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$4.25</span>
+        <img src="https://cdn.pixabay.com/photo/2014/04/05/11/21/salad-315344_1280.jpg" alt="Ensalada César" />
+        <h3>Ensalada César</h3>
+        <button class="add-to-cart" onclick="addToCart('Ensalada César', 4.25, 'https://cdn.pixabay.com/photo/2014/04/05/11/21/salad-315344_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$5.99</span>
+        <img src="https://cdn.pixabay.com/photo/2018/10/23/19/32/salad-3768678_1280.jpg" alt="Ensalada Griega" />
+        <h3>Ensalada Griega</h3>
+        <button class="add-to-cart" onclick="addToCart('Ensalada Griega', 5.99, 'https://cdn.pixabay.com/photo/2018/10/23/19/32/salad-3768678_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
     </div>
   </section>
 
@@ -701,6 +1092,46 @@
         <i class="fas fa-phone input-icon"></i>
         <input type="tel" id="phone" required />
       </div>
+      
+      <div class="input-group">
+        <label>Municipio</label>
+        <i class="fas fa-city input-icon"></i>
+        <select id="municipio" required>
+          <option value="">Selecciona un municipio</option>
+          <option value="Playa">Playa - $2.00</option>
+          <option value="Miramar">Miramar - $2.50</option>
+          <option value="Vedado">Vedado - $1.50</option>
+          <option value="Habana Vieja">Habana Vieja - $1.00</option>
+          <option value="Centro Habana">Centro Habana - $1.25</option>
+          <option value="Cerro">Cerro - $1.75</option>
+          <option value="Marianao">Marianao - $2.25</option>
+          <option value="Boyeros">Boyeros - $3.00</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label>Método de Pago</label>
+        <div class="payment-methods">
+          <div class="payment-method" data-method="CUP">
+            <i class="fas fa-money-bill-wave"></i><br>
+            <span>CUP</span>
+          </div>
+          <div class="payment-method" data-method="USD">
+            <i class="fas fa-dollar-sign"></i><br>
+            <span>USD</span>
+          </div>
+          <div class="payment-method" data-method="EUR">
+            <i class="fas fa-euro-sign"></i><br>
+            <span>EUR</span>
+          </div>
+          <div class="payment-method" data-method="TRANSFER">
+            <i class="fas fa-exchange-alt"></i><br>
+            <span>Transferencia</span>
+          </div>
+        </div>
+        <input type="hidden" id="paymentMethod" required>
+      </div>
+      
       <div class="input-group">
         <label for="note">Notas Adicionales</label>
         <i class="fas fa-sticky-note input-icon"></i>
@@ -763,6 +1194,57 @@
     const cartTotal = document.getElementById('cartTotal');
     const checkoutForm = document.getElementById('checkoutForm');
     const itemModal = document.getElementById('itemModal');
+    const modalHeaderBlur = document.getElementById('modalHeaderBlur');
+
+    // Categorías
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Remover clase active de todos los botones
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+        // Añadir clase active al botón clickeado
+        this.classList.add('active');
+        
+        // Ocultar todas las categorías
+        document.querySelectorAll('.product-category').forEach(cat => {
+          cat.classList.remove('active');
+        });
+        
+        // Mostrar la categoría seleccionada
+        const category = this.getAttribute('data-category');
+        document.getElementById(category).classList.add('active');
+      });
+    });
+
+    // Notificaciones
+    document.getElementById('notificationBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      const panel = document.getElementById('notificationPanel');
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+      document.getElementById('historyPanel').style.display = 'none';
+    });
+
+    // Historial
+    document.getElementById('historyBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      const panel = document.getElementById('historyPanel');
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+      document.getElementById('notificationPanel').style.display = 'none';
+    });
+
+    // Cerrar paneles al hacer clic fuera
+    document.addEventListener('click', function() {
+      document.getElementById('notificationPanel').style.display = 'none';
+      document.getElementById('historyPanel').style.display = 'none';
+    });
+
+    // Métodos de pago
+    document.querySelectorAll('.payment-method').forEach(method => {
+      method.addEventListener('click', function() {
+        document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+        this.classList.add('selected');
+        document.getElementById('paymentMethod').value = this.getAttribute('data-method');
+      });
+    });
 
     function addToCart(name, price, image) {
       const item = {
@@ -794,7 +1276,12 @@
       cartList.innerHTML = '';
       
       if (cartItems.length === 0) {
-        cartList.innerHTML = '<div class="empty-cart">Tu carrito está vacío</div>';
+        cartList.innerHTML = `
+          <div class="empty-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <div>Tu carrito está vacío</div>
+          </div>
+        `;
         cartTotal.textContent = 'Total: $0.00';
         return;
       }
@@ -889,6 +1376,7 @@
       const isVisible = cartModal.style.display === 'block';
       cartModal.style.display = isVisible ? 'none' : 'block';
       overlay.style.display = isVisible ? 'none' : 'block';
+      modalHeaderBlur.style.display = isVisible ? 'none' : 'block';
       
       // Mostrar siempre los items del carrito al abrir
       if (!isVisible) {
@@ -899,6 +1387,7 @@
     function closeModal() {
       cartModal.style.display = 'none';
       overlay.style.display = 'none';
+      modalHeaderBlur.style.display = 'none';
     }
 
     function showCartItems() {
@@ -920,7 +1409,14 @@
       const name = document.getElementById('name').value;
       const address = document.getElementById('address').value;
       const phone = document.getElementById('phone').value;
+      const municipio = document.getElementById('municipio').value;
+      const paymentMethod = document.getElementById('paymentMethod').value;
       const note = document.getElementById('note').value;
+
+      if (!paymentMethod) {
+        alert('Por favor selecciona un método de pago');
+        return;
+      }
 
       const orderDetails = cartItems.map(item => {
         const itemTotal = item.price + item.addons.reduce((sum, addon) => sum + addon.price, 0);
@@ -934,7 +1430,7 @@
         return sum + item.price + item.addons.reduce((addonSum, addon) => addonSum + addon.price, 0);
       }, 0).toFixed(2);
 
-      alert(`¡Pedido enviado con éxito!\n\nNombre: ${name}\nDirección: ${address}\nTeléfono: ${phone}\nNota adicional: ${note || "Ninguna"}\n\nDetalles del pedido:\n${orderDetails}\n\nTotal: $${total}\n\nGracias por tu compra.`);
+      alert(`¡Pedido enviado con éxito!\n\nNombre: ${name}\nDirección: ${address}\nTeléfono: ${phone}\nMunicipio: ${municipio}\nMétodo de pago: ${paymentMethod}\nNota adicional: ${note || "Ninguna"}\n\nDetalles del pedido:\n${orderDetails}\n\nTotal: $${total}\n\nGracias por tu compra.`);
 
       cartItems = [];
       cartCount.textContent = '0';
