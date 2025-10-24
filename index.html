@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menú WebApp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header mejorado -->
+  <header>
+    <div class="user-info">
+      <div class="user-avatar">
+        <i class="fas fa-user"></i>
+        <div class="status-indicator"></div>
+      </div>
+      <div class="user-greeting">
+        <h1>Hola, Kike</h1>
+        <p>Bienvenido de nuevo</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="header-btn" id="notificationBtn">
+        <i class="fas fa-bell"></i>
+        <span class="notification-badge">3</span>
+        <div class="notification-panel" id="notificationPanel">
+          <h4>Notificaciones</h4>
+          <div class="notification-item unread">
+            <strong>¡Nueva oferta!</strong><br>
+            Descuento del 20% en pizzas
+          </div>
+          <div class="notification-item unread">
+            <strong>Pedido en camino</strong><br>
+            Tu pedido #1234 está en reparto
+          </div>
+          <div class="notification-item">
+            <strong>Pedido completado</strong><br>
+            Tu pedido #1233 ha sido entregado
+          </div>
+        </div>
+      </button>
+      <button class="header-btn" id="historyBtn">
+        <i class="fas fa-history"></i>
+        <div class="history-panel" id="historyPanel">
+          <h4>Historial de Compras</h4>
+          <div class="history-item">
+            <strong>Pedido #1234</strong><br>
+            Hamburguesa + Refresco - $7.98<br>
+            <small>15 Mar 2024 - Entregado</small>
+          </div>
+          <div class="history-item">
+            <strong>Pedido #1233</strong><br>
+            Pizza + Ensalada - $7.74<br>
+            <small>14 Mar 2024 - Entregado</small>
+          </div>
+          <div class="history-item">
+            <strong>Pedido #1232</strong><br>
+            Sándwich + Café - $5.50<br>
+            <small>13 Mar 2024 - Entregado</small>
+          </div>
+        </div>
+      </button>
+      <button class="header-btn">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Categorías -->
+  <div class="categories-header">
+    <button class="category-btn active" data-category="hamburguesas">
+      <div class="category-icon">
+        <i class="fas fa-hamburger"></i>
+      </div>
+      <span class="category-name">Hamburguesas</span>
+    </button>
+    <button class="category-btn" data-category="pizzas">
+      <div class="category-icon">
+        <i class="fas fa-pizza-slice"></i>
+      </div>
+      <span class="category-name">Pizzas</span>
+    </button>
+    <button class="category-btn" data-category="bebidas">
+      <div class="category-icon">
+        <i class="fas fa-wine-bottle"></i>
+      </div>
+      <span class="category-name">Bebidas</span>
+    </button>
+    <button class="category-btn" data-category="postres">
+      <div class="category-icon">
+        <i class="fas fa-ice-cream"></i>
+      </div>
+      <span class="category-name">Postres</span>
+    </button>
+    <button class="category-btn" data-category="ensaladas">
+      <div class="category-icon">
+        <i class="fas fa-leaf"></i>
+      </div>
+      <span class="category-name">Ensaladas</span>
+    </button>
+  </div>
+
+  <!-- Efecto blur para header cuando el modal está abierto -->
+  <div class="modal-header-blur" id="modalHeaderBlur"></div>
+
+  <!-- Productos por categorías -->
+  <section class="product-grid">
+    <!-- Hamburguesas -->
+    <div class="product-category active" id="hamburguesas">
+      <div class="product-card">
+        <span class="price-badge">$5.99</span>
+        <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg" alt="Hamburguesa Clásica" />
+        <h3>Hamburguesa Clásica</h3>
+        <button class="add-to-cart" onclick="addToCart('Hamburguesa Clásica', 5.99, 'https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$7.49</span>
+        <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg" alt="Hamburguesa BBQ" />
+        <h3>Hamburguesa BBQ</h3>
+        <button class="add-to-cart" onclick="addToCart('Hamburguesa BBQ', 7.49, 'https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$8.99</span>
+        <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg" alt="Hamburguesa Doble" />
+        <h3>Hamburguesa Doble</h3>
+        <button class="add-to-cart" onclick="addToCart('Hamburguesa Doble', 8.99, 'https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+    </div>
+
+    <!-- Pizzas -->
+    <div class="product-category" id="pizzas">
+      <div class="product-card">
+        <span class="price-badge">$4.25</span>
+        <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza Pepperoni" />
+        <h3>Pizza Pepperoni</h3>
+        <button class="add-to-cart" onclick="addToCart('Pizza Pepperoni', 4.25, 'https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$5.50</span>
+        <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza Hawaiana" />
+        <h3>Pizza Hawaiana</h3>
+        <button class="add-to-cart" onclick="addToCart('Pizza Hawaiana', 5.50, 'https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$6.75</span>
+        <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza Cuatro Quesos" />
+        <h3>Pizza 4 Quesos</h3>
+        <button class="add-to-cart" onclick="addToCart('Pizza 4 Quesos', 6.75, 'https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+    </div>
+
+    <!-- Bebidas -->
+    <div class="product-category" id="bebidas">
+      <div class="product-card">
+        <span class="price-badge">$1.99</span>
+        <img src="https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg" alt="Refresco" />
+        <h3>Refresco</h3>
+        <button class="add-to-cart" onclick="addToCart('Refresco', 1.99, 'https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$2.50</span>
+        <img src="https://cdn.pixabay.com/photo/2015/09/05/23/34/coffee-926837_1280.jpg" alt="Café" />
+        <h3>Café</h3>
+        <button class="add-to-cart" onclick="addToCart('Café', 2.50, 'https://cdn.pixabay.com/photo/2015/09/05/23/34/coffee-926837_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$3.25</span>
+        <img src="https://cdn.pixabay.com/photo/2017/01/12/05/34/cocktail-1973567_1280.jpg" alt="Batido" />
+        <h3>Batido</h3>
+        <button class="add-to-cart" onclick="addToCart('Batido', 3.25, 'https://cdn.pixabay.com/photo/2017/01/12/05/34/cocktail-1973567_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+    </div>
+
+    <!-- Postres -->
+    <div class="product-category" id="postres">
+      <div class="product-card">
+        <span class="price-badge">$3.99</span>
+        <img src="https://cdn.pixabay.com/photo/2018/03/04/21/16/cake-3198991_1280.jpg" alt="Pastel de Chocolate" />
+        <h3>Pastel Chocolate</h3>
+        <button class="add-to-cart" onclick="addToCart('Pastel Chocolate', 3.99, 'https://cdn.pixabay.com/photo/2018/03/04/21/16/cake-3198991_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$2.75</span>
+        <img src="https://cdn.pixabay.com/photo/2017/05/04/21/23/cupcakes-2285209_1280.jpg" alt="Cupcakes" />
+        <h3>Cupcakes</h3>
+        <button class="add-to-cart" onclick="addToCart('Cupcakes', 2.75, 'https://cdn.pixabay.com/photo/2017/05/04/21/23/cupcakes-2285209_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$4.50</span>
+        <img src="https://cdn.pixabay.com/photo/2015/09/09/20/12/ice-cream-933674_1280.jpg" alt="Helado" />
+        <h3>Helado Artesanal</h3>
+        <button class="add-to-cart" onclick="addToCart('Helado Artesanal', 4.50, 'https://cdn.pixabay.com/photo/2015/09/09/20/12/ice-cream-933674_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+    </div>
+
+    <!-- Ensaladas -->
+    <div class="product-category" id="ensaladas">
+      <div class="product-card">
+        <span class="price-badge">$3.49</span>
+        <img src="https://cdn.pixabay.com/photo/2017/09/30/15/10/plate-2802332_1280.jpg" alt="Ensalada Fresca" />
+        <h3>Ensalada Fresca</h3>
+        <button class="add-to-cart" onclick="addToCart('Ensalada Fresca', 3.49, 'https://cdn.pixabay.com/photo/2017/09/30/15/10/plate-2802332_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$4.25</span>
+        <img src="https://cdn.pixabay.com/photo/2014/04/05/11/21/salad-315344_1280.jpg" alt="Ensalada César" />
+        <h3>Ensalada César</h3>
+        <button class="add-to-cart" onclick="addToCart('Ensalada César', 4.25, 'https://cdn.pixabay.com/photo/2014/04/05/11/21/salad-315344_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$5.99</span>
+        <img src="https://cdn.pixabay.com/photo/2018/10/23/19/32/salad-3768678_1280.jpg" alt="Ensalada Griega" />
+        <h3>Ensalada Griega</h3>
+        <button class="add-to-cart" onclick="addToCart('Ensalada Griega', 5.99, 'https://cdn.pixabay.com/photo/2018/10/23/19/32/salad-3768678_1280.jpg')">
+          <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+          Añadir
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Botón del carrito -->
+  <button class="cart-button" id="cartButton">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Modal del carrito -->
+  <div class="modal" id="cartModal">
+    <h4>Tu Carrito</h4>
+    <ul class="cart-items" id="cartList"></ul>
+    <div id="cartTotal">Total: $0.00</div>
+    
+    <div class="form-actions">
+      <button class="form-btn btn-secondary" id="continueShoppingBtn">Seguir Comprando</button>
+      <button class="form-btn btn-primary" id="checkoutBtn">Realizar Pedido</button>
+    </div>
+    
+    <!-- Formulario de pedido -->
+    <form id="checkoutForm" class="checkout-form">
+      <div class="input-group">
+        <label for="name">Nombre Completo</label>
+        <i class="fas fa-user input-icon"></i>
+        <input type="text" id="name" required />
+      </div>
+      <div class="input-group">
+        <label for="address">Dirección de Entrega</label>
+        <i class="fas fa-map-marker-alt input-icon"></i>
+        <input type="text" id="address" required />
+      </div>
+      <div class="input-group">
+        <label for="phone">Teléfono</label>
+        <i class="fas fa-phone input-icon"></i>
+        <input type="tel" id="phone" required />
+      </div>
+      
+      <div class="input-group">
+        <label>Municipio</label>
+        <i class="fas fa-city input-icon"></i>
+        <select id="municipio" required>
+          <option value="">Selecciona un municipio</option>
+          <option value="Playa">Playa - $2.00</option>
+          <option value="Miramar">Miramar - $2.50</option>
+          <option value="Vedado">Vedado - $1.50</option>
+          <option value="Habana Vieja">Habana Vieja - $1.00</option>
+          <option value="Centro Habana">Centro Habana - $1.25</option>
+          <option value="Cerro">Cerro - $1.75</option>
+          <option value="Marianao">Marianao - $2.25</option>
+          <option value="Boyeros">Boyeros - $3.00</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label>Método de Pago</label>
+        <div class="payment-methods">
+          <div class="payment-method" data-method="CUP">
+            <i class="fas fa-money-bill-wave"></i><br>
+            <span>CUP</span>
+          </div>
+          <div class="payment-method" data-method="USD">
+            <i class="fas fa-dollar-sign"></i><br>
+            <span>USD</span>
+          </div>
+          <div class="payment-method" data-method="EUR">
+            <i class="fas fa-euro-sign"></i><br>
+            <span>EUR</span>
+          </div>
+          <div class="payment-method" data-method="TRANSFER">
+            <i class="fas fa-exchange-alt"></i><br>
+            <span>Transferencia</span>
+          </div>
+        </div>
+        <input type="hidden" id="paymentMethod" required>
+      </div>
+      
+      <div class="input-group">
+        <label for="note">Notas Adicionales</label>
+        <i class="fas fa-sticky-note input-icon"></i>
+        <textarea id="note" rows="2"></textarea>
+      </div>
+      
+      <div class="form-actions">
+        <button type="button" class="form-btn btn-secondary" id="backToCartBtn">Volver al Carrito</button>
+        <button type="submit" class="form-btn btn-primary">Confirmar Pedido</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal para notas y agregos -->
+  <div class="item-modal" id="itemModal">
+    <h4 id="modalItemName">Producto</h4>
+    
+    <div class="input-group">
+      <label for="itemNote">Notas Especiales</label>
+      <textarea id="itemNote" rows="3" placeholder="Ej: Sin cebolla, bien cocido, etc."></textarea>
+    </div>
+    
+    <div class="addons-list">
+      <h5>Agregos Disponibles</h5>
+      <div class="addon-item">
+        <span class="addon-name">Queso Extra</span>
+        <span class="addon-price">+$0.75</span>
+        <input type="checkbox" class="addon-checkbox" data-name="Queso Extra" data-price="0.75">
+      </div>
+      <div class="addon-item">
+        <span class="addon-name">Tocino</span>
+        <span class="addon-price">+$1.25</span>
+        <input type="checkbox" class="addon-checkbox" data-name="Tocino" data-price="1.25">
+      </div>
+      <div class="addon-item">
+        <span class="addon-name">Salsa Especial</span>
+        <span class="addon-price">+$0.50</span>
+        <input type="checkbox" class="addon-checkbox" data-name="Salsa Especial" data-price="0.50">
+      </div>
+      <div class="addon-item">
+        <span class="addon-name">Papas Fritas</span>
+        <span class="addon-price">+$2.00</span>
+        <input type="checkbox" class="addon-checkbox" data-name="Papas Fritas" data-price="2.00">
+      </div>
+    </div>
+    
+    <div class="form-actions">
+      <button class="form-btn btn-secondary" id="cancelCustomizationBtn">Cancelar</button>
+      <button class="form-btn btn-primary" id="saveCustomizationBtn">Guardar</button>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
