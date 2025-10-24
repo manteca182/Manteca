@@ -32,7 +32,7 @@ body {
   justify-content: flex-start;
   min-height: 100vh;
   overflow-x: hidden;
-  padding-top: 180px; /* Aumentado para separar del header y categorías */
+  padding-top: 170px; /* Reducido de 180px a 170px porque el header ahora es más compacto */
 }
 
 /* Header mejorado */
@@ -51,6 +51,7 @@ header {
   justify-content: space-between;
   align-items: center;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  height: 70px; /* Altura fija para consistencia */
 }
 
 .user-info {
@@ -96,8 +97,7 @@ header {
 }
 
 .user-greeting p {
-  font-size: 0.8rem;
-  color: var(--gray);
+  display: none; /* Oculta el texto "Bienvenido de nuevo" */
 }
 
 .header-actions {
@@ -268,7 +268,7 @@ header {
 /* Categorías mejoradas - Solo íconos y scroll horizontal */
 .categories-header {
   position: fixed;
-  top: 90px; /* Separado del header */
+  top: 95px; /* Aumentado de 90px a 95px para más separación */
   left: 1rem;
   right: 1rem;
   background: rgba(255, 255, 255, 0.95);
@@ -892,58 +892,58 @@ header {
     gap: 1rem;
     max-width: 100%;
   }
-  
+
   .modal {
     width: 95%;
     padding: 1.2rem;
   }
-  
+
   .header-actions {
     gap: 0.3rem;
   }
-  
+
   .header-btn {
     width: 36px;
     height: 36px;
   }
-  
+
   .categories-header {
     gap: 0.8rem;
     padding: 0.6rem 1rem;
   }
-  
+
   .category-icon {
     width: 44px;
     height: 44px;
     font-size: 1.1rem;
   }
-  
+
   .notification-panel,
   .history-panel {
     width: 280px;
     right: -5px;
   }
-  
+
   .payment-methods {
     flex-direction: column;
   }
-  
+
   .payment-method {
     min-width: auto;
   }
-  
+
   /* Carrito responsive */
   .cart-item {
     grid-template-columns: 50px 1fr auto;
     gap: 0.8rem;
   }
-  
+
   .cart-item-actions {
     grid-column: 3;
     flex-direction: column;
     gap: 0.3rem;
   }
-  
+
   .cart-item-price-badge {
     grid-column: 2;
     grid-row: 2;
@@ -957,64 +957,60 @@ header {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .product-category.active {
     grid-template-columns: 1fr;
   }
-  
+
   .product-card {
     padding: 1rem;
   }
-  
+
   .user-greeting h1 {
     font-size: 1rem;
   }
-  
-  .user-greeting p {
-    font-size: 0.7rem;
-  }
-  
+
   body {
     padding-top: 160px;
   }
-  
+
   .categories-header {
     justify-content: flex-start;
     gap: 0.6rem;
   }
-  
+
   .category-icon {
     width: 40px;
     height: 40px;
     font-size: 1rem;
   }
-  
+
   .cart-item {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 0.8rem;
   }
-  
+
   .cart-item img {
     justify-self: center;
   }
-  
+
   .cart-item-actions {
     width: 100%;
     justify-content: center;
     grid-column: 1;
   }
-  
+
   .cart-item-price-badge {
     grid-column: 1;
     grid-row: 3;
     justify-self: center;
   }
-  
+
   .form-actions {
     flex-direction: column;
   }
-  
+
   .notification-panel,
   .history-panel {
     width: 260px;
@@ -1070,27 +1066,27 @@ select:focus-visible {
   .product-card:hover {
     transform: none;
   }
-  
+
   .add-to-cart:hover {
     transform: none;
   }
-  
+
   .header-btn:hover {
     transform: none;
   }
-  
+
   .action-btn:hover {
     transform: none;
   }
-  
+
   .form-btn:hover {
     transform: none;
   }
-  
+
   .payment-method:hover {
     transform: none;
   }
-  
+
   .category-btn:hover {
     transform: none;
   }
