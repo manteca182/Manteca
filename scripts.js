@@ -250,16 +250,20 @@ function closeItemModal() {
     currentEditingItem = null;
 }
 
-// Funciones del modal
+// En el archivo scripts.js, modificar las funciones toggleModal y closeModal:
+
 function toggleModal() {
     const isVisible = cartModal.style.display === 'block';
     cartModal.style.display = isVisible ? 'none' : 'block';
     overlay.style.display = isVisible ? 'none' : 'block';
     modalHeaderBlur.style.display = isVisible ? 'none' : 'block';
     
-    // Mostrar siempre los items del carrito al abrir
+    // Agregar/remover clase para el efecto blur
     if (!isVisible) {
+        document.body.classList.add('modal-open');
         showCartItems();
+    } else {
+        document.body.classList.remove('modal-open');
     }
 }
 
@@ -267,6 +271,8 @@ function closeModal() {
     cartModal.style.display = 'none';
     overlay.style.display = 'none';
     modalHeaderBlur.style.display = 'none';
+    // Remover clase del blur
+    document.body.classList.remove('modal-open');
 }
 
 function showCartItems() {
