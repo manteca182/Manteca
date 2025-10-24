@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Menú WebApp</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     * {
@@ -14,116 +14,187 @@
       font-family: 'Poppins', sans-serif;
     }
 
+    :root {
+      --primary: #4361ee;
+      --secondary: #3a0ca3;
+      --accent: #f72585;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --success: #4cc9f0;
+      --warning: #f8961e;
+      --danger: #e63946;
+      --gray: #adb5bd;
+      --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+    }
+
     body {
-      background: linear-gradient(to right, #ece9e6, #ffffff);
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       padding: 1rem;
       font-size: 17px;
-      color: #333;
+      color: var(--dark);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
     header {
       text-align: center;
-      margin-bottom: 1rem;
+      margin: 1.5rem 0;
+      width: 100%;
     }
 
     header h1 {
-      font-size: 1.6rem;
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .subtitle {
+      color: var(--gray);
+      font-size: 1rem;
+      font-weight: 400;
     }
 
     .product-grid {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1200px;
+      margin-bottom: 5rem;
     }
 
     .product-card {
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 0.8rem;
-      width: 150px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      box-shadow: var(--shadow);
       position: relative;
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
     }
 
     .product-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     }
 
     .product-card img {
       width: 100%;
-      border-radius: 8px;
-      margin-bottom: 0.4rem;
+      border-radius: 12px;
+      margin-bottom: 0.8rem;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.05);
     }
 
     .product-card h3 {
-      font-size: 1rem;
-      margin-bottom: 0.2rem;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
       text-align: center;
+      font-weight: 600;
+      color: var(--dark);
     }
 
     .add-to-cart {
-      background-color: #ff6b6b;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
       border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
       font-size: 0.9rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+    }
+
+    .add-to-cart:hover {
+      background: linear-gradient(to right, var(--secondary), var(--primary));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
+    }
+
+    .add-to-cart:active {
+      transform: translateY(0);
     }
 
     .price-badge {
       position: absolute;
-      top: 8px;
-      right: 8px;
-      background-color: #1e90ff;
+      top: 12px;
+      right: 12px;
+      background: linear-gradient(to right, var(--accent), var(--warning));
       color: white;
-      font-size: 0.75rem;
-      padding: 2px 6px;
-      border-radius: 12px;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 20px;
       font-weight: 600;
+      box-shadow: 0 4px 8px rgba(247, 37, 133, 0.3);
     }
 
     .cart-button {
       position: fixed;
-      bottom: 16px;
-      right: 16px;
-      background-color: #333;
+      bottom: 24px;
+      right: 24px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
       border: none;
       border-radius: 50%;
-      width: 56px;
-      height: 56px;
+      width: 64px;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--shadow);
       cursor: pointer;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    .cart-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
     }
 
     .cart-count {
       position: absolute;
       top: -6px;
       right: -6px;
-      background-color: #ff4757;
+      background-color: var(--accent);
       color: white;
-      font-size: 0.7rem;
-      padding: 2px 6px;
+      font-size: 0.75rem;
+      padding: 3px 8px;
       border-radius: 50%;
       font-weight: bold;
+      min-width: 22px;
+      text-align: center;
     }
 
     .modal {
@@ -132,35 +203,59 @@
       left: 50%;
       transform: translate(-50%, -50%);
       background: white;
-      border-radius: 12px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-      padding: 1rem;
-      width: 300px;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      padding: 1.5rem;
+      width: 90%;
+      max-width: 400px;
       max-height: 90vh;
       overflow-y: auto;
-      z-index: 10;
+      z-index: 1000;
       display: none;
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
     }
 
     .modal h4 {
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--dark);
+      text-align: center;
+      border-bottom: 2px solid var(--light);
+      padding-bottom: 0.5rem;
     }
 
     .modal ul {
       list-style: none;
       padding: 0;
-      margin: 0 0 1rem 0;
+      margin: 0 0 1.5rem 0;
     }
 
     .modal li {
-      font-size: 0.9rem;
-      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      background: var(--light);
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
     }
 
     .modal form {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 1rem;
     }
 
     .input-group {
@@ -169,28 +264,45 @@
     }
 
     .input-group label {
-      font-size: 0.8rem;
-      margin-bottom: 0.2rem;
-      color: #555;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      color: var(--dark);
+      font-weight: 500;
     }
 
     .input-group input,
     .input-group textarea {
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      padding: 0.7rem;
+      border: 1px solid var(--gray);
+      border-radius: 8px;
       font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .input-group input:focus,
+    .input-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
     }
 
     .modal button {
-      background-color: #1e90ff;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
       border: none;
-      padding: 0.6rem;
+      padding: 0.8rem;
       border-radius: 8px;
-      font-size: 0.9rem;
+      font-size: 1rem;
       cursor: pointer;
       margin-top: 0.5rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .modal button:hover {
+      background: linear-gradient(to right, var(--secondary), var(--primary));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
     }
 
     .overlay {
@@ -199,29 +311,105 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.4);
-      z-index: 5;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      z-index: 500;
       display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    #cartTotal {
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 1.2rem;
+      color: var(--dark);
+      background: var(--light);
+      padding: 0.8rem;
+      border-radius: 8px;
+    }
+
+    .empty-cart {
+      text-align: center;
+      color: var(--gray);
+      font-style: italic;
+      padding: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+      }
+      
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .modal {
+        width: 95%;
+        padding: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .product-card {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Menú</h1>
+    <h1>Menú Delicioso</h1>
+    <p class="subtitle">Selecciona tus productos favoritos</p>
   </header>
 
   <section class="product-grid">
     <div class="product-card">
       <span class="price-badge">$5.99</span>
       <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg" alt="Hamburguesa" />
-      <h3>Hamburguesa</h3>
-      <button class="add-to-cart" onclick="addToCart('Hamburguesa', 5.99)">Añadir</button>
+      <h3>Hamburguesa Clásica</h3>
+      <button class="add-to-cart" onclick="addToCart('Hamburguesa Clásica', 5.99)">
+        <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+        Añadir
+      </button>
     </div>
     <div class="product-card">
       <span class="price-badge">$1.99</span>
       <img src="https://cdn.pixabay.com/photo/2016/11/21/15/46/cola-1845290_1280.jpg" alt="Refresco" />
       <h3>Refresco</h3>
-      <button class="add-to-cart" onclick="addToCart('Refresco', 1.99)">Añadir</button>
+      <button class="add-to-cart" onclick="addToCart('Refresco', 1.99)">
+        <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+        Añadir
+      </button>
+    </div>
+    <div class="product-card">
+      <span class="price-badge">$3.49</span>
+      <img src="https://cdn.pixabay.com/photo/2017/09/30/15/10/plate-2802332_1280.jpg" alt="Ensalada" />
+      <h3>Ensalada Fresca</h3>
+      <button class="add-to-cart" onclick="addToCart('Ensalada Fresca', 3.49)">
+        <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+        Añadir
+      </button>
+    </div>
+    <div class="product-card">
+      <span class="price-badge">$4.25</span>
+      <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza" />
+      <h3>Pizza Pepperoni</h3>
+      <button class="addToCart" onclick="addToCart('Pizza Pepperoni', 4.25)">
+        <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+        Añadir
+      </button>
     </div>
   </section>
 
@@ -233,8 +421,9 @@
   <div class="overlay" id="overlay" onclick="closeModal()"></div>
 
   <div class="modal" id="cartModal">
-    <h4>Resumen del pedido</h4>
+    <h4>Resumen del Pedido</h4>
     <ul id="cartList"></ul>
+    <div id="cartTotal">Total: $0.00</div>
 
     <form id="checkoutForm">
       <div class="input-group">
@@ -250,10 +439,13 @@
         <input type="tel" id="phone" required />
       </div>
       <div class="input-group">
-        <label for="note">Nota</label>
+        <label for="note">Nota (opcional)</label>
         <textarea id="note" rows="2"></textarea>
       </div>
-      <button type="submit">Finalizar pedido</button>
+      <button type="submit">
+        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+        Realizar Pedido
+      </button>
     </form>
   </div>
 
@@ -263,21 +455,45 @@
     const cartList = document.getElementById('cartList');
     const cartModal = document.getElementById('cartModal');
     const overlay = document.getElementById('overlay');
+    const cartTotal = document.getElementById('cartTotal');
 
     function addToCart(name, price) {
       cartItems.push({ name, price });
       cartCount.textContent = cartItems.length;
       updateCartList();
+      
+      // Efecto visual de confirmación
+      const button = event.target;
+      const originalText = button.innerHTML;
+      button.innerHTML = '<i class="fas fa-check" style="margin-right: 8px;"></i> Añadido';
+      button.style.background = 'linear-gradient(to right, var(--success), #2a9d8f)';
+      
+      setTimeout(() => {
+        button.innerHTML = originalText;
+        button.style.background = 'linear-gradient(to right, var(--primary), var(--secondary))';
+      }, 1500);
     }
 
     function updateCartList() {
       cartList.innerHTML = '';
-      cartItems.forEach(item => {
-        const li = document[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/hoang0508/DoAnWeb-php/tree/e65ff8f9b70c7246b81a4564becdf7583c909561/.history%2Fadmin%2Findex_20210930211555.php?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054&citationId=1&citationId=2 "github.com")
-                                                                  
-.name} - $${item.price.toFixed(2)}`;
+      
+      if (cartItems.length === 0) {
+        cartList.innerHTML = '<div class="empty-cart">Tu carrito está vacío</div>';
+        cartTotal.textContent = 'Total: $0.00';
+        return;
+      }
+      
+      let total = 0;
+      cartItems.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${item.name}</span>
+          <span>$${item.price.toFixed(2)}</span>
+        `;
         cartList.appendChild(li);
+        total += item.price;
       });
+      cartTotal.textContent = `Total: $${total.toFixed(2)}`;
     }
 
     function toggleModal() {
@@ -298,10 +514,11 @@
       const phone = document.getElementById('phone').value;
       const note = document.getElementById('note').value;
 
-      // Aquí podrías enviar los datos a un servidor o procesarlos
-      alert(`Pedido enviado:\n\nNombre: ${name}\nDirección: ${address}\nTeléfono: ${phone}\nNota: ${note}\n\nProductos: ${cartItems.length}`);
+      const resumen = cartItems.map(item => `${item.name} ($${item.price.toFixed(2)})`).join(', ');
+      const total = cartItems.reduce((sum, item) => sum + item.price, 0).toFixed(2);
 
-      // Reiniciar formulario y carrito
+      alert(`¡Pedido enviado con éxito!\n\nNombre: ${name}\nDirección: ${address}\nTeléfono: ${phone}\nNota: ${note || "Ninguna"}\n\nProductos: ${resumen}\nTotal: $${total}\n\nGracias por tu compra.`);
+
       cartItems = [];
       cartCount.textContent = '0';
       updateCartList();
