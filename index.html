@@ -28,16 +28,31 @@
         <div class="notification-panel" id="notificationPanel">
           <h4>Notificaciones</h4>
           <div class="notification-item unread">
-            <strong>¡Nueva oferta!</strong><br>
-            Descuento del 20% en pizzas
+            <div class="notification-icon">
+              <i class="fas fa-tag"></i>
+            </div>
+            <div class="notification-content">
+              <strong>¡Nueva oferta!</strong>
+              Descuento del 20% en pizzas
+            </div>
           </div>
           <div class="notification-item unread">
-            <strong>Pedido en camino</strong><br>
-            Tu pedido #1234 está en reparto
+            <div class="notification-icon">
+              <i class="fas fa-shipping-fast"></i>
+            </div>
+            <div class="notification-content">
+              <strong>Pedido en camino</strong>
+              Tu pedido #1234 está en reparto
+            </div>
           </div>
           <div class="notification-item">
-            <strong>Pedido completado</strong><br>
-            Tu pedido #1233 ha sido entregado
+            <div class="notification-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="notification-content">
+              <strong>Pedido completado</strong>
+              Tu pedido #1233 ha sido entregado
+            </div>
           </div>
         </div>
       </button>
@@ -46,19 +61,34 @@
         <div class="history-panel" id="historyPanel">
           <h4>Historial de Compras</h4>
           <div class="history-item">
-            <strong>Pedido #1234</strong><br>
-            Hamburguesa + Refresco - $7.98<br>
-            <small>15 Mar 2024 - Entregado</small>
+            <div class="history-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="history-content">
+              <strong>Pedido #1234</strong>
+              Hamburguesa + Refresco - $7.98<br>
+              <small>15 Mar 2024 - Entregado</small>
+            </div>
           </div>
           <div class="history-item">
-            <strong>Pedido #1233</strong><br>
-            Pizza + Ensalada - $7.74<br>
-            <small>14 Mar 2024 - Entregado</small>
+            <div class="history-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="history-content">
+              <strong>Pedido #1233</strong>
+              Pizza + Ensalada - $7.74<br>
+              <small>14 Mar 2024 - Entregado</small>
+            </div>
           </div>
           <div class="history-item">
-            <strong>Pedido #1232</strong><br>
-            Sándwich + Café - $5.50<br>
-            <small>13 Mar 2024 - Entregado</small>
+            <div class="history-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="history-content">
+              <strong>Pedido #1232</strong>
+              Sándwich + Café - $5.50<br>
+              <small>13 Mar 2024 - Entregado</small>
+            </div>
           </div>
         </div>
       </button>
@@ -68,37 +98,32 @@
     </div>
   </header>
 
-  <!-- Categorías -->
+  <!-- Categorías solo con íconos -->
   <div class="categories-header">
     <button class="category-btn active" data-category="hamburguesas">
       <div class="category-icon">
         <i class="fas fa-hamburger"></i>
       </div>
-      <span class="category-name">Hamburguesas</span>
     </button>
     <button class="category-btn" data-category="pizzas">
       <div class="category-icon">
         <i class="fas fa-pizza-slice"></i>
       </div>
-      <span class="category-name">Pizzas</span>
     </button>
     <button class="category-btn" data-category="bebidas">
       <div class="category-icon">
         <i class="fas fa-wine-bottle"></i>
       </div>
-      <span class="category-name">Bebidas</span>
     </button>
     <button class="category-btn" data-category="postres">
       <div class="category-icon">
         <i class="fas fa-ice-cream"></i>
       </div>
-      <span class="category-name">Postres</span>
     </button>
     <button class="category-btn" data-category="ensaladas">
       <div class="category-icon">
         <i class="fas fa-leaf"></i>
       </div>
-      <span class="category-name">Ensaladas</span>
     </button>
   </div>
 
