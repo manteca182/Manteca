@@ -519,22 +519,84 @@ header {
 }
 
 /* Modal mejorado */
+/* En el archivo styles.css, modificar la clase .modal */
+
 .modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  padding: 1.5rem;
-  width: 90%;
-  max-width: 500px;
-  max-height: 90vh;
-  overflow-y: auto;
-  z-index: 1000;
-  display: none;
-  animation: modalFadeIn 0.3s ease;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Esto centra perfectamente */
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    animation: modalFadeIn 0.3s ease;
+}
+
+/* Asegurarnos de que la animación también use el centrado correcto */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%); /* Mantener el centrado horizontal */
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%); /* Centrado perfecto */
+    }
+}
+
+/* También centrar la modal de personalización de items */
+.item-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrado perfecto */
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 400px;
+    z-index: 1100;
+    display: none;
+    animation: modalFadeIn 0.3s ease;
+}
+
+/* Para responsive design, mantener el centrado en todos los tamaños */
+@media (max-width: 768px) {
+    .modal {
+        transform: translate(-50%, -50%); /* Mantener centrado en móviles */
+        width: 92%;
+        max-height: 80vh;
+        margin: 0; /* Quitar margin que podría afectar el centrado */
+        border-radius: 14px;
+    }
+    
+    .item-modal {
+        transform: translate(-50%, -50%); /* Mantener centrado en móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal {
+        transform: translate(-50%, -50%); /* Mantener centrado en móviles pequeños */
+        width: 94%;
+        max-height: 75vh;
+    }
+}
+
+@media (max-width: 375px) {
+    .modal {
+        transform: translate(-50%, -50%); /* Mantener centrado en móviles muy pequeños */
+        width: 96%;
+        max-height: 70vh;
+    }
 }
 
 .modal-header-blur {
