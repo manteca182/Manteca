@@ -935,7 +935,7 @@ header {
 
 @media (max-width: 768px) {
   body {
-    padding-top: 180px; /* Más espacio para separar categorías del header */
+    padding-top: 180px;
   }
 
   header {
@@ -944,7 +944,7 @@ header {
   }
 
   .categories-header {
-    top: 110px; /* Separado del header */
+    top: 110px;
     padding: 0.7rem 1rem;
     gap: 0.4rem;
   }
@@ -983,31 +983,20 @@ header {
   }
 
   .product-card img {
-    width: 100%;
     height: 130px;
-    object-fit: cover;
-    border-radius: 10px;
     margin-bottom: 0.8rem;
-    flex-shrink: 0;
   }
 
   .product-card h3 {
     font-size: 0.95rem;
-    margin-bottom: 0.8rem;
-    text-align: center;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     min-height: 48px;
-    line-height: 1.3;
+    margin-bottom: 0.8rem;
   }
 
   .add-to-cart {
     padding: 0.7rem 0.8rem;
     font-size: 0.85rem;
     min-height: 42px;
-    flex-shrink: 0;
   }
 
   .price-badge {
@@ -1017,117 +1006,84 @@ header {
   }
 
   .modal {
-    width: 95%;
-    max-height: 85vh;
+    width: 92%;
+    max-height: 80vh;
     margin: 1rem;
-    border-radius: 16px;
+    border-radius: 14px;
   }
 
-  .header-actions {
-    gap: 0.4rem;
+  .modal-header {
+    padding: 1.2rem;
   }
 
-  .header-btn {
-    width: 38px;
-    height: 38px;
+  .modal-header h4 {
+    font-size: 1.3rem;
   }
 
-  .notification-panel,
-  .history-panel {
-    width: 300px;
-    right: 0.5rem;
-    max-width: calc(100vw - 3rem);
+  .modal-content {
+    padding: 1rem;
+    max-height: 45vh;
   }
 
-  /* MÉTODOS DE PAGO CUADRADOS Y DEL MISMO TAMAÑO */
-  .payment-methods {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
-    margin-top: 0.5rem;
-  }
-
-  .payment-method {
-    aspect-ratio: 1;
-    min-height: 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0.8rem;
-    border: 2px solid #e9ecef;
-    border-radius: 10px;
-    background: white;
-    transition: all 0.3s ease;
-  }
-
-  .payment-method i {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .payment-method span {
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-align: center;
-  }
-
-  /* CARRITO EN UNA SOLA LÍNEA EN MÓVIL */
+  /* CARRITO OPTIMIZADO PARA MÓVIL */
   .cart-item {
     display: grid;
-    grid-template-columns: 50px 1fr auto auto;
+    grid-template-columns: 45px 1fr auto auto;
     align-items: center;
-    gap: 0.8rem;
-    padding: 0.8rem;
+    gap: 0.6rem;
+    padding: 0.7rem;
     background: var(--light);
-    border-radius: 10px;
-    margin-bottom: 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 0.7rem;
+    font-size: 0.8rem;
   }
 
   .cart-item img {
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
+    width: 45px;
+    height: 45px;
+    border-radius: 6px;
     object-fit: cover;
   }
 
   .cart-item-details {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 0.1rem;
     min-width: 0;
     flex: 1;
   }
 
   .cart-item-name {
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 1.2;
   }
 
   .cart-item-note,
   .cart-item-addons {
-    font-size: 0.7rem;
-    line-height: 1.2;
+    font-size: 0.65rem;
+    line-height: 1.1;
+    color: var(--gray);
   }
 
   .cart-item-price-badge {
     background: linear-gradient(135deg, var(--accent), var(--warning));
     color: white;
-    padding: 0.4rem 0.6rem;
-    border-radius: 8px;
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
     font-weight: 700;
-    font-size: 0.8rem;
-    min-width: 60px;
+    font-size: 0.75rem;
+    min-width: 55px;
     text-align: center;
     white-space: nowrap;
   }
 
   .cart-item-actions {
     display: flex;
-    gap: 0.4rem;
+    gap: 0.3rem;
     flex-shrink: 0;
   }
 
@@ -1135,70 +1091,79 @@ header {
     background: var(--primary);
     color: white;
     border: none;
-    border-radius: 6px;
-    padding: 0.4rem;
-    font-size: 0.7rem;
+    border-radius: 5px;
+    padding: 0.3rem;
+    font-size: 0.65rem;
     cursor: pointer;
-    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 32px;
-    min-height: 32px;
+    min-width: 28px;
+    min-height: 28px;
   }
 
-  /* BOTONES DEL CARRITO CORREGIDOS */
+  .cart-summary {
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+  }
+
+  #cartTotal {
+    font-size: 1.1rem;
+    padding: 0.6rem;
+  }
+
+  /* BOTONES DEL CARRITO OPTIMIZADOS */
   .cart-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.8rem;
-    margin-top: 1rem;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
   }
 
   .cart-btn {
-    padding: 0.8rem 1rem;
-    border-radius: 10px;
-    font-size: 0.9rem;
+    padding: 0.7rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
+    min-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    min-height: 44px;
+    gap: 0.4rem;
   }
 
-  .cart-btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-  }
-
-  .cart-btn-secondary {
-    background: white;
-    color: var(--dark);
-    border: 2px solid var(--gray);
-  }
-
-  /* FORMULARIO CORREGIDO PARA MÓVIL */
+  /* FORMULARIO OPTIMIZADO - MÁS COMPACTO */
   .checkout-form {
-    gap: 1.2rem;
-    padding: 1rem;
+    gap: 1rem;
+    padding: 0.8rem;
+  }
+
+  .checkout-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .checkout-header h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .checkout-subtitle {
+    font-size: 0.8rem;
   }
 
   .checkout-section {
-    padding: 1.2rem;
-    border-radius: 12px;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
   }
 
   .section-title {
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
   }
 
   .input-group {
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.8rem;
   }
 
   .input-group:last-child {
@@ -1206,61 +1171,81 @@ header {
   }
 
   .input-group label {
-    font-size: 0.85rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
     font-weight: 600;
   }
 
   .input-group input,
   .input-group textarea,
   .input-group select {
-    padding: 0.9rem 0.9rem 0.9rem 2.8rem;
-    font-size: 1rem;
-    border-radius: 10px;
-    border: 2px solid #e9ecef;
+    padding: 0.7rem 0.7rem 0.7rem 2.3rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    border: 1.5px solid #e9ecef;
   }
 
   .input-icon {
-    left: 0.9rem;
-    top: 2.6rem;
-    font-size: 1.1rem;
+    left: 0.7rem;
+    top: 2.2rem;
+    font-size: 1rem;
+  }
+
+  /* MÉTODOS DE PAGO OPTIMIZADOS */
+  .payment-methods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    margin-top: 0.4rem;
+  }
+
+  .payment-method {
+    aspect-ratio: 1;
+    min-height: 70px;
+    padding: 0.6rem;
+    border-radius: 8px;
+  }
+
+  .payment-method i {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .payment-method span {
+    font-size: 0.75rem;
   }
 
   .checkout-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.8rem;
-    margin-top: 1rem;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
   }
 
   .checkout-btn {
-    padding: 1rem;
-    border-radius: 10px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    min-height: 40px;
+    gap: 0.4rem;
   }
 
   .empty-cart {
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
   }
 
   .empty-cart i {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .empty-cart div {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
   body {
-    padding-top: 170px; /* Ajustado para móviles más pequeños */
+    padding-top: 170px;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
@@ -1275,7 +1260,7 @@ header {
   .categories-header {
     left: 0.5rem;
     right: 0.5rem;
-    top: 100px; /* Separación mantenida */
+    top: 100px;
     gap: 0.3rem;
     padding: 0.6rem 0.8rem;
   }
@@ -1330,143 +1315,146 @@ header {
     min-width: 55px;
   }
 
-  /* CARRITO EN MÓVILES PEQUEÑOS - MANTENER UNA LÍNEA */
+  .modal {
+    width: 94%;
+    max-height: 75vh;
+    margin: 0.5rem;
+  }
+
+  /* CARRITO MÁS COMPACTO */
   .cart-item {
-    grid-template-columns: 45px 1fr auto auto;
-    gap: 0.6rem;
-    padding: 0.7rem;
+    grid-template-columns: 40px 1fr auto auto;
+    gap: 0.5rem;
+    padding: 0.6rem;
+    margin-bottom: 0.6rem;
   }
 
   .cart-item img {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
   }
 
   .cart-item-name {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .cart-item-note,
   .cart-item-addons {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
   }
 
   .cart-item-price-badge {
-    padding: 0.3rem 0.5rem;
-    font-size: 0.75rem;
-    min-width: 55px;
+    padding: 0.25rem 0.4rem;
+    font-size: 0.7rem;
+    min-width: 50px;
   }
 
   .action-btn {
-    min-width: 28px;
-    min-height: 28px;
-    padding: 0.3rem;
-    font-size: 0.65rem;
+    min-width: 26px;
+    min-height: 26px;
+    padding: 0.25rem;
+    font-size: 0.6rem;
   }
 
-  /* MÉTODOS DE PAGO EN MÓVILES PEQUEÑOS */
-  .payment-methods {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
-  }
-
-  .payment-method {
-    min-height: 75px;
-    padding: 0.6rem;
-  }
-
-  .payment-method i {
-    font-size: 1.3rem;
-    margin-bottom: 0.3rem;
-  }
-
-  .payment-method span {
-    font-size: 0.75rem;
-  }
-
-  /* BOTONES EN MÓVILES PEQUEÑOS */
-  .cart-actions,
-  .checkout-actions {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
-  }
-
-  .cart-btn,
-  .checkout-btn {
-    padding: 0.8rem;
-    font-size: 0.85rem;
-    min-height: 42px;
-  }
-
-  /* FORMULARIO EN MÓVILES PEQUEÑOS */
+  /* FORMULARIO MÁS COMPACTO */
   .checkout-form {
-    padding: 0.8rem;
-    gap: 1rem;
+    padding: 0.6rem;
+    gap: 0.8rem;
   }
 
   .checkout-section {
-    padding: 1rem;
+    padding: 0.8rem;
+  }
+
+  .section-title {
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .input-group {
+    margin-bottom: 0.6rem;
   }
 
   .input-group input,
   .input-group textarea,
   .input-group select {
-    padding: 0.8rem 0.8rem 0.8rem 2.5rem;
-    font-size: 0.9rem;
+    padding: 0.6rem 0.6rem 0.6rem 2.2rem;
+    font-size: 0.85rem;
   }
 
   .input-icon {
-    left: 0.8rem;
-    top: 2.4rem;
-    font-size: 1rem;
+    left: 0.6rem;
+    top: 2rem;
+    font-size: 0.9rem;
   }
 
-  .modal {
-    width: 98%;
-    margin: 0.5rem;
+  .payment-methods {
+    gap: 0.5rem;
+  }
+
+  .payment-method {
+    min-height: 65px;
+    padding: 0.5rem;
+  }
+
+  .payment-method i {
+    font-size: 1.1rem;
+  }
+
+  .payment-method span {
+    font-size: 0.7rem;
+  }
+
+  .checkout-actions {
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+  }
+
+  .checkout-btn {
+    padding: 0.7rem;
+    font-size: 0.8rem;
+    min-height: 38px;
   }
 
   .modal-header {
-    padding: 1.2rem;
+    padding: 1rem;
   }
 
   .modal-header h4 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .modal-content {
-    padding: 1rem;
-    max-height: 45vh;
+    padding: 0.8rem;
+    max-height: 40vh;
   }
 
   .cart-summary {
-    flex-direction: row;
-    gap: 1rem;
-    text-align: left;
-    padding: 1rem;
+    padding: 0.6rem;
   }
 
   #cartTotal {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    padding: 0.5rem;
   }
 
   .empty-cart {
-    padding: 1.5rem 1rem;
+    padding: 1rem 0.8rem;
   }
 
   .empty-cart i {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .empty-cart div {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 375px) {
   body {
     padding-top: 165px;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   header {
@@ -1530,159 +1518,141 @@ header {
     min-width: 50px;
   }
 
-  /* CARRITO EN PANTALLAS MUY PEQUEÑAS */
+  .modal {
+    width: 96%;
+    max-height: 70vh;
+  }
+
+  /* CARRITO SUPER COMPACTO */
   .cart-item {
-    grid-template-columns: 40px 1fr auto auto;
-    gap: 0.5rem;
-    padding: 0.6rem;
+    grid-template-columns: 35px 1fr auto auto;
+    gap: 0.4rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
   }
 
   .cart-item img {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
   }
 
   .cart-item-name {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+  }
+
+  .cart-item-note,
+  .cart-item-addons {
+    font-size: 0.55rem;
   }
 
   .cart-item-price-badge {
-    font-size: 0.7rem;
-    min-width: 50px;
-    padding: 0.3rem 0.4rem;
+    font-size: 0.65rem;
+    min-width: 45px;
+    padding: 0.2rem 0.3rem;
   }
 
   .action-btn {
-    min-width: 26px;
-    min-height: 26px;
-    font-size: 0.6rem;
+    min-width: 24px;
+    min-height: 24px;
+    font-size: 0.55rem;
     padding: 0.2rem;
   }
 
-  /* MÉTODOS DE PAGO EN PANTALLAS MUY PEQUEÑAS */
+  /* FORMULARIO SUPER COMPACTO */
+  .checkout-form {
+    padding: 0.5rem;
+    gap: 0.6rem;
+  }
+
+  .checkout-section {
+    padding: 0.7rem;
+  }
+
+  .input-group {
+    margin-bottom: 0.5rem;
+  }
+
+  .input-group input,
+  .input-group textarea,
+  .input-group select {
+    padding: 0.5rem 0.5rem 0.5rem 2rem;
+    font-size: 0.8rem;
+  }
+
+  .input-icon {
+    left: 0.5rem;
+    top: 1.8rem;
+    font-size: 0.85rem;
+  }
+
   .payment-methods {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
 
   .payment-method {
-    min-height: 70px;
-    padding: 0.5rem;
+    min-height: 60px;
+    padding: 0.4rem;
   }
 
   .payment-method i {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .payment-method span {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
   }
 
-  .cart-button {
-    width: 56px;
-    height: 56px;
-    bottom: 16px;
-    right: 16px;
-    font-size: 1.2rem;
-  }
-
-  .cart-count {
-    font-size: 0.7rem;
-    padding: 2px 6px;
-    min-width: 18px;
-  }
-
-  .cart-actions,
   .checkout-actions {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
   }
 
-  .cart-btn,
   .checkout-btn {
-    padding: 0.7rem;
-    font-size: 0.8rem;
-    min-height: 40px;
-  }
-}
-
-@media (max-width: 320px) {
-  body {
-    padding-top: 160px;
-  }
-
-  .categories-header {
-    top: 90px;
-  }
-
-  /* PRODUCTOS EN 2 COLUMNAS - MISMO TAMAÑO */
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
-  }
-
-  .product-category.active {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
-  }
-
-  .product-card {
     padding: 0.6rem;
-    min-height: 200px;
-  }
-
-  .product-card img {
-    height: 90px;
-  }
-
-  .product-card h3 {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     min-height: 36px;
   }
 
-  .add-to-cart {
-    padding: 0.4rem;
-    font-size: 0.7rem;
+  .cart-actions {
+    gap: 0.4rem;
   }
 
-  .price-badge {
-    font-size: 0.7rem;
-    padding: 3px 6px;
-    min-width: 45px;
+  .cart-btn {
+    padding: 0.6rem;
+    font-size: 0.75rem;
+    min-height: 36px;
   }
 
-  .categories-header {
-    gap: 0.1rem;
-    padding: 0.4rem 0.5rem;
+  .cart-button {
+    width: 50px;
+    height: 50px;
+    bottom: 12px;
+    right: 12px;
+    font-size: 1.1rem;
   }
 
-  .category-icon {
-    width: 32px;
-    height: 32px;
-    font-size: 0.8rem;
-  }
-
-  .category-btn {
-    min-width: 40px;
-    padding: 0.2rem;
+  .cart-count {
+    font-size: 0.65rem;
+    padding: 1px 4px;
+    min-width: 16px;
   }
 }
 
 /* MEJORAS ESPECÍFICAS PARA MÓVIL EN VERTICAL */
 @media (max-width: 768px) and (orientation: portrait) {
   .modal {
-    max-height: 80vh;
+    max-height: 75vh;
   }
   
   .modal-content {
-    max-height: 50vh;
+    max-height: 40vh;
   }
   
   .checkout-form {
-    max-height: 55vh;
+    max-height: 50vh;
   }
   
-  /* Asegurar que los inputs no hagan zoom en iOS */
   .input-group input,
   .input-group textarea,
   .input-group select {
@@ -1692,38 +1662,14 @@ header {
 
 /* Estados de hover para dispositivos táctiles */
 @media (hover: none) {
-  .product-card:hover {
-    transform: none;
-  }
-
-  .add-to-cart:hover {
-    transform: none;
-  }
-
-  .header-btn:hover {
-    transform: none;
-  }
-
-  .action-btn:hover {
-    transform: none;
-  }
-
-  .cart-btn:hover {
-    transform: none;
-  }
-
-  .checkout-btn:hover {
-    transform: none;
-  }
-
-  .payment-method:hover {
-    transform: none;
-  }
-
-  .category-btn:hover {
-    transform: none;
-  }
-
+  .product-card:hover,
+  .add-to-cart:hover,
+  .header-btn:hover,
+  .action-btn:hover,
+  .cart-btn:hover,
+  .checkout-btn:hover,
+  .payment-method:hover,
+  .category-btn:hover,
   .cart-item:hover {
     transform: none;
   }
@@ -1733,13 +1679,13 @@ header {
 @media (max-width: 768px) {
   .modal-content::-webkit-scrollbar,
   .checkout-form::-webkit-scrollbar {
-    width: 4px;
+    width: 3px;
   }
 
   .modal-content::-webkit-scrollbar-thumb,
   .checkout-form::-webkit-scrollbar-thumb {
     background: var(--primary);
-    border-radius: 2px;
+    border-radius: 1.5px;
   }
 }
 
@@ -1760,24 +1706,6 @@ header {
   }
 }
 
-/* Soporte para dispositivos muy altos */
-@media (max-width: 768px) and (max-height: 600px) {
-  .modal {
-    max-height: 90vh;
-  }
-  
-  .modal-content {
-    max-height: 60vh;
-  }
-  
-  .checkout-form {
-    max-height: 65vh;
-  }
-  
-  .product-grid {
-    margin-bottom: 3rem;
-  }
-}
 
   
     
