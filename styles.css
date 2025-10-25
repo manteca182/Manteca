@@ -172,10 +172,10 @@ header {
 .notification-panel {
   position: absolute;
   top: 52px; /* Ajustado por header más pequeño */
-  right: 50%;
-  transform: translateX(50%); /* Centrado perfecto */
+  left: 50%;
+  transform: translateX(-50%); /* Centrado perfecto */
   width: 380px;
-  max-width: 90vw; /* Más responsive */
+  max-width: calc(100vw - 2rem); /* Respeta los márgenes */
   background: white;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -245,10 +245,10 @@ header {
 .history-panel {
   position: absolute;
   top: 52px; /* Ajustado por header más pequeño */
-  right: 50%;
-  transform: translateX(50%); /* Centrado perfecto */
+  left: 50%;
+  transform: translateX(-50%); /* Centrado perfecto */
   width: 400px;
-  max-width: 90vw; /* Más responsive */
+  max-width: calc(100vw - 2rem); /* Respeta los márgenes */
   background: white;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -1070,16 +1070,30 @@ header {
   /* Paneles flotantes mejor centrados en móviles */
   .notification-panel,
   .history-panel {
-    width: 92vw;
-    max-width: none;
-    right: 50%;
-    transform: translateX(50%);
+    width: 95vw;
+    max-width: calc(100vw - 1.6rem); /* 0.8rem a cada lado */
+    left: 50%;
+    transform: translateX(-50%);
     padding: 1rem;
   }
-
+  
   .notification-panel h4,
   .history-panel h4 {
     font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .notification-item,
+  .history-item {
+    padding: 0.7rem;
+    font-size: 0.85rem;
+  }
+  
+  .notification-icon,
+  .history-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
   }
 
   .categories-header {
@@ -1309,7 +1323,8 @@ header {
   /* Paneles flotantes más pequeños en móviles */
   .notification-panel,
   .history-panel {
-    width: 96vw;
+    width: 98vw;
+    max-width: calc(100vw - 1rem); /* 0.5rem a cada lado */
     padding: 0.8rem;
   }
 
@@ -1448,8 +1463,10 @@ header {
 
   .notification-panel,
   .history-panel {
-    width: 98vw;
+    width: 100vw;
+    max-width: calc(100vw - 0.8rem); /* 0.4rem a cada lado */
     padding: 0.7rem;
+    border-radius: 12px;
   }
 
   .categories-header {
@@ -1568,10 +1585,8 @@ header {
   .notification-panel,
   .history-panel {
     width: 100vw;
-    border-radius: 0;
-    left: 0;
-    right: 0;
-    transform: none;
+    max-width: calc(100vw - 0.6rem); /* 0.3rem a cada lado */
+    padding: 0.6rem;
   }
   
   .header-actions {
