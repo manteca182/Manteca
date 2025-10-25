@@ -1,8 +1,9 @@
-// scripts.js - Gestión completa de la aplicación de menú (ACTUALIZADO)
+// scripts.js - Gestión completa de la aplicación de menú (VERSIÓN MEJORADA)
 
 // Variables globales
 let cartItems = [];
 let currentEditingItem = null;
+let orderSummaryData = null;
 
 // Elementos del DOM
 const cartCount = document.getElementById('cartCount');
@@ -15,6 +16,8 @@ const itemModal = document.getElementById('itemModal');
 const modalHeaderBlur = document.getElementById('modalHeaderBlur');
 const notificationPanel = document.getElementById('notificationPanel');
 const historyPanel = document.getElementById('historyPanel');
+const summaryModal = document.getElementById('summaryModal');
+const confirmationAnimation = document.getElementById('confirmationAnimation');
 
 // Inicialización cuando el DOM está listo
 document.addEventListener('DOMContentLoaded', function() {
@@ -68,12 +71,26 @@ function initializeEventListeners() {
     document.getElementById('cancelCustomizationBtn').addEventListener('click', closeItemModal);
     document.getElementById('saveCustomizationBtn').addEventListener('click', saveItemCustomization);
 
+    // Nuevos listeners para las modales de resumen y confirmación
+    document.getElementById('confirmOrderBtn').addEventListener('click', confirmOrder);
+    document.getElementById('backToFormBtn').addEventListener('click', backToForm);
+    document.getElementById('closeConfirmationBtn').addEventListener('click', closeConfirmation);
+
     // Prevenir que los clics en los paneles los cierren
     notificationPanel.addEventListener('click', function(e) {
         e.stopPropagation();
     });
 
     historyPanel.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // Prevenir que los clics en las nuevas modales las cierren
+    summaryModal.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    confirmationAnimation.addEventListener('click', function(e) {
         e.stopPropagation();
     });
 }
@@ -200,7 +217,7 @@ function updateCartList() {
 
     let total = 0;
     cartItems.forEach((item, index) => {
-        const itemTotal = item.price + item.addons.reduce((sum, addon) => sum + addon.price, 0);
+        const itemTotal = calculateItemTotal(item);
         total += itemTotal;
 
         const li = document.createElement('li');
@@ -347,10 +364,10 @@ function showCheckoutForm() {
     checkoutForm.style.display = 'flex';
 }
 
-// Manejo del checkout
+// Nuevas funciones para el flujo mejorado de checkout
 function handleCheckout(e) {
     e.preventDefault();
-    const name = document.getElementById('name').value;
+    
     const address = document.getElementById('address').value;
     const phone = document.getElementById('phone').value;
     const municipio = document.getElementById('municipio').value;
@@ -362,29 +379,121 @@ function handleCheckout(e) {
         return;
     }
 
-    const orderDetails = cartItems.map(item => {
-        const itemTotal = item.price + item.addons.reduce((sum, addon) => sum + addon.price, 0);
-        let details = `${item.name} - $${itemTotal.toFixed(2)}`;
-        if (item.note) details += ` (Nota: ${item.note})`;
-        if (item.addons.length > 0) details += ` [Agregos: ${item.addons.map(a => a.name).join(', ')}]`;
-        return details;
-    }).join('\n');
+    if (!address || !phone || !municipio) {
+        alert('Por favor completa todos los campos obligatorios');
+        return;
+    }
 
-    const total = cartItems.reduce((sum, item) => {
-        return sum + item.price + item.addons.reduce((addonSum, addon) => addonSum + addon.price, 0);
-    }, 0).toFixed(2);
+    // Guardar datos para el resumen
+    orderSummaryData = {
+        address,
+        phone,
+        municipio,
+        paymentMethod,
+        note,
+        items: [...cartItems],
+        total: calculateCartTotal().toFixed(2)
+    };
 
-    alert(`¡Pedido enviado con éxito!\n\nNombre: ${name}\nDirección: ${address}\nTeléfono: ${phone}\nMunicipio: ${municipio}\nMétodo de pago: ${paymentMethod}\nNota adicional: ${note || "Ninguna"}\n\nDetalles del pedido:\n${orderDetails}\n\nTotal: $${total}\n\nGracias por tu compra.`);
+    // Mostrar modal de resumen
+    showOrderSummary();
+}
 
-    // Limpiar carrito y formulario
+// Mostrar resumen del pedido
+function showOrderSummary() {
+    const summaryItems = document.getElementById('summaryItems');
+    const summaryTotal = document.getElementById('summaryTotal');
+    const customerInfo = document.getElementById('customerInfo');
+
+    // Limpiar contenido previo
+    summaryItems.innerHTML = '';
+
+    // Añadir items al resumen
+    orderSummaryData.items.forEach(item => {
+        const itemTotal = calculateItemTotal(item);
+        const summaryItem = document.createElement('div');
+        summaryItem.className = 'summary-item';
+        summaryItem.innerHTML = `
+            <div>
+                <strong>${item.name}</strong>
+                ${item.note ? `<br><small>Nota: ${item.note}</small>` : ''}
+                ${item.addons.length > 0 ? `<br><small>Agregos: ${item.addons.map(a => a.name).join(', ')}</small>` : ''}
+            </div>
+            <div>$${itemTotal.toFixed(2)}</div>
+        `;
+        summaryItems.appendChild(summaryItem);
+    });
+
+    // Actualizar total
+    summaryTotal.textContent = `Total: $${orderSummaryData.total}`;
+
+    // Mostrar información del cliente
+    customerInfo.innerHTML = `
+        <strong>Información de Entrega:</strong><br>
+        📍 ${orderSummaryData.address}<br>
+        📞 ${orderSummaryData.phone}<br>
+        🏙️ ${orderSummaryData.municipio}<br>
+        💳 Pago: ${orderSummaryData.paymentMethod}
+        ${orderSummaryData.note ? `<br>📝 Nota: ${orderSummaryData.note}` : ''}
+    `;
+
+    // Mostrar modal de resumen
+    summaryModal.style.display = 'block';
+    overlay.style.display = 'block';
+}
+
+// Confirmar pedido final
+function confirmOrder() {
+    // Ocultar modal de resumen
+    summaryModal.style.display = 'none';
+    
+    // Mostrar animación de confirmación
+    confirmationAnimation.style.display = 'block';
+
+    // Aquí normalmente enviarías los datos al servidor
+    console.log('Pedido confirmado:', orderSummaryData);
+
+    // Después de 3 segundos, limpiar todo automáticamente
+    setTimeout(() => {
+        completeOrderCleanup();
+    }, 3000);
+}
+
+// Cerrar animación de confirmación manualmente
+function closeConfirmation() {
+    confirmationAnimation.style.display = 'none';
+    completeOrderCleanup();
+}
+
+// Limpiar todo después de confirmar el pedido
+function completeOrderCleanup() {
+    // Limpiar carrito
     cartItems = [];
     updateCartCount();
     updateCartList();
-    closeModal();
+    
+    // Limpiar formulario
     checkoutForm.reset();
     document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
     document.getElementById('paymentMethod').value = '';
+    
+    // Mostrar carrito vacío
     showCartItems();
+    
+    // Cerrar todas las modales
+    confirmationAnimation.style.display = 'none';
+    overlay.style.display = 'none';
+    cartModal.style.display = 'none';
+    modalHeaderBlur.style.display = 'none';
+    document.body.classList.remove('modal-open');
+    
+    // Resetear datos del pedido
+    orderSummaryData = null;
+}
+
+// Volver al formulario desde el resumen
+function backToForm() {
+    summaryModal.style.display = 'none';
 }
 
 // Funciones auxiliares para calcular totales
