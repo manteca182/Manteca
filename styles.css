@@ -33,7 +33,7 @@ body {
   justify-content: flex-start;
   min-height: 100vh;
   overflow-x: hidden;
-  padding-top: 240px; /* Ajustado: Header + Banner + Categorías */
+  padding-top: 240px; /* Header + Banner + Categorías */
 }
 
 /* Header fijo */
@@ -264,8 +264,6 @@ header {
 .category-btn.active {
   background: rgba(130, 76, 33, 0.15);
 }
-
-/* ELIMINADO: .category-btn.active::after - No queremos la bola amarilla */
 
 .category-name {
   font-size: 0.75rem;
@@ -572,7 +570,7 @@ header {
   }
 }
 
-/* Resto de estilos de modales (mantenemos los existentes) */
+/* Estilos para elementos del carrito */
 .cart-items {
   list-style: none;
   padding: 0;
@@ -687,7 +685,7 @@ header {
   gap: 1rem;
 }
 
-.cartTotal {
+.cart-total {
   font-weight: 700;
   margin-bottom: 1rem;
   text-align: center;
@@ -697,6 +695,132 @@ header {
   padding: 0.8rem;
   border-radius: 8px;
   border: 1px solid var(--gray);
+}
+
+/* Formularios y elementos de entrada */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.form-btn {
+  flex: 1;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  min-height: 44px;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 2.5rem;
+  border: 1px solid var(--gray);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(253, 200, 35, 0.1);
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 2.3rem;
+  color: var(--gray);
+}
+
+/* Paneles flotantes */
+.notification-panel,
+.history-panel {
+  position: absolute;
+  top: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 380px;
+  max-width: calc(100vw - 2rem);
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.2rem;
+  z-index: 1001;
+  display: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  z-index: 500;
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Métodos de pago */
+.payment-methods {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  border: 2px solid var(--gray);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payment-method:hover {
+  border-color: var(--primary);
+}
+
+.payment-method.selected {
+  border-color: var(--primary);
+  background: rgba(253, 200, 35, 0.1);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.product-category.active {
+  animation: fadeIn 0.4s ease;
 }
 
 /* Responsive Design Corregido */
@@ -869,44 +993,4 @@ header {
   .product-category.active {
     gap: 0.6rem;
   }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.product-category.active {
-  animation: fadeIn 0.4s ease;
-}
-
-/* Asegurar que los paneles flotantes funcionen correctamente */
-.notification-panel,
-.history-panel {
-  position: absolute;
-  top: 52px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 380px;
-  max-width: calc(100vw - 2rem);
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 1.2rem;
-  z-index: 1001;
-  display: none;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(8px);
-  z-index: 500;
-  display: none;
-  animation: fadeIn 0.3s ease;
 }
