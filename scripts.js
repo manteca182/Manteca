@@ -1,4 +1,4 @@
-// scripts.js - Gestión completa de la aplicación de menú (VERSIÓN MEJORADA)
+// scripts.js - Gestión completa de la aplicación de menú (VERSIÓN MEJORADA Y CORREGIDA)
 
 // Variables globales
 let cartItems = [];
@@ -425,7 +425,7 @@ function handleCheckout(e) {
 // Mostrar resumen del pedido
 function showOrderSummary() {
     const summaryItems = document.getElementById('summaryItems');
-    const summaryTotal = document.getElementById('summaryTotal');
+    const summaryTotal = document.getElementById('summaryModalTotal');
     const customerInfo = document.getElementById('customerInfo');
 
     // Limpiar contenido previo
@@ -528,6 +528,47 @@ function calculateCartTotal() {
     return cartItems.reduce((total, item) => total + calculateItemTotal(item), 0);
 }
 
+// Función para mostrar detalles del producto (NUEVA)
+function showProductDetails(name, description, price) {
+    // Crear modal temporal para detalles
+    const detailModal = document.createElement('div');
+    detailModal.className = 'modal';
+    detailModal.style.display = 'block';
+    detailModal.innerHTML = `
+        <h4>${name}</h4>
+        <p style="color: var(--gray); margin: 1rem 0;">${description}</p>
+        <div style="font-size: 1.2rem; font-weight: bold; color: var(--price-badge); margin: 1rem 0;">
+            Precio: $${price.toFixed(2)}
+        </div>
+        <div class="form-actions">
+            <button class="form-btn btn-secondary" onclick="this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement); overlay.style.display='none';">Cerrar</button>
+            <button class="form-btn btn-primary" onclick="addToCart('${name.replace(/'/g, "\\'")}', ${price}, '${getProductImage(name)}'); this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement); overlay.style.display='none';">Añadir al Carrito</button>
+        </div>
+    `;
+    
+    document.body.appendChild(detailModal);
+    overlay.style.display = 'block';
+}
+
+// Función auxiliar para obtener imagen del producto
+function getProductImage(productName) {
+    // Mapeo de productos a imágenes (ajusta según tus necesidades)
+    const imageMap = {
+        'El Especial': 'img.webp',
+        'De Carnaval': 'img (1).webp',
+        'Matambre': 'img (2).webp',
+        'Desmaya\\'o': 'img (3).webp',
+        'Refresco': 'https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg',
+        'Café': 'https://cdn.pixabay.com/photo/2015/09/05/23/34/coffee-926837_1280.jpg',
+        'Batido': 'https://cdn.pixabay.com/photo/2017/01/12/05/34/cocktail-1973567_1280.jpg',
+        'Combo Familiar': 'img.webp',
+        'Combo Personal': 'img (1).webp',
+        'Combo Pareja': 'img (2).webp'
+    };
+    
+    return imageMap[productName] || 'img.webp';
+}
+
 // Exportar funciones para uso global (necesario para los onclick en HTML)
 window.addToCart = addToCart;
 window.toggleModal = toggleModal;
@@ -536,3 +577,4 @@ window.showCheckoutForm = showCheckoutForm;
 window.showCartItems = showCartItems;
 window.closeItemModal = closeItemModal;
 window.saveItemCustomization = saveItemCustomization;
+window.showProductDetails = showProductDetails;
