@@ -24,6 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeEventListeners();
     updateCartList();
     positionPanels();
+    
+    // Mostrar banner correcto según categoría activa inicial
+    const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+    handleBannerVisibility(activeCategory);
 });
 
 // Configuración de todos los event listeners
@@ -116,6 +120,25 @@ function handleCategoryChange() {
     // Mostrar la categoría seleccionada
     const category = this.getAttribute('data-category');
     document.getElementById(category).classList.add('active');
+
+    // Manejar visibilidad de banners
+    handleBannerVisibility(category);
+}
+
+// Función para manejar la visibilidad de banners
+function handleBannerVisibility(activeCategory) {
+    const mainBanner = document.querySelector('.promo-banner');
+    const bebidasBanner = document.querySelector('.bebidas-banner');
+
+    // Ocultar todos los banners primero
+    mainBanner.style.display = 'block';
+    bebidasBanner.style.display = 'none';
+
+    // Mostrar banner específico según la categoría
+    if (activeCategory === 'bebidas') {
+        mainBanner.style.display = 'none';
+        bebidasBanner.style.display = 'block';
+    }
 }
 
 // Panel de notificaciones
