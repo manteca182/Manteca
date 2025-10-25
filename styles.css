@@ -8,9 +8,10 @@
 }
 
 :root {
-  --primary: #fdc823;
-  --secondary: #cbbc99;
-  --accent: #2e8b57;
+  --primary: #824c21;
+  --secondary: #fdc823;
+  --accent: #cbbc99;
+  --price-badge: #2e8b57; /* VERDE HIJO DE PALMA */
   --light: #ffffff;
   --dark: #251210;
   --success: #4cc9f0;
@@ -538,18 +539,18 @@ header {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Badge de precio con color sólido */
+/* Badge de precio con color VERDE HIJO DE PALMA */
 .price-badge {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: var(--accent);
-  color: var(--dark);
+  background: var(--price-badge); /* VERDE */
+  color: white; /* Texto blanco para contraste */
   font-size: 0.9rem;
   padding: 6px 12px;
   border-radius: 20px;
   font-weight: 700;
-  box-shadow: 0 6px 15px rgba(203, 188, 153, 0.4);
+  box-shadow: 0 6px 15px rgba(46, 139, 87, 0.4); /* Sombra verde */
   z-index: 3;
   border: 2px solid white;
   min-width: 60px;
@@ -586,8 +587,8 @@ header {
   position: absolute;
   top: -6px;
   right: -6px;
-  background-color: var(--accent);
-  color: var(--dark);
+  background-color: var(--price-badge); /* VERDE */
+  color: white; /* Texto blanco */
   font-size: 0.75rem;
   padding: 3px 8px;
   border-radius: 50%;
@@ -705,8 +706,8 @@ header {
 
 .cart-item-price-badge {
   grid-column: 3;
-  background: var(--accent);
-  color: var(--dark);
+  background: var(--price-badge); /* VERDE */
+  color: white; /* Texto blanco */
   padding: 0.4rem 0.8rem;
   border-radius: 12px;
   font-weight: 600;
@@ -972,13 +973,13 @@ header {
   font-size: 0.85rem;
   color: white;
   font-weight: 600;
-  background: var(--accent);
-  color: var(--dark);
+  background: var(--price-badge); /* VERDE */
+  color: white; /* Texto blanco */
   padding: 0.3rem 0.8rem;
   border-radius: 12px;
   min-width: 70px;
   text-align: center;
-  border: 1px solid var(--accent); /* Borde para definición */
+  border: 1px solid var(--price-badge); /* Borde verde */
 }
 
 .addon-checkbox {
