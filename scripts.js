@@ -13,11 +13,14 @@ const cartTotal = document.getElementById('cartTotal');
 const checkoutForm = document.getElementById('checkoutForm');
 const itemModal = document.getElementById('itemModal');
 const modalHeaderBlur = document.getElementById('modalHeaderBlur');
+const notificationPanel = document.getElementById('notificationPanel');
+const historyPanel = document.getElementById('historyPanel');
 
 // Inicialización cuando el DOM está listo
 document.addEventListener('DOMContentLoaded', function() {
     initializeEventListeners();
     updateCartList();
+    positionPanels();
 });
 
 // Configuración de todos los event listeners
@@ -28,10 +31,16 @@ function initializeEventListeners() {
     });
 
     // Notificaciones
-    document.getElementById('notificationBtn').addEventListener('click', toggleNotificationPanel);
+    document.getElementById('notificationBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleNotificationPanel();
+    });
 
     // Historial
-    document.getElementById('historyBtn').addEventListener('click', toggleHistoryPanel);
+    document.getElementById('historyBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleHistoryPanel();
+    });
 
     // Cerrar paneles al hacer clic fuera
     document.addEventListener('click', closeAllPanels);
@@ -58,6 +67,21 @@ function initializeEventListeners() {
     // Botones del modal de personalización
     document.getElementById('cancelCustomizationBtn').addEventListener('click', closeItemModal);
     document.getElementById('saveCustomizationBtn').addEventListener('click', saveItemCustomization);
+
+    // Prevenir que los clics en los paneles los cierren
+    notificationPanel.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    historyPanel.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+}
+
+// Posicionar paneles flotantes
+function positionPanels() {
+    // Los paneles ya están centrados por CSS con left: 50% y transform: translateX(-50%)
+    // Esta función se mantiene para futuras adaptaciones si son necesarias
 }
 
 // Manejo de cambio de categorías
@@ -66,37 +90,60 @@ function handleCategoryChange() {
     document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
     // Añadir clase active al botón clickeado
     this.classList.add('active');
-    
+
     // Ocultar todas las categorías
     document.querySelectorAll('.product-category').forEach(cat => {
         cat.classList.remove('active');
     });
-    
+
     // Mostrar la categoría seleccionada
     const category = this.getAttribute('data-category');
     document.getElementById(category).classList.add('active');
 }
 
 // Panel de notificaciones
-function toggleNotificationPanel(e) {
-    e.stopPropagation();
-    const panel = document.getElementById('notificationPanel');
-    panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-    document.getElementById('historyPanel').style.display = 'none';
+function toggleNotificationPanel() {
+    const isVisible = notificationPanel.style.display === 'block';
+    
+    // Cerrar todos los paneles primero
+    closeAllPanels();
+    
+    // Si no estaba visible, abrir notificaciones
+    if (!isVisible) {
+        notificationPanel.style.display = 'block';
+        // Posicionar el panel debajo del botón
+        positionPanelUnderButton('notificationBtn', notificationPanel);
+    }
 }
 
 // Panel de historial
-function toggleHistoryPanel(e) {
-    e.stopPropagation();
-    const panel = document.getElementById('historyPanel');
-    panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-    document.getElementById('notificationPanel').style.display = 'none';
+function toggleHistoryPanel() {
+    const isVisible = historyPanel.style.display === 'block';
+    
+    // Cerrar todos los paneles primero
+    closeAllPanels();
+    
+    // Si no estaba visible, abrir historial
+    if (!isVisible) {
+        historyPanel.style.display = 'block';
+        // Posicionar el panel debajo del botón
+        positionPanelUnderButton('historyBtn', historyPanel);
+    }
+}
+
+// Posicionar panel debajo del botón correspondiente
+function positionPanelUnderButton(buttonId, panel) {
+    const button = document.getElementById(buttonId);
+    const buttonRect = button.getBoundingClientRect();
+    
+    // El panel ya está centrado por CSS, solo necesitamos asegurar la posición vertical
+    panel.style.top = (buttonRect.bottom + window.scrollY + 5) + 'px';
 }
 
 // Cerrar todos los paneles
 function closeAllPanels() {
-    document.getElementById('notificationPanel').style.display = 'none';
-    document.getElementById('historyPanel').style.display = 'none';
+    notificationPanel.style.display = 'none';
+    historyPanel.style.display = 'none';
 }
 
 // Selección de método de pago
@@ -116,17 +163,17 @@ function addToCart(name, price, image) {
         note: '',
         addons: []
     };
-    
+
     cartItems.push(item);
     updateCartCount();
     updateCartList();
-    
+
     // Efecto visual de confirmación
     const button = event.target;
     const originalText = button.innerHTML;
     button.innerHTML = '<i class="fas fa-check" style="margin-right: 8px;"></i> Añadido';
     button.style.background = 'linear-gradient(to right, var(--success), #2a9d8f)';
-    
+
     setTimeout(() => {
         button.innerHTML = originalText;
         button.style.background = 'linear-gradient(to right, var(--primary), var(--secondary))';
@@ -139,7 +186,7 @@ function updateCartCount() {
 
 function updateCartList() {
     cartList.innerHTML = '';
-    
+
     if (cartItems.length === 0) {
         cartList.innerHTML = `
             <div class="empty-cart">
@@ -150,12 +197,12 @@ function updateCartList() {
         cartTotal.textContent = 'Total: $0.00';
         return;
     }
-    
+
     let total = 0;
     cartItems.forEach((item, index) => {
         const itemTotal = item.price + item.addons.reduce((sum, addon) => sum + addon.price, 0);
         total += itemTotal;
-        
+
         const li = document.createElement('li');
         li.className = 'cart-item';
         li.innerHTML = `
@@ -190,22 +237,22 @@ function updateCartList() {
             removeItem(parseInt(this.getAttribute('data-index')));
         });
     });
-    
+
     cartTotal.textContent = `Total: $${total.toFixed(2)}`;
 }
 
 function editItem(index) {
     currentEditingItem = index;
     const item = cartItems[index];
-    
+
     document.getElementById('modalItemName').textContent = item.name;
     document.getElementById('itemNote').value = item.note;
-    
+
     // Reset checkboxes
     document.querySelectorAll('.addon-checkbox').forEach(checkbox => {
         checkbox.checked = false;
     });
-    
+
     // Check previously selected addons
     item.addons.forEach(addon => {
         const checkboxes = document.querySelectorAll('.addon-checkbox');
@@ -215,26 +262,27 @@ function editItem(index) {
             }
         });
     });
-    
+
     itemModal.style.display = 'block';
+    overlay.style.display = 'block';
 }
 
 function saveItemCustomization() {
     if (currentEditingItem === null) return;
-    
+
     const note = document.getElementById('itemNote').value;
     const selectedAddons = [];
-    
+
     document.querySelectorAll('.addon-checkbox:checked').forEach(checkbox => {
         selectedAddons.push({
             name: checkbox.dataset.name,
             price: parseFloat(checkbox.dataset.price)
         });
     });
-    
+
     cartItems[currentEditingItem].note = note;
     cartItems[currentEditingItem].addons = selectedAddons;
-    
+
     updateCartList();
     closeItemModal();
 }
@@ -247,11 +295,11 @@ function removeItem(index) {
 
 function closeItemModal() {
     itemModal.style.display = 'none';
+    overlay.style.display = 'none';
     currentEditingItem = null;
 }
 
-// En el archivo scripts.js, modificar las funciones toggleModal y closeModal:
-
+// Funciones del modal
 function toggleModal() {
     const isVisible = cartModal.style.display === 'block';
     cartModal.style.display = isVisible ? 'none' : 'block';
@@ -265,6 +313,9 @@ function toggleModal() {
     } else {
         document.body.classList.remove('modal-open');
     }
+    
+    // Cerrar paneles flotantes cuando se abre el modal
+    closeAllPanels();
 }
 
 function closeModal() {
@@ -273,6 +324,8 @@ function closeModal() {
     modalHeaderBlur.style.display = 'none';
     // Remover clase del blur
     document.body.classList.remove('modal-open');
+    // Cerrar paneles flotantes
+    closeAllPanels();
 }
 
 function showCartItems() {
@@ -287,7 +340,7 @@ function showCheckoutForm() {
         alert('Tu carrito está vacío. Agrega algunos productos antes de realizar el pedido.');
         return;
     }
-    
+
     document.querySelector('.cart-items').style.display = 'none';
     document.getElementById('cartTotal').style.display = 'none';
     document.querySelector('.form-actions').style.display = 'none';
@@ -316,7 +369,7 @@ function handleCheckout(e) {
         if (item.addons.length > 0) details += ` [Agregos: ${item.addons.map(a => a.name).join(', ')}]`;
         return details;
     }).join('\n');
-    
+
     const total = cartItems.reduce((sum, item) => {
         return sum + item.price + item.addons.reduce((addonSum, addon) => addonSum + addon.price, 0);
     }, 0).toFixed(2);
