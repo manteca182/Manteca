@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header compacto mejorado -->
+  <!-- 1. HEADER (fijo) -->
   <header role="banner">
     <div class="user-info">
       <div class="user-avatar" aria-hidden="true">
@@ -34,6 +34,45 @@
       </button>
     </div>
   </header>
+
+  <!-- 2. BANNER (fijo) -->
+  <div class="promo-banner">
+    <img src="copilot_image_1761418967866.jpeg" alt="Promoción Especial - Lechón con Pan" />
+    <div class="banner-overlay">
+      <div class="banner-title">¡Oferta Especial!</div>
+      <div class="banner-subtitle">Disfruta de nuestros mejores platos con descuentos exclusivos</div>
+    </div>
+  </div>
+
+  <div class="bebidas-banner">
+    <img src="copilot_image_1761420865911.jpeg" alt="Promoción Especial - Bebidas Refrescantes" />
+    <div class="banner-overlay">
+      <div class="banner-title">¡Bebidas Refrescantes!</div>
+      <div class="banner-subtitle">Disfruta de nuestras bebidas especiales con descuentos únicos</div>
+    </div>
+  </div>
+
+  <!-- 3. CATEGORÍAS (fijas) -->
+  <div class="categories-header">
+    <button class="category-btn active" data-category="panes">
+      <div class="category-icon">
+        <i class="fas fa-bread-slice"></i>
+      </div>
+      <span class="category-name">Panes</span>
+    </button>
+    <button class="category-btn" data-category="bebidas">
+      <div class="category-icon">
+        <i class="fas fa-wine-bottle"></i>
+      </div>
+      <span class="category-name">Bebidas</span>
+    </button>
+    <button class="category-btn" data-category="combos">
+      <div class="category-icon">
+        <i class="fas fa-box"></i>
+      </div>
+      <span class="category-name">Combos</span>
+    </button>
+  </div>
 
   <!-- Paneles flotantes -->
   <div class="notification-panel" id="notificationPanel" role="dialog" aria-labelledby="notificationTitle" aria-hidden="true">
@@ -101,50 +140,10 @@
     </div>
   </div>
 
-  <!-- Banner Promocional Principal (ANTES DE CATEGORÍAS) -->
-  <div class="promo-banner">
-    <img src="copilot_image_1761418967866.jpeg" alt="Promoción Especial - Lechón con Pan" />
-    <div class="banner-overlay">
-      <div class="banner-title">¡Oferta Especial!</div>
-      <div class="banner-subtitle">Disfruta de nuestros mejores platos con descuentos exclusivos</div>
-    </div>
-  </div>
-
-  <!-- Banner Específico para Bebidas -->
-  <div class="bebidas-banner">
-    <img src="copilot_image_1761420865911.jpeg" alt="Promoción Especial - Bebidas Refrescantes" />
-    <div class="banner-overlay">
-      <div class="banner-title">¡Bebidas Refrescantes!</div>
-      <div class="banner-subtitle">Disfruta de nuestras bebidas especiales con descuentos únicos</div>
-    </div>
-  </div>
-
-  <!-- Categorías compactas CON NOMBRES - SOLO 3 CATEGORÍAS -->
-  <div class="categories-header">
-    <button class="category-btn active" data-category="panes">
-      <div class="category-icon">
-        <i class="fas fa-bread-slice"></i>
-      </div>
-      <span class="category-name">Panes</span>
-    </button>
-    <button class="category-btn" data-category="bebidas">
-      <div class="category-icon">
-        <i class="fas fa-wine-bottle"></i>
-      </div>
-      <span class="category-name">Bebidas</span>
-    </button>
-    <button class="category-btn" data-category="combos">
-      <div class="category-icon">
-        <i class="fas fa-box"></i>
-      </div>
-      <span class="category-name">Combos</span>
-    </button>
-  </div>
-
   <!-- Efecto blur para header cuando el modal está abierto -->
   <div class="modal-header-blur" id="modalHeaderBlur"></div>
 
-  <!-- Productos por categorías con nuevo diseño -->
+  <!-- 4. PRODUCTOS (scrollable) -->
   <section class="product-grid">
     <!-- Panes -->
     <div class="product-category active" id="panes">
