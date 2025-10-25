@@ -6,15 +6,229 @@
   <title>Menú WebApp</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* Estilos críticos iniciales para mejor rendimiento */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f7fa;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    body.loaded {
+      opacity: 1;
+    }
+    
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Estilos mejorados para formulario compacto */
+    .checkout-form-compact {
+      display: none;
+      flex-direction: column;
+      gap: 0.8rem;
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 0.5rem;
+    }
+
+    .checkout-form-compact .input-group {
+      margin-bottom: 0.3rem;
+    }
+
+    .checkout-form-compact .input-group label {
+      font-size: 0.75rem;
+      margin-bottom: 0.2rem;
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    .checkout-form-compact .input-group input,
+    .checkout-form-compact .input-group select,
+    .checkout-form-compact .input-group textarea {
+      padding: 0.5rem 0.5rem 0.5rem 2rem;
+      border: 1px solid var(--gray);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      width: 100%;
+      background: white;
+      min-height: 42px;
+    }
+
+    .checkout-form-compact .input-icon {
+      left: 0.6rem;
+      top: 1.8rem;
+      font-size: 0.9rem;
+    }
+
+    .checkout-form-compact .payment-methods {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+
+    .checkout-form-compact .payment-method {
+      padding: 0.6rem 0.4rem;
+      font-size: 0.75rem;
+      min-height: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2rem;
+    }
+
+    /* Modal de resumen */
+    .summary-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      padding: 1.5rem;
+      width: 90%;
+      max-width: 450px;
+      max-height: 80vh;
+      overflow-y: auto;
+      z-index: 1100;
+      display: none;
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--light);
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+    }
+
+    .summary-total {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--dark);
+      background: var(--light);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* Animación de confirmación */
+    .confirmation-animation {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      padding: 2rem;
+      text-align: center;
+      z-index: 1200;
+      display: none;
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    .confirmation-icon {
+      font-size: 4rem;
+      color: var(--success);
+      margin-bottom: 1rem;
+      animation: bounceIn 0.6s ease;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.1); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .confirmation-message {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    /* Asegurar que todo quepa en la modal */
+    .modal {
+      max-height: 85vh !important;
+    }
+
+    .cart-items {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    @media (max-width: 768px) {
+      .checkout-form-compact {
+        max-height: 350px;
+        padding: 0.3rem;
+      }
+      
+      .checkout-form-compact .input-group input,
+      .checkout-form-compact .input-group select,
+      .checkout-form-compact .input-group textarea {
+        min-height: 38px;
+        font-size: 0.8rem;
+      }
+      
+      .summary-modal {
+        padding: 1rem;
+        max-height: 75vh;
+      }
+      
+      .confirmation-animation {
+        padding: 1.5rem;
+      }
+      
+      .confirmation-icon {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .checkout-form-compact .payment-methods {
+        grid-template-columns: 1fr;
+      }
+      
+      .checkout-form-compact {
+        max-height: 320px;
+      }
+    }
+  </style>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- Header compacto mejorado -->
-  <header>
+  <header role="banner">
     <div class="user-info">
-      <div class="user-avatar">
-        <i class="fas fa-user"></i>
-        <div class="status-indicator"></div>
+      <div class="user-avatar" aria-hidden="true">
+        <i class="fas fa-user" aria-hidden="true"></i>
+        <div class="status-indicator" title="Usuario en línea"></div>
       </div>
       <div class="user-greeting">
         <h1>Hola,</h1>
@@ -22,24 +236,24 @@
       </div>
     </div>
     <div class="header-actions">
-      <button class="header-btn" id="notificationBtn">
-        <i class="fas fa-bell"></i>
+      <button class="header-btn" id="notificationBtn" aria-label="Notificaciones" aria-expanded="false">
+        <i class="fas fa-bell" aria-hidden="true"></i>
         <span class="notification-badge">3</span>
       </button>
-      <button class="header-btn" id="historyBtn">
-        <i class="fas fa-history"></i>
+      <button class="header-btn" id="historyBtn" aria-label="Historial de pedidos" aria-expanded="false">
+        <i class="fas fa-history" aria-hidden="true"></i>
       </button>
-      <button class="header-btn">
-        <i class="fas fa-sign-out-alt"></i>
+      <button class="header-btn" aria-label="Cerrar sesión">
+        <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
       </button>
     </div>
   </header>
 
   <!-- Paneles flotantes -->
-  <div class="notification-panel" id="notificationPanel">
-    <h4>Notificaciones</h4>
+  <div class="notification-panel" id="notificationPanel" role="dialog" aria-labelledby="notificationTitle" aria-hidden="true">
+    <h4 id="notificationTitle">Notificaciones</h4>
     <div class="notification-item unread">
-      <div class="notification-icon">
+      <div class="notification-icon" aria-hidden="true">
         <i class="fas fa-tag"></i>
       </div>
       <div class="notification-content">
@@ -48,7 +262,7 @@
       </div>
     </div>
     <div class="notification-item unread">
-      <div class="notification-icon">
+      <div class="notification-icon" aria-hidden="true">
         <i class="fas fa-shipping-fast"></i>
       </div>
       <div class="notification-content">
@@ -57,7 +271,7 @@
       </div>
     </div>
     <div class="notification-item">
-      <div class="notification-icon">
+      <div class="notification-icon" aria-hidden="true">
         <i class="fas fa-check-circle"></i>
       </div>
       <div class="notification-content">
@@ -67,10 +281,10 @@
     </div>
   </div>
 
-  <div class="history-panel" id="historyPanel">
-    <h4>Historial de Compras</h4>
+  <div class="history-panel" id="historyPanel" role="dialog" aria-labelledby="historyTitle" aria-hidden="true">
+    <h4 id="historyTitle">Historial de Compras</h4>
     <div class="history-item">
-      <div class="history-icon">
+      <div class="history-icon" aria-hidden="true">
         <i class="fas fa-check"></i>
       </div>
       <div class="history-content">
@@ -80,7 +294,7 @@
       </div>
     </div>
     <div class="history-item">
-      <div class="history-icon">
+      <div class="history-icon" aria-hidden="true">
         <i class="fas fa-check"></i>
       </div>
       <div class="history-content">
@@ -90,7 +304,7 @@
       </div>
     </div>
     <div class="history-item">
-      <div class="history-icon">
+      <div class="history-icon" aria-hidden="true">
         <i class="fas fa-check"></i>
       </div>
       <div class="history-content">
@@ -432,22 +646,18 @@
       <button class="form-btn btn-primary" id="checkoutBtn">Realizar Pedido</button>
     </div>
 
-    <!-- Formulario de pedido -->
-    <form id="checkoutForm" class="checkout-form">
-      <div class="input-group">
-        <label for="name">Nombre Completo</label>
-        <i class="fas fa-user input-icon"></i>
-        <input type="text" id="name" required />
-      </div>
+    <!-- Formulario de pedido compacto -->
+    <form id="checkoutForm" class="checkout-form-compact">
       <div class="input-group">
         <label for="address">Dirección de Entrega</label>
         <i class="fas fa-map-marker-alt input-icon"></i>
-        <input type="text" id="address" required />
+        <input type="text" id="address" required placeholder="Ej: Calle 123, entre A y B" />
       </div>
+      
       <div class="input-group">
         <label for="phone">Teléfono</label>
         <i class="fas fa-phone input-icon"></i>
-        <input type="tel" id="phone" required />
+        <input type="tel" id="phone" required placeholder="Tu número de contacto" />
       </div>
 
       <div class="input-group">
@@ -470,20 +680,20 @@
         <label>Método de Pago</label>
         <div class="payment-methods">
           <div class="payment-method" data-method="CUP">
-            <i class="fas fa-money-bill-wave"></i><br>
+            <i class="fas fa-money-bill-wave"></i>
             <span>CUP</span>
           </div>
           <div class="payment-method" data-method="USD">
-            <i class="fas fa-dollar-sign"></i><br>
+            <i class="fas fa-dollar-sign"></i>
             <span>USD</span>
           </div>
           <div class="payment-method" data-method="EUR">
-            <i class="fas fa-euro-sign"></i><br>
+            <i class="fas fa-euro-sign"></i>
             <span>EUR</span>
           </div>
           <div class="payment-method" data-method="TRANSFER">
-            <i class="fas fa-exchange-alt"></i><br>
-            <span>Transferencia</span>
+            <i class="fas fa-exchange-alt"></i>
+            <span>Transfer</span>
           </div>
         </div>
         <input type="hidden" id="paymentMethod" required>
@@ -492,12 +702,12 @@
       <div class="input-group">
         <label for="note">Notas Adicionales</label>
         <i class="fas fa-sticky-note input-icon"></i>
-        <textarea id="note" rows="2"></textarea>
+        <textarea id="note" rows="2" placeholder="Instrucciones especiales para tu pedido"></textarea>
       </div>
 
       <div class="form-actions">
         <button type="button" class="form-btn btn-secondary" id="backToCartBtn">Volver al Carrito</button>
-        <button type="submit" class="form-btn btn-primary">Confirmar Pedido</button>
+        <button type="submit" class="form-btn btn-primary">Continuar</button>
       </div>
     </form>
   </div>
@@ -541,6 +751,38 @@
     </div>
   </div>
 
+  <!-- Modal de Resumen -->
+  <div class="summary-modal" id="summaryModal">
+    <h4>Resumen de tu Pedido</h4>
+    <div id="summaryItems"></div>
+    <div class="summary-total" id="summaryTotal">Total: $0.00</div>
+    
+    <div class="customer-info" id="customerInfo" style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 8px; font-size: 0.9rem;">
+      <!-- La información del cliente se insertará aquí -->
+    </div>
+    
+    <div class="form-actions" style="margin-top: 1.5rem;">
+      <button type="button" class="form-btn btn-secondary" id="backToFormBtn">Modificar</button>
+      <button type="button" class="form-btn btn-primary" id="confirmOrderBtn">Confirmar Pedido</button>
+    </div>
+  </div>
+
+  <!-- Animación de Confirmación -->
+  <div class="confirmation-animation" id="confirmationAnimation">
+    <div class="confirmation-icon">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <div class="confirmation-message">¡Pedido Confirmado!</div>
+    <p style="color: var(--gray); margin-bottom: 1.5rem;">Tu pedido está siendo procesado</p>
+    <button class="form-btn btn-primary" id="closeConfirmationBtn">Aceptar</button>
+  </div>
+
   <script src="scripts.js"></script>
+  <script>
+    // Inicializar cuando la página cargue
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.classList.add('loaded');
+    });
+  </script>
 </body>
 </html>
