@@ -25,78 +25,81 @@
       <button class="header-btn" id="notificationBtn">
         <i class="fas fa-bell"></i>
         <span class="notification-badge">3</span>
-        <div class="notification-panel" id="notificationPanel">
-          <h4>Notificaciones</h4>
-          <div class="notification-item unread">
-            <div class="notification-icon">
-              <i class="fas fa-tag"></i>
-            </div>
-            <div class="notification-content">
-              <strong>¡Nueva oferta!</strong>
-              Descuento del 20% en pizzas
-            </div>
-          </div>
-          <div class="notification-item unread">
-            <div class="notification-icon">
-              <i class="fas fa-shipping-fast"></i>
-            </div>
-            <div class="notification-content">
-              <strong>Pedido en camino</strong>
-              Tu pedido #1234 está en reparto
-            </div>
-          </div>
-          <div class="notification-item">
-            <div class="notification-icon">
-              <i class="fas fa-check-circle"></i>
-            </div>
-            <div class="notification-content">
-              <strong>Pedido completado</strong>
-              Tu pedido #1233 ha sido entregado
-            </div>
-          </div>
-        </div>
       </button>
       <button class="header-btn" id="historyBtn">
         <i class="fas fa-history"></i>
-        <div class="history-panel" id="historyPanel">
-          <h4>Historial de Compras</h4>
-          <div class="history-item">
-            <div class="history-icon">
-              <i class="fas fa-check"></i>
-            </div>
-            <div class="history-content">
-              <strong>Pedido #1234</strong>
-              Hamburguesa + Refresco - $7.98<br>
-              <small>15 Mar 2024 - Entregado</small>
-            </div>
-          </div>
-          <div class="history-item">
-            <div class="history-icon">
-              <i class="fas fa-check"></i>
-            </div>
-            <div class="history-content">
-              <strong>Pedido #1233</strong>
-              Pizza + Ensalada - $7.74<br>
-              <small>14 Mar 2024 - Entregado</small>
-            </div>
-          </div>
-          <div class="history-item">
-            <div class="history-icon">
-              <i class="fas fa-check"></i>
-            </div>
-            <div class="history-content">
-              <strong>Pedido #1232</strong>
-              Sándwich + Café - $5.50<br>
-              <small>13 Mar 2024 - Entregado</small>
-            </div>
-          </div>
-        </div>
       </button>
       <button class="header-btn">
         <i class="fas fa-sign-out-alt"></i>
       </button>
     </div>
   </header>
+
+  <!-- Paneles flotantes (fuera del header para mejor posicionamiento) -->
+  <div class="notification-panel" id="notificationPanel">
+    <h4>Notificaciones</h4>
+    <div class="notification-item unread">
+      <div class="notification-icon">
+        <i class="fas fa-tag"></i>
+      </div>
+      <div class="notification-content">
+        <strong>¡Nueva oferta!</strong>
+        Descuento del 20% en pizzas
+      </div>
+    </div>
+    <div class="notification-item unread">
+      <div class="notification-icon">
+        <i class="fas fa-shipping-fast"></i>
+      </div>
+      <div class="notification-content">
+        <strong>Pedido en camino</strong>
+        Tu pedido #1234 está en reparto
+      </div>
+    </div>
+    <div class="notification-item">
+      <div class="notification-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="notification-content">
+        <strong>Pedido completado</strong>
+        Tu pedido #1233 ha sido entregado
+      </div>
+    </div>
+  </div>
+
+  <div class="history-panel" id="historyPanel">
+    <h4>Historial de Compras</h4>
+    <div class="history-item">
+      <div class="history-icon">
+        <i class="fas fa-check"></i>
+      </div>
+      <div class="history-content">
+        <strong>Pedido #1234</strong>
+        Hamburguesa + Refresco - $7.98<br>
+        <small>15 Mar 2024 - Entregado</small>
+      </div>
+    </div>
+    <div class="history-item">
+      <div class="history-icon">
+        <i class="fas fa-check"></i>
+      </div>
+      <div class="history-content">
+        <strong>Pedido #1233</strong>
+        Pizza + Ensalada - $7.74<br>
+        <small>14 Mar 2024 - Entregado</small>
+      </div>
+    </div>
+    <div class="history-item">
+      <div class="history-icon">
+        <i class="fas fa-check"></i>
+      </div>
+      <div class="history-content">
+        <strong>Pedido #1232</strong>
+        Sándwich + Café - $5.50<br>
+        <small>13 Mar 2024 - Entregado</small>
+      </div>
+    </div>
+  </div>
 
   <!-- Categorías compactas -->
   <div class="categories-header">
