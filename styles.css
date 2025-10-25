@@ -994,3 +994,66 @@ header {
     gap: 0.6rem;
   }
 }
+
+/* MODALES - ESTILOS CORREGIDOS (OCULTAS POR DEFECTO) */
+.cart-modal,
+.item-modal,
+.summary-modal,
+.confirmation-animation,
+.detail-modal {
+  display: none !important;
+}
+
+/* Modal del carrito específico */
+#cartModal {
+  display: none;
+}
+
+/* Modal de personalización de items */
+#itemModal {
+  display: none;
+}
+
+/* Modal de resumen */
+#summaryModal {
+  display: none;
+}
+
+/* Animación de confirmación */
+#confirmationAnimation {
+  display: none;
+}
+
+/* Modal de detalles del producto */
+#detailModal {
+  display: none;
+}
+
+/* Paneles flotantes (notificaciones e historial) */
+.notification-panel,
+.history-panel {
+  display: none;
+}
+
+/* Overlay */
+.overlay {
+  display: none;
+}
+
+/* Efecto blur del header */
+.modal-header-blur {
+  display: none;
+}
+
+/* Estilos para modales cuando están activas */
+.modal.active {
+  display: block !important;
+}
+
+.overlay.active {
+  display: block !important;
+}
+
+.modal-header-blur.active {
+  display: block !important;
+}
