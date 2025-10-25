@@ -87,6 +87,91 @@ header {
   border: 2px solid white;
   animation: pulse 2s infinite;
 }
+/* Banner promocional */
+.promo-banner {
+  width: 100%;
+  max-width: 800px;
+  margin: 1rem auto 1.5rem auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.promo-banner:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.promo-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.banner-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  color: white;
+}
+
+.banner-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-subtitle {
+  font-size: 1rem;
+  opacity: 0.9;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive para el banner */
+@media (max-width: 768px) {
+  .promo-banner {
+    margin: 0.8rem auto 1.2rem auto;
+    border-radius: 12px;
+  }
+
+  .banner-overlay {
+    padding: 1.5rem 1rem 1rem 1rem;
+  }
+
+  .banner-title {
+    font-size: 1.2rem;
+  }
+
+  .banner-subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .promo-banner {
+    margin: 0.6rem auto 1rem auto;
+    border-radius: 10px;
+  }
+
+  .banner-overlay {
+    padding: 1rem 0.8rem 0.8rem 0.8rem;
+  }
+
+  .banner-title {
+    font-size: 1.1rem;
+  }
+
+  .banner-subtitle {
+    font-size: 0.8rem;
+  }
+}
 
 @keyframes pulse {
   0% { opacity: 1; }
