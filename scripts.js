@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeEventListeners();
     updateCartList();
     positionPanels();
+    initBannerSlider(); // Inicializar banner rotativo
 });
 
 // Configuración de todos los event listeners
@@ -92,6 +93,43 @@ function initializeEventListeners() {
 
     confirmationAnimation.addEventListener('click', function(e) {
         e.stopPropagation();
+    });
+}
+
+// Banner rotativo
+function initBannerSlider() {
+    const slides = document.querySelectorAll('.banner-slide');
+    const indicators = document.querySelectorAll('.banner-indicator');
+    let currentSlide = 0;
+    
+    function showSlide(index) {
+        // Ocultar todos los slides
+        slides.forEach(slide => slide.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        // Mostrar slide actual
+        slides[index].classList.add('active');
+        indicators[index].classList.add('active');
+        
+        currentSlide = index;
+    }
+    
+    function nextSlide() {
+        let next = currentSlide + 1;
+        if (next >= slides.length) {
+            next = 0;
+        }
+        showSlide(next);
+    }
+    
+    // Cambiar slide cada 3 segundos
+    setInterval(nextSlide, 3000);
+    
+    // Click en indicadores
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            showSlide(index);
+        });
     });
 }
 
