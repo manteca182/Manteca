@@ -290,7 +290,11 @@ header {
   flex-shrink: 0;
 }
 
-/* Categorías más compactas y sin scroll */
+webkit-scrollbar {
+  display: none;
+}
+
+/* Categorías más compactas y sin scroll - VERSIÓN CORREGIDA */
 .categories-header {
   position: fixed;
   top: 85px; /* Más cerca del header en desktop */
@@ -303,11 +307,11 @@ header {
   box-shadow: var(--shadow);
   z-index: 999;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  height: 60px;
+  height: 70px; /* Aumentado para títulos */
   overflow: hidden;
 }
 
@@ -324,14 +328,14 @@ header {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.3rem;
+  padding: 0.5rem 0.3rem;
   border-radius: 12px;
   transition: all 0.3s ease;
-  min-width: 70px;
+  min-width: 0;
   position: relative;
-  flex-shrink: 0;
   flex: 1;
   height: 100%;
+  max-width: 120px;
 }
 
 .category-btn:hover {
@@ -365,6 +369,8 @@ header {
   color: white;
   font-size: 1rem;
   transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin-bottom: 0.3rem;
 }
 
 .category-btn:hover .category-icon {
@@ -376,15 +382,19 @@ header {
   box-shadow: 0 6px 15px rgba(130, 76, 33, 0.4);
 }
 
-/* Estilos para títulos de categoría */
+/* Estilos para títulos de categoría - VERSIÓN CORREGIDA */
 .category-title {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--dark);
-  margin-top: 0.2rem;
   text-align: center;
   line-height: 1.2;
   transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  flex-shrink: 0;
 }
 
 .category-btn.active .category-title {
@@ -394,6 +404,21 @@ header {
 
 .category-btn:hover .category-title {
   color: var(--primary);
+}
+
+/* Distribución equitativa para 3 categorías */
+.categories-header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.category-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .modal-open header,
