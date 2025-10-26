@@ -101,32 +101,25 @@
     </div>
   </div>
 
-  <!-- Categorías compactas -->
+  <!-- Categorías compactas - SOLO 3 CATEGORÍAS -->
   <div class="categories-header">
-    <button class="category-btn active" data-category="lechon">
+    <button class="category-btn active" data-category="panes">
       <div class="category-icon">
         <i class="fas fa-bread-slice"></i>
       </div>
-    </button>
-    <button class="category-btn" data-category="pizzas">
-      <div class="category-icon">
-        <i class="fas fa-pizza-slice"></i>
-      </div>
+      <span class="category-title">Panes</span>
     </button>
     <button class="category-btn" data-category="bebidas">
       <div class="category-icon">
         <i class="fas fa-wine-bottle"></i>
       </div>
+      <span class="category-title">Bebidas</span>
     </button>
-    <button class="category-btn" data-category="postres">
+    <button class="category-btn" data-category="combos">
       <div class="category-icon">
-        <i class="fas fa-ice-cream"></i>
+        <i class="fas fa-box"></i>
       </div>
-    </button>
-    <button class="category-btn" data-category="ensaladas">
-      <div class="category-icon">
-        <i class="fas fa-leaf"></i>
-      </div>
+      <span class="category-title">Combos</span>
     </button>
   </div>
 
@@ -135,8 +128,8 @@
 
   <!-- Productos por categorías con nuevo diseño -->
   <section class="product-grid">
-    <!-- Lechón con Pan -->
-    <div class="product-category active" id="lechon">
+    <!-- Panes -->
+    <div class="product-category active" id="panes">
       <div class="product-card">
         <span class="price-badge">$3500</span>
         <img class="product-image" src="img.webp" alt="El Especial" />
@@ -203,58 +196,6 @@
       </div>
     </div>
 
-    <!-- Pizzas -->
-    <div class="product-category" id="pizzas">
-      <div class="product-card">
-        <span class="price-badge">$4.25</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza Pepperoni" />
-        <div class="product-info">
-          <h3>Pizza Pepperoni</h3>
-          <p class="product-description">Deliciosa pizza con pepperoni y queso mozzarella</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Pizza Pepperoni', 4.25, 'https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$5.50</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza Hawaiana" />
-        <div class="product-info">
-          <h3>Pizza Hawaiana</h3>
-          <p class="product-description">Pizza con jamón, piña y queso mozzarella</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Pizza Hawaiana', 5.50, 'https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$6.75</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza Cuatro Quesos" />
-        <div class="product-info">
-          <h3>Pizza 4 Quesos</h3>
-          <p class="product-description">Mezcla de cuatro quesos seleccionados</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Pizza 4 Quesos', 6.75, 'https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Bebidas -->
     <div class="product-category" id="bebidas">
       <div class="product-card">
@@ -305,53 +246,17 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Postres -->
-    <div class="product-category" id="postres">
       <div class="product-card">
-        <span class="price-badge">$3.99</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2018/03/04/21/16/cake-3198991_1280.jpg" alt="Pastel de Chocolate" />
+        <span class="price-badge">$2.25</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg" alt="Agua Mineral" />
         <div class="product-info">
-          <h3>Pastel Chocolate</h3>
-          <p class="product-description">Pastel de chocolate húmedo y esponjoso</p>
+          <h3>Agua Mineral</h3>
+          <p class="product-description">Agua mineral natural o con gas</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Pastel Chocolate', 3.99, 'https://cdn.pixabay.com/photo/2018/03/04/21/16/cake-3198991_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$2.75</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/05/04/21/23/cupcakes-2285209_1280.jpg" alt="Cupcakes" />
-        <div class="product-info">
-          <h3>Cupcakes</h3>
-          <p class="product-description">Cupcakes decorados con frosting</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Cupcakes', 2.75, 'https://cdn.pixabay.com/photo/2017/05/04/21/23/cupcakes-2285209_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$4.50</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2015/09/09/20/12/ice-cream-933674_1280.jpg" alt="Helado" />
-        <div class="product-info">
-          <h3>Helado Artesanal</h3>
-          <p class="product-description">Helado cremoso hecho artesanalmente</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Helado Artesanal', 4.50, 'https://cdn.pixabay.com/photo/2015/09/09/20/12/ice-cream-933674_1280.jpg')">
+            <button class="btn-primary" onclick="addToCart('Agua Mineral', 2.25, 'https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
@@ -359,51 +264,67 @@
       </div>
     </div>
 
-    <!-- Ensaladas -->
-    <div class="product-category" id="ensaladas">
+    <!-- Combos -->
+    <div class="product-category" id="combos">
       <div class="product-card">
-        <span class="price-badge">$3.49</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/09/30/15/10/plate-2802332_1280.jpg" alt="Ensalada Fresca" />
+        <span class="price-badge">$3507.98</span>
+        <img class="product-image" src="img.webp" alt="Combo Especial" />
         <div class="product-info">
-          <h3>Ensalada Fresca</h3>
-          <p class="product-description">Ensalada con vegetales frescos de temporada</p>
+          <h3>Combo Especial</h3>
+          <p class="product-description">El Especial + Refresco grande</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Ensalada Fresca', 3.49, 'https://cdn.pixabay.com/photo/2017/09/30/15/10/plate-2802332_1280.jpg')">
+            <button class="btn-primary" onclick="addToCart('Combo Especial', 3507.98, 'img.webp')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
         </div>
       </div>
       <div class="product-card">
-        <span class="price-badge">$4.25</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2014/04/05/11/21/salad-315344_1280.jpg" alt="Ensalada César" />
+        <span class="price-badge">$707.74</span>
+        <img class="product-image" src="img (1).webp" alt="Combo Carnaval" />
         <div class="product-info">
-          <h3>Ensalada César</h3>
-          <p class="product-description">Ensalada César clásica con aderezo especial</p>
+          <h3>Combo Carnaval</h3>
+          <p class="product-description">De Carnaval + Ensalada pequeña</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Ensalada César', 4.25, 'https://cdn.pixabay.com/photo/2014/04/05/11/21/salad-315344_1280.jpg')">
+            <button class="btn-primary" onclick="addToCart('Combo Carnaval', 707.74, 'img (1).webp')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
         </div>
       </div>
       <div class="product-card">
-        <span class="price-badge">$5.99</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2018/10/23/19/32/salad-3768678_1280.jpg" alt="Ensalada Griega" />
+        <span class="price-badge">$1205.50</span>
+        <img class="product-image" src="img (2).webp" alt="Combo Matambre" />
         <div class="product-info">
-          <h3>Ensalada Griega</h3>
-          <p class="product-description">Ensalada estilo griego con queso feta y aceitunas</p>
+          <h3>Combo Matambre</h3>
+          <p class="product-description">Matambre + Café mediano</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Ensalada Griega', 5.99, 'https://cdn.pixabay.com/photo/2018/10/23/19/32/salad-3768678_1280.jpg')">
+            <button class="btn-primary" onclick="addToCart('Combo Matambre', 1205.50, 'img (2).webp')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$2003.25</span>
+        <img class="product-image" src="img (3).webp" alt="Combo Desmaya'o" />
+        <div class="product-info">
+          <h3>Combo Desmaya'o</h3>
+          <p class="product-description">Desmaya'o + Batido grande</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Combo Desmaya\\'o', 2003.25, 'img (3).webp')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
@@ -543,11 +464,11 @@
     <div id="summaryItems"></div>
     <div class="summary-total" id="summaryTotal">Total: $0.00</div>
     
-    <div class="customer-info" id="customerInfo" style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 8px; font-size: 0.9rem;">
+    <div class="customer-info" id="customerInfo">
       <!-- La información del cliente se insertará aquí -->
     </div>
     
-    <div class="form-actions" style="margin-top: 1.5rem;">
+    <div class="form-actions">
       <button type="button" class="form-btn btn-secondary" id="backToFormBtn">Modificar</button>
       <button type="button" class="form-btn btn-primary" id="confirmOrderBtn">Confirmar Pedido</button>
     </div>
@@ -559,7 +480,7 @@
       <i class="fas fa-check-circle"></i>
     </div>
     <div class="confirmation-message">¡Pedido Confirmado!</div>
-    <p style="color: var(--gray); margin-bottom: 1.5rem;">Tu pedido está siendo procesado</p>
+    <p>Tu pedido está siendo procesado</p>
     <button class="form-btn btn-primary" id="closeConfirmationBtn">Aceptar</button>
   </div>
 
