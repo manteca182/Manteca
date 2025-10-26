@@ -6,6 +6,220 @@
   <title>Menú WebApp</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* Estilos críticos iniciales para mejor rendimiento */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f7fa;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    body.loaded {
+      opacity: 1;
+    }
+    
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Estilos mejorados para formulario compacto */
+    .checkout-form-compact {
+      display: none;
+      flex-direction: column;
+      gap: 0.8rem;
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 0.5rem;
+    }
+
+    .checkout-form-compact .input-group {
+      margin-bottom: 0.3rem;
+    }
+
+    .checkout-form-compact .input-group label {
+      font-size: 0.75rem;
+      margin-bottom: 0.2rem;
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    .checkout-form-compact .input-group input,
+    .checkout-form-compact .input-group select,
+    .checkout-form-compact .input-group textarea {
+      padding: 0.5rem 0.5rem 0.5rem 2rem;
+      border: 1px solid var(--gray);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      width: 100%;
+      background: white;
+      min-height: 42px;
+    }
+
+    .checkout-form-compact .input-icon {
+      left: 0.6rem;
+      top: 1.8rem;
+      font-size: 0.9rem;
+    }
+
+    .checkout-form-compact .payment-methods {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+
+    .checkout-form-compact .payment-method {
+      padding: 0.6rem 0.4rem;
+      font-size: 0.75rem;
+      min-height: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2rem;
+    }
+
+    /* Modal de resumen */
+    .summary-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      padding: 1.5rem;
+      width: 90%;
+      max-width: 450px;
+      max-height: 80vh;
+      overflow-y: auto;
+      z-index: 1100;
+      display: none;
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--light);
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+    }
+
+    .summary-total {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--dark);
+      background: var(--light);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* Animación de confirmación */
+    .confirmation-animation {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      padding: 2rem;
+      text-align: center;
+      z-index: 1200;
+      display: none;
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    .confirmation-icon {
+      font-size: 4rem;
+      color: var(--success);
+      margin-bottom: 1rem;
+      animation: bounceIn 0.6s ease;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.1); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .confirmation-message {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    /* Asegurar que todo quepa en la modal */
+    .modal {
+      max-height: 85vh !important;
+    }
+
+    .cart-items {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    @media (max-width: 768px) {
+      .checkout-form-compact {
+        max-height: 350px;
+        padding: 0.3rem;
+      }
+      
+      .checkout-form-compact .input-group input,
+      .checkout-form-compact .input-group select,
+      .checkout-form-compact .input-group textarea {
+        min-height: 38px;
+        font-size: 0.8rem;
+      }
+      
+      .summary-modal {
+        padding: 1rem;
+        max-height: 75vh;
+      }
+      
+      .confirmation-animation {
+        padding: 1.5rem;
+      }
+      
+      .confirmation-icon {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .checkout-form-compact .payment-methods {
+        grid-template-columns: 1fr;
+      }
+      
+      .checkout-form-compact {
+        max-height: 320px;
+      }
+    }
+  </style>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -101,43 +315,32 @@
     </div>
   </div>
 
-  <!-- Banner Promocional Principal (ANTES DE CATEGORÍAS) -->
-  <div class="promo-banner">
-    <img src="copilot_image_1761418967866.jpeg" alt="Promoción Especial - Lechón con Pan" />
-    <div class="banner-overlay">
-      <div class="banner-title">¡Oferta Especial!</div>
-      <div class="banner-subtitle">Disfruta de nuestros mejores platos con descuentos exclusivos</div>
-    </div>
-  </div>
-
-  <!-- Banner Específico para Bebidas -->
-  <div class="bebidas-banner">
-    <img src="copilot_image_1761420865911.jpeg" alt="Promoción Especial - Bebidas Refrescantes" />
-    <div class="banner-overlay">
-      <div class="banner-title">¡Bebidas Refrescantes!</div>
-      <div class="banner-subtitle">Disfruta de nuestras bebidas especiales con descuentos únicos</div>
-    </div>
-  </div>
-
-  <!-- Categorías compactas CON NOMBRES - SOLO 3 CATEGORÍAS -->
+  <!-- Categorías compactas -->
   <div class="categories-header">
-    <button class="category-btn active" data-category="panes">
+    <button class="category-btn active" data-category="lechon">
       <div class="category-icon">
         <i class="fas fa-bread-slice"></i>
       </div>
-      <span class="category-name">Panes</span>
+    </button>
+    <button class="category-btn" data-category="pizzas">
+      <div class="category-icon">
+        <i class="fas fa-pizza-slice"></i>
+      </div>
     </button>
     <button class="category-btn" data-category="bebidas">
       <div class="category-icon">
         <i class="fas fa-wine-bottle"></i>
       </div>
-      <span class="category-name">Bebidas</span>
     </button>
-    <button class="category-btn" data-category="combos">
+    <button class="category-btn" data-category="postres">
       <div class="category-icon">
-        <i class="fas fa-box"></i>
+        <i class="fas fa-ice-cream"></i>
       </div>
-      <span class="category-name">Combos</span>
+    </button>
+    <button class="category-btn" data-category="ensaladas">
+      <div class="category-icon">
+        <i class="fas fa-leaf"></i>
+      </div>
     </button>
   </div>
 
@@ -146,8 +349,8 @@
 
   <!-- Productos por categorías con nuevo diseño -->
   <section class="product-grid">
-    <!-- Panes -->
-    <div class="product-category active" id="panes">
+    <!-- Lechón con Pan -->
+    <div class="product-category active" id="lechon">
       <div class="product-card">
         <span class="price-badge">$3500</span>
         <img class="product-image" src="img.webp" alt="El Especial" />
@@ -214,6 +417,58 @@
       </div>
     </div>
 
+    <!-- Pizzas -->
+    <div class="product-category" id="pizzas">
+      <div class="product-card">
+        <span class="price-badge">$4.25</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza Pepperoni" />
+        <div class="product-info">
+          <h3>Pizza Pepperoni</h3>
+          <p class="product-description">Deliciosa pizza con pepperoni y queso mozzarella</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Pizza Pepperoni', 4.25, 'https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$5.50</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza Hawaiana" />
+        <div class="product-info">
+          <h3>Pizza Hawaiana</h3>
+          <p class="product-description">Pizza con jamón, piña y queso mozzarella</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Pizza Hawaiana', 5.50, 'https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$6.75</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza Cuatro Quesos" />
+        <div class="product-info">
+          <h3>Pizza 4 Quesos</h3>
+          <p class="product-description">Mezcla de cuatro quesos seleccionados</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Pizza 4 Quesos', 6.75, 'https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Bebidas -->
     <div class="product-category" id="bebidas">
       <div class="product-card">
@@ -266,51 +521,103 @@
       </div>
     </div>
 
-    <!-- Combos -->
-    <div class="product-category" id="combos">
+    <!-- Postres -->
+    <div class="product-category" id="postres">
       <div class="product-card">
-        <span class="price-badge">$4500</span>
-        <img class="product-image" src="img.webp" alt="Combo Familiar" />
+        <span class="price-badge">$3.99</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2018/03/04/21/16/cake-3198991_1280.jpg" alt="Pastel de Chocolate" />
         <div class="product-info">
-          <h3>Combo Familiar</h3>
-          <p class="product-description">2 Especiales + 2 Refrescos + Papas Fritas</p>
+          <h3>Pastel Chocolate</h3>
+          <p class="product-description">Pastel de chocolate húmedo y esponjoso</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Combo Familiar', 4500, 'img.webp')">
+            <button class="btn-primary" onclick="addToCart('Pastel Chocolate', 3.99, 'https://cdn.pixabay.com/photo/2018/03/04/21/16/cake-3198991_1280.jpg')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
         </div>
       </div>
       <div class="product-card">
-        <span class="price-badge">$2500</span>
-        <img class="product-image" src="img (1).webp" alt="Combo Personal" />
+        <span class="price-badge">$2.75</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/05/04/21/23/cupcakes-2285209_1280.jpg" alt="Cupcakes" />
         <div class="product-info">
-          <h3>Combo Personal</h3>
-          <p class="product-description">1 Especial + 1 Refresco</p>
+          <h3>Cupcakes</h3>
+          <p class="product-description">Cupcakes decorados con frosting</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Combo Personal', 2500, 'img (1).webp')">
+            <button class="btn-primary" onclick="addToCart('Cupcakes', 2.75, 'https://cdn.pixabay.com/photo/2017/05/04/21/23/cupcakes-2285209_1280.jpg')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
         </div>
       </div>
       <div class="product-card">
-        <span class="price-badge">$3800</span>
-        <img class="product-image" src="img (2).webp" alt="Combo Pareja" />
+        <span class="price-badge">$4.50</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2015/09/09/20/12/ice-cream-933674_1280.jpg" alt="Helado" />
         <div class="product-info">
-          <h3>Combo Pareja</h3>
-          <p class="product-description">2 Matambres + 2 Bebidas + Postre</p>
+          <h3>Helado Artesanal</h3>
+          <p class="product-description">Helado cremoso hecho artesanalmente</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Combo Pareja', 3800, 'img (2).webp')">
+            <button class="btn-primary" onclick="addToCart('Helado Artesanal', 4.50, 'https://cdn.pixabay.com/photo/2015/09/09/20/12/ice-cream-933674_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ensaladas -->
+    <div class="product-category" id="ensaladas">
+      <div class="product-card">
+        <span class="price-badge">$3.49</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/09/30/15/10/plate-2802332_1280.jpg" alt="Ensalada Fresca" />
+        <div class="product-info">
+          <h3>Ensalada Fresca</h3>
+          <p class="product-description">Ensalada con vegetales frescos de temporada</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Ensalada Fresca', 3.49, 'https://cdn.pixabay.com/photo/2017/09/30/15/10/plate-2802332_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$4.25</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2014/04/05/11/21/salad-315344_1280.jpg" alt="Ensalada César" />
+        <div class="product-info">
+          <h3>Ensalada César</h3>
+          <p class="product-description">Ensalada César clásica con aderezo especial</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Ensalada César', 4.25, 'https://cdn.pixabay.com/photo/2014/04/05/11/21/salad-315344_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$5.99</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2018/10/23/19/32/salad-3768678_1280.jpg" alt="Ensalada Griega" />
+        <div class="product-info">
+          <h3>Ensalada Griega</h3>
+          <p class="product-description">Ensalada estilo griego con queso feta y aceitunas</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Ensalada Griega', 5.99, 'https://cdn.pixabay.com/photo/2018/10/23/19/32/salad-3768678_1280.jpg')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
@@ -332,7 +639,7 @@
   <div class="modal" id="cartModal">
     <h4>Tu Carrito</h4>
     <ul class="cart-items" id="cartList"></ul>
-    <div class="cartTotal" id="cartTotal">Total: $0.00</div>
+    <div id="cartTotal">Total: $0.00</div>
 
     <div class="form-actions">
       <button class="form-btn btn-secondary" id="continueShoppingBtn">Seguir Comprando</button>
@@ -466,8 +773,8 @@
       <i class="fas fa-check-circle"></i>
     </div>
     <div class="confirmation-message">¡Pedido Confirmado!</div>
-    <p style="color: var(--gray); margin-bottom: 1.5rem; text-align: center;">Tu pedido está siendo procesado</p>
-    <button class="form-btn btn-primary" id="closeConfirmationBtn" style="margin: 0 auto; display: block; min-width: 120px;">Aceptar</button>
+    <p style="color: var(--gray); margin-bottom: 1.5rem;">Tu pedido está siendo procesado</p>
+    <button class="form-btn btn-primary" id="closeConfirmationBtn">Aceptar</button>
   </div>
 
   <script src="scripts.js"></script>
