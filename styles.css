@@ -1,4 +1,4 @@
-/* styles.css - VERSIÓN MEJORADA Y RESPONSIVE */
+/* styles.css - VERSIÓN COMPLETA MEJORADA */
 * {
   margin: 0;
   padding: 0;
@@ -19,6 +19,7 @@
   --gray: #adb5bd;
   --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   --radius: 16px;
+  --category-active: #e74c3c;
 }
 
 body {
@@ -42,13 +43,12 @@ body.loaded {
   opacity: 1;
 }
 
-/* Prevenir scroll horizontal */
 body {
   overflow-x: hidden;
   max-width: 100vw;
 }
 
-/* HEADER - EN LA PARTE SUPERIOR */
+/* HEADER */
 header {
   position: fixed;
   top: 1rem;
@@ -182,12 +182,12 @@ header {
   z-index: 10;
 }
 
-/* BANNER - INMEDIATAMENTE DEBAJO DEL HEADER */
+/* BANNER MÁS GRANDE */
 .banner-container {
   position: relative;
   width: 100%;
   max-width: 800px;
-  height: 140px;
+  height: 200px;
   margin: 0.5rem 0 1rem 0;
   border-radius: var(--radius);
   overflow: hidden;
@@ -221,6 +221,7 @@ header {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   border-radius: var(--radius);
   background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
 }
@@ -249,7 +250,7 @@ header {
   transform: scale(1.2);
 }
 
-/* CATEGORÍAS - DEBAJO DEL BANNER */
+/* CATEGORÍAS CON COLOR ROJO */
 .categories-header {
   position: relative;
   width: 100%;
@@ -294,7 +295,7 @@ header {
 }
 
 .category-btn.active {
-  background: rgba(130, 76, 33, 0.2);
+  background: rgba(231, 76, 60, 0.15);
   transform: translateY(-1px);
 }
 
@@ -322,8 +323,9 @@ header {
 
 .category-btn.active .category-icon {
   transform: scale(1.1);
-  box-shadow: 0 6px 15px rgba(130, 76, 33, 0.4);
+  box-shadow: 0 6px 15px rgba(231, 76, 60, 0.4);
   border-color: white;
+  background: var(--category-active);
 }
 
 .category-title {
@@ -342,7 +344,7 @@ header {
 }
 
 .category-btn.active .category-title {
-  color: var(--primary);
+  color: var(--category-active);
   font-weight: 700;
 }
 
@@ -350,7 +352,7 @@ header {
   color: var(--primary);
 }
 
-/* PRODUCTOS - FLUJO NORMAL DEBAJO DE TODO */
+/* PRODUCTOS - GRID DE 2 COLUMNAS SIEMPRE */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -363,13 +365,12 @@ header {
 .product-category {
   display: none;
   grid-column: 1 / -1;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
 }
 
 .product-category.active {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.2rem;
-  width: 100%;
   animation: fadeIn 0.5s ease;
 }
 
@@ -530,7 +531,7 @@ header {
   text-align: center;
 }
 
-/* BOTÓN CARRITO FIJO */
+/* BOTÓN CARRITO */
 .cart-button {
   position: fixed;
   bottom: 24px;
@@ -572,7 +573,7 @@ header {
   border: 2px solid rgba(255, 255, 255, 0.9);
 }
 
-/* PANELES FLOTANTES (notificaciones, historial) */
+/* PANELES FLOTANTES */
 .notification-panel,
 .history-panel {
   position: fixed;
@@ -871,7 +872,7 @@ header {
   100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
 }
 
-/* RESTANTE DEL CSS (formularios, modales, etc.) - SE MANTIENE IGUAL */
+/* FORMULARIOS */
 .checkout-form {
   display: none;
   flex-direction: column;
@@ -1155,6 +1156,7 @@ header {
   font-size: 1.2rem;
 }
 
+/* MODALES ADICIONALES */
 .summary-modal {
   position: fixed;
   top: 50%;
@@ -1289,7 +1291,7 @@ header {
   animation: fadeIn 0.4s ease;
 }
 
-/* ===== CORRECCIONES RESPONSIVE MEJORADAS ===== */
+/* ===== RESPONSIVE COMPLETO ===== */
 
 /* Tablets */
 @media (max-width: 768px) {
@@ -1300,7 +1302,7 @@ header {
   }
 
   .banner-container {
-    height: 120px;
+    height: 180px;
   }
 
   .categories-header {
@@ -1325,6 +1327,14 @@ header {
   .product-category.active {
     gap: 1rem;
   }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-category.active {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Móviles */
@@ -1335,7 +1345,6 @@ header {
     padding-right: 0.5rem;
   }
 
-  /* Header más compacto */
   header {
     height: 55px;
     min-height: 55px;
@@ -1368,13 +1377,11 @@ header {
     font-size: 0.6rem;
   }
 
-  /* Banner más pequeño */
   .banner-container {
-    height: 100px;
+    height: 160px;
     margin: 0.3rem 0 0.8rem 0;
   }
 
-  /* Categorías más compactas */
   .categories-header {
     padding: 0.5rem 0.6rem;
     gap: 0.4rem;
@@ -1397,56 +1404,54 @@ header {
     line-height: 1.1;
   }
 
-  /* Product Grid - Una columna */
   .product-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
     margin-bottom: 4rem;
   }
 
   .product-category.active {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
   }
 
   .product-card {
-    min-height: 280px;
+    min-height: 260px;
   }
 
   .product-image {
-    height: 140px;
+    height: 120px;
   }
 
   .product-info {
-    padding: 0.8rem;
-    gap: 0.4rem;
+    padding: 0.6rem;
+    gap: 0.3rem;
   }
 
   .product-card h3 {
-    font-size: 0.9rem;
-    min-height: 35px;
+    font-size: 0.8rem;
+    min-height: 30px;
   }
 
   .product-description {
-    font-size: 0.7rem;
-    min-height: 28px;
+    font-size: 0.65rem;
+    min-height: 24px;
   }
 
   .price-badge {
-    font-size: 0.8rem;
-    padding: 4px 8px;
-    min-width: 50px;
-    top: 8px;
-    right: 8px;
+    font-size: 0.75rem;
+    padding: 3px 6px;
+    min-width: 45px;
+    top: 6px;
+    right: 6px;
   }
 
   .btn-primary, .btn-secondary {
-    padding: 0.5rem 0.3rem;
-    font-size: 0.7rem;
-    min-height: 32px;
+    padding: 0.4rem 0.2rem;
+    font-size: 0.65rem;
+    min-height: 28px;
   }
 
-  /* Paneles flotantes más estrechos */
   .notification-panel,
   .history-panel {
     width: 95vw;
@@ -1468,7 +1473,6 @@ header {
     font-size: 0.7rem;
   }
 
-  /* Modal del carrito mejor ajustado */
   .modal {
     width: 95%;
     padding: 1rem;
@@ -1523,7 +1527,6 @@ header {
     padding: 0.8rem;
   }
 
-  /* Formulario de checkout mejor responsive */
   .checkout-form-compact {
     padding: 0.3rem;
   }
@@ -1566,7 +1569,6 @@ header {
     font-size: 0.8rem;
   }
 
-  /* Botón del carrito más pequeño */
   .cart-button {
     width: 56px;
     height: 56px;
@@ -1581,7 +1583,6 @@ header {
     min-width: 18px;
   }
 
-  /* Modal de items más compacto */
   .item-modal {
     width: 95%;
     max-width: 95%;
@@ -1609,7 +1610,6 @@ header {
     height: 18px;
   }
 
-  /* Summary modal más compacto */
   .summary-modal {
     width: 95%;
     padding: 1rem;
@@ -1630,7 +1630,6 @@ header {
     font-size: 0.8rem;
   }
 
-  /* Confirmation animation más pequeña */
   .confirmation-animation {
     width: 90%;
     padding: 1.5rem;
@@ -1659,7 +1658,7 @@ header {
   }
 
   .product-description {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
   }
 
   .categories-header {
@@ -1676,18 +1675,48 @@ header {
   .category-title {
     font-size: 0.6rem;
   }
+
+  .product-grid {
+    gap: 0.6rem;
+  }
+
+  .product-category.active {
+    gap: 0.6rem;
+  }
+
+  .product-card {
+    min-height: 240px;
+  }
+
+  .product-image {
+    height: 100px;
+  }
+
+  .product-info {
+    padding: 0.5rem;
+  }
+
+  .product-card h3 {
+    font-size: 0.75rem;
+    min-height: 25px;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 0.3rem 0.1rem;
+    font-size: 0.6rem;
+    min-height: 26px;
+  }
 }
 
-/* Clase helper para móvil */
+/* Clases helper */
 .mobile-view .product-card {
-    min-height: 260px;
+    min-height: 240px;
 }
 
 .mobile-view .product-image {
-    height: 130px;
+    height: 110px;
 }
 
-/* Asegurar que todos los elementos críticos no se salgan */
 .product-card,
 .modal,
 .notification-panel,
