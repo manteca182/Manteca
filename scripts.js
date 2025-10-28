@@ -1,4 +1,4 @@
-// scripts.js - Gestión completa de la aplicación de menú (VERSIÓN MEJORADA)
+// scripts.js - Gestión completa de la aplicación de menú (VERSIÓN MEJORADA Y CORREGIDA)
 
 // Variables globales
 let cartItems = [];
@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeEventListeners();
     updateCartList();
     positionPanels();
-    initBannerSlider(); // Inicializar banner rotativo
+    initBannerSlider();
+    adjustForMobile(); // Ajustes iniciales para móvil
 });
 
 // Configuración de todos los event listeners
@@ -94,6 +95,12 @@ function initializeEventListeners() {
     confirmationAnimation.addEventListener('click', function(e) {
         e.stopPropagation();
     });
+
+    // Redimensionamiento de ventana
+    window.addEventListener('resize', function() {
+        positionPanels();
+        adjustForMobile();
+    });
 }
 
 // Banner rotativo
@@ -135,8 +142,40 @@ function initBannerSlider() {
 
 // Posicionar paneles flotantes
 function positionPanels() {
-    // Los paneles ya están centrados por CSS con left: 50% y transform: translateX(-50%)
-    // Esta función se mantiene para futuras adaptaciones si son necesarias
+    if (notificationPanel.style.display === 'block') {
+        positionPanelUnderButton('notificationBtn', notificationPanel);
+    }
+    
+    if (historyPanel.style.display === 'block') {
+        positionPanelUnderButton('historyBtn', historyPanel);
+    }
+}
+
+// Función para ajustar elementos en móvil
+function adjustForMobile() {
+    const isMobile = window.innerWidth <= 480;
+    
+    if (isMobile) {
+        document.body.classList.add('mobile-view');
+        
+        // Ajustar textos largos en productos
+        document.querySelectorAll('.product-card h3').forEach(title => {
+            const text = title.textContent;
+            if (text.length > 20) {
+                title.textContent = text.substring(0, 20) + '...';
+            }
+        });
+
+        // Ajustar descripciones largas
+        document.querySelectorAll('.product-description').forEach(desc => {
+            const text = desc.textContent;
+            if (text.length > 60) {
+                desc.textContent = text.substring(0, 60) + '...';
+            }
+        });
+    } else {
+        document.body.classList.remove('mobile-view');
+    }
 }
 
 // Manejo de cambio de categorías
@@ -224,7 +263,7 @@ function addToCart(name, price, image) {
     updateCartList();
 
     // Efecto visual de confirmación
-    const button = event.target;
+    const button = event.target.closest('.btn-primary') || event.target;
     const originalText = button.innerHTML;
     button.innerHTML = '<i class="fas fa-check" style="margin-right: 8px;"></i> Añadido';
     button.style.background = 'linear-gradient(to right, var(--success), #2a9d8f)';
@@ -261,7 +300,7 @@ function updateCartList() {
         const li = document.createElement('li');
         li.className = 'cart-item';
         li.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
+            <img src="${item.image}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/60x60/f0f0f0/666666?text=Imagen'">
             <div class="cart-item-details">
                 <div class="cart-item-name">${item.name}</div>
                 ${item.note ? `<div class="cart-item-note">Nota: ${item.note}</div>` : ''}
@@ -543,6 +582,12 @@ function calculateCartTotal() {
     return cartItems.reduce((total, item) => total + calculateItemTotal(item), 0);
 }
 
+// Función para manejar errores de imágenes
+function handleImageError(img) {
+    img.src = 'https://via.placeholder.com/160x160/f0f0f0/666666?text=Producto';
+    img.alt = 'Imagen no disponible';
+}
+
 // Exportar funciones para uso global (necesario para los onclick en HTML)
 window.addToCart = addToCart;
 window.toggleModal = toggleModal;
@@ -551,3 +596,13 @@ window.showCheckoutForm = showCheckoutForm;
 window.showCartItems = showCartItems;
 window.closeItemModal = closeItemModal;
 window.saveItemCustomization = saveItemCustomization;
+window.handleImageError = handleImageError;
+
+// Inicializar manejadores de errores de imágenes
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            handleImageError(this);
+        });
+    });
+});
