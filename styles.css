@@ -1,4 +1,4 @@
-/* styles.css - VERSIÓN COMPLETA MEJORADA */
+/* styles.css - VERSIÓN MEJORADA CON ELEMENTOS FIJOS */
 * {
   margin: 0;
   padding: 0;
@@ -33,7 +33,7 @@ body {
   justify-content: flex-start;
   min-height: 100vh;
   overflow-x: hidden;
-  padding-top: 120px;
+  padding-top: 340px; /* AUMENTADO para elementos fijos */
   padding-bottom: 100px;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -48,7 +48,7 @@ body {
   max-width: 100vw;
 }
 
-/* HEADER */
+/* HEADER MEJORADO */
 header {
   position: fixed;
   top: 1rem;
@@ -113,11 +113,14 @@ header {
   line-height: 1;
 }
 
+/* HOLA MÁS PEQUEÑO PARA MEJOR IMPACTO VISUAL */
 .user-greeting h1 {
-  font-size: 0.9rem;
+  font-size: 0.75rem; /* REDUCIDO de 0.9rem */
   font-weight: 400;
   color: var(--gray);
   margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .user-greeting .user-name {
@@ -182,17 +185,19 @@ header {
   z-index: 10;
 }
 
-/* BANNER MÁS GRANDE */
+/* BANNER FIJO */
 .banner-container {
-  position: relative;
-  width: 100%;
+  position: fixed; /* CAMBIADO de relative a fixed */
+  top: 90px; /* DEBAJO del header */
+  left: 1rem;
+  right: 1rem;
   max-width: 800px;
   height: 200px;
-  margin: 0.5rem 0 1rem 0;
+  margin: 0 auto;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
-  z-index: 1;
+  z-index: 999; /* DEBAJO del header */
 }
 
 .banner-slider {
@@ -250,11 +255,14 @@ header {
   transform: scale(1.2);
 }
 
-/* CATEGORÍAS CON COLOR ROJO */
+/* CATEGORÍAS FIJAS */
 .categories-header {
-  position: relative;
-  width: 100%;
+  position: fixed; /* CAMBIADO de relative a fixed */
+  top: 310px; /* DEBAJO del banner */
+  left: 1rem;
+  right: 1rem;
   max-width: 800px;
+  margin: 0 auto;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(15px);
   border-radius: var(--radius);
@@ -265,7 +273,7 @@ header {
   grid-template-columns: repeat(3, 1fr);
   gap: 0.8rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  z-index: 1;
+  z-index: 998; /* DEBAJO del banner */
 }
 
 .categories-header::-webkit-scrollbar {
@@ -531,7 +539,7 @@ header {
   text-align: center;
 }
 
-/* BOTÓN CARRITO */
+/* BOTÓN CARRITO MEJORADO */
 .cart-button {
   position: fixed;
   bottom: 24px;
@@ -670,7 +678,7 @@ header {
   top: 1rem;
   left: 1rem;
   right: 1rem;
-  height: 70px;
+  height: 340px; /* AUMENTADO para cubrir elementos fijos */
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
   border-radius: var(--radius);
@@ -840,19 +848,21 @@ header {
   opacity: 0.5;
 }
 
+/* TOTAL DEL CARRITO CON MEJOR ESTILO */
 .cartTotal {
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 1rem;
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   color: white;
   background: linear-gradient(135deg, var(--primary), #e67e22);
-  padding: 1rem;
-  border-radius: 12px;
-  border: 2px solid white;
-  box-shadow: 0 8px 20px rgba(130, 76, 33, 0.3);
+  padding: 1.2rem;
+  border-radius: 16px;
+  border: 3px solid white;
+  box-shadow: 0 10px 25px rgba(130, 76, 33, 0.4);
   position: relative;
   overflow: hidden;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .cartTotal::before {
@@ -862,9 +872,9 @@ header {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
   transform: rotate(45deg);
-  animation: shine 3s infinite;
+  animation: shine 2s infinite;
 }
 
 @keyframes shine {
@@ -921,10 +931,11 @@ header {
   font-size: 1rem;
 }
 
+/* MÉTODOS DE PAGO MÁS ADAPTABLES */
 .payment-methods {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.8rem;
+  grid-template-columns: repeat(4, 1fr); /* 4 COLUMNAS PARA MEJOR USO DEL ESPACIO */
+  gap: 0.5rem;
   margin-top: 0.5rem;
 }
 
@@ -934,33 +945,33 @@ header {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 1rem 0.5rem;
+  padding: 0.8rem 0.3rem;
   border: 2px solid var(--gray);
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   background: white;
-  min-height: 80px;
+  min-height: 70px;
   aspect-ratio: 1 / 1;
 }
 
 .payment-method.selected {
   border-color: var(--primary);
   background: linear-gradient(135deg, var(--primary), rgba(130, 76, 33, 0.1));
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(130, 76, 33, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(130, 76, 33, 0.2);
 }
 
 .payment-method:hover {
   border-color: var(--primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 .payment-method i {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
   color: var(--dark);
 }
 
@@ -1132,28 +1143,29 @@ header {
   font-size: 0.9rem;
 }
 
+/* MÉTODOS DE PAGO COMPACTOS MÁS ADAPTABLES */
 .checkout-form-compact .payment-methods {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.6rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
   margin-top: 0.3rem;
 }
 
 .checkout-form-compact .payment-method {
-  padding: 0.8rem 0.3rem;
-  font-size: 0.7rem;
-  min-height: 70px;
+  padding: 0.6rem 0.2rem;
+  font-size: 0.65rem;
+  min-height: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.3rem;
+  gap: 0.2rem;
   aspect-ratio: 1 / 1;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .checkout-form-compact .payment-method i {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 /* MODALES ADICIONALES */
@@ -1270,7 +1282,8 @@ header {
 }
 
 .modal-open header,
-.modal-open .categories-header {
+.modal-open .categories-header,
+.modal-open .banner-container {
   filter: blur(8px);
   pointer-events: none;
   transition: filter 0.3s ease;
@@ -1291,21 +1304,23 @@ header {
   animation: fadeIn 0.4s ease;
 }
 
-/* ===== RESPONSIVE COMPLETO ===== */
+/* ===== RESPONSIVE COMPLETO CON ELEMENTOS FIJOS ===== */
 
 /* Tablets */
 @media (max-width: 768px) {
   body {
-    padding-top: 100px;
+    padding-top: 320px; /* AJUSTADO para elementos fijos */
     padding-left: 0.8rem;
     padding-right: 0.8rem;
   }
 
   .banner-container {
     height: 180px;
+    top: 90px;
   }
 
   .categories-header {
+    top: 290px;
     padding: 0.6rem 0.8rem;
     gap: 0.6rem;
   }
@@ -1328,19 +1343,15 @@ header {
     gap: 1rem;
   }
 
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .product-category.active {
-    grid-template-columns: repeat(2, 1fr);
+  .modal-header-blur {
+    height: 320px;
   }
 }
 
 /* Móviles */
 @media (max-width: 480px) {
   body {
-    padding-top: 85px;
+    padding-top: 300px; /* AJUSTADO para elementos fijos */
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
@@ -1358,7 +1369,7 @@ header {
   }
 
   .user-greeting h1 {
-    font-size: 0.8rem;
+    font-size: 0.7rem; /* MÁS PEQUEÑO EN MÓVIL */
   }
 
   .user-greeting .user-name {
@@ -1377,12 +1388,14 @@ header {
     font-size: 0.6rem;
   }
 
+  /* BANNER Y CATEGORÍAS FIJAS EN MÓVIL */
   .banner-container {
-    height: 160px;
-    margin: 0.3rem 0 0.8rem 0;
+    height: 150px;
+    top: 75px;
   }
 
   .categories-header {
+    top: 245px;
     padding: 0.5rem 0.6rem;
     gap: 0.4rem;
     margin-bottom: 1rem;
@@ -1402,6 +1415,10 @@ header {
   .category-title {
     font-size: 0.65rem;
     line-height: 1.1;
+  }
+
+  .modal-header-blur {
+    height: 300px;
   }
 
   .product-grid {
@@ -1450,6 +1467,26 @@ header {
     padding: 0.4rem 0.2rem;
     font-size: 0.65rem;
     min-height: 28px;
+  }
+
+  /* MÉTODOS DE PAGO MÁS COMPACTOS EN MÓVIL */
+  .payment-methods {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+  }
+
+  .payment-method {
+    min-height: 60px;
+    padding: 0.6rem 0.2rem;
+    font-size: 0.7rem;
+  }
+
+  .payment-method i {
+    font-size: 1rem;
+  }
+
+  .checkout-form-compact .payment-methods {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .notification-panel,
@@ -1523,8 +1560,8 @@ header {
   }
 
   .cartTotal {
-    font-size: 1.1rem;
-    padding: 0.8rem;
+    font-size: 1.3rem;
+    padding: 1rem;
   }
 
   .checkout-form-compact {
@@ -1543,20 +1580,6 @@ header {
     left: 0.5rem;
     top: 1.6rem;
     font-size: 0.8rem;
-  }
-
-  .checkout-form-compact .payment-methods {
-    gap: 0.4rem;
-  }
-
-  .checkout-form-compact .payment-method {
-    padding: 0.6rem 0.2rem;
-    font-size: 0.65rem;
-    min-height: 60px;
-  }
-
-  .checkout-form-compact .payment-method i {
-    font-size: 1rem;
   }
 
   .form-actions {
@@ -1648,13 +1671,26 @@ header {
 /* Móviles muy pequeños */
 @media (max-width: 360px) {
   body {
-    padding-top: 80px;
+    padding-top: 280px;
     padding-left: 0.3rem;
     padding-right: 0.3rem;
   }
 
   .user-greeting h1 {
     display: none;
+  }
+
+  .banner-container {
+    height: 130px;
+    top: 70px;
+  }
+
+  .categories-header {
+    top: 220px;
+  }
+
+  .modal-header-blur {
+    height: 280px;
   }
 
   .product-description {
@@ -1705,6 +1741,22 @@ header {
     padding: 0.3rem 0.1rem;
     font-size: 0.6rem;
     min-height: 26px;
+  }
+
+  /* MÉTODOS DE PAGO AÚN MÁS COMPACTOS */
+  .payment-methods {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.3rem;
+  }
+
+  .payment-method {
+    min-height: 55px;
+    padding: 0.5rem 0.1rem;
+    font-size: 0.65rem;
+  }
+
+  .payment-method i {
+    font-size: 0.9rem;
   }
 }
 
