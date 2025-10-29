@@ -91,7 +91,7 @@
       </div>
       <div class="history-content">
         <strong>Pedido #1234</strong>
-        El Especial + Refresco - $3507.98<br>
+        El Especial + Refresco - $4500.00<br>
         <small>15 Mar 2024 - Entregado</small>
       </div>
     </div>
@@ -101,7 +101,7 @@
       </div>
       <div class="history-content">
         <strong>Pedido #1233</strong>
-        De Carnaval + Ensalada - $707.74<br>
+        De Carnaval + Ensalada - $900.00<br>
         <small>14 Mar 2024 - Entregado</small>
       </div>
     </div>
@@ -111,13 +111,13 @@
       </div>
       <div class="history-content">
         <strong>Pedido #1232</strong>
-        Matambre + Café - $1205.50<br>
+        Matambre + Café - $1500.00<br>
         <small>13 Mar 2024 - Entregado</small>
       </div>
     </div>
   </div>
 
-  <!-- Categorías compactas -->
+  <!-- Categorías actualizadas -->
   <div class="categories-header">
     <button class="category-btn active" data-category="panes">
       <div class="category-icon">
@@ -125,11 +125,17 @@
       </div>
       <span class="category-title">Panes</span>
     </button>
-    <button class="category-btn" data-category="bebidas">
+    <button class="category-btn" data-category="asados">
       <div class="category-icon">
-        <i class="fas fa-wine-bottle"></i>
+        <i class="fas fa-fire"></i>
       </div>
-      <span class="category-title">Bebidas</span>
+      <span class="category-title">Asados</span>
+    </button>
+    <button class="category-btn" data-category="completas">
+      <div class="category-icon">
+        <i class="fas fa-utensils"></i>
+      </div>
+      <span class="category-title">Completas</span>
     </button>
     <button class="category-btn" data-category="combos">
       <div class="category-icon">
@@ -142,69 +148,69 @@
   <!-- Efecto blur para header cuando el modal está abierto -->
   <div class="modal-header-blur" id="modalHeaderBlur"></div>
 
-  <!-- Productos por categorías con nuevo diseño -->
+  <!-- Productos por categorías actualizados -->
   <section class="product-grid">
     <!-- Panes -->
     <div class="product-category active" id="panes">
       <div class="product-card">
-        <span class="price-badge">$3500</span>
-        <img class="product-image" src="img.webp" alt="El Especial" onerror="handleImageError(this)">
-        <div class="product-info">
-          <h3>El Especial</h3>
-          <p class="product-description">Pan de barra de corteza dura (media libra) + 1 Libra de carne asada</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('El Especial', 3500, 'img.webp')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$700</span>
-        <img class="product-image" src="img (1).webp" alt="De Carnaval" onerror="handleImageError(this)">
+        <span class="price-badge">$900</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2018/07/06/19/47/bread-3521120_1280.jpg" alt="De Carnaval" onerror="handleImageError(this)">
         <div class="product-info">
           <h3>De Carnaval</h3>
-          <p class="product-description">Pan bon (60g) + carne asada (70g)</p>
+          <p class="product-description">Pan bon 60g con 70g de carne + ensalada y salsa "La Medicina de Manteca"</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('De Carnaval', 700, 'img (1).webp')">
+            <button class="btn-primary" onclick="addToCart('De Carnaval', 900, 'https://cdn.pixabay.com/photo/2018/07/06/19/47/bread-3521120_1280.jpg')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
         </div>
       </div>
       <div class="product-card">
-        <span class="price-badge">$1200</span>
-        <img class="product-image" src="img (2).webp" alt="Matambre" onerror="handleImageError(this)">
+        <span class="price-badge">$1500</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2014/09/18/21/17/sandwich-451403_1280.jpg" alt="Matahambre" onerror="handleImageError(this)">
         <div class="product-info">
-          <h3>Matambre</h3>
-          <p class="product-description">Pan de perro (80g) + carne asada (120g)</p>
+          <h3>Matahambre</h3>
+          <p class="product-description">Pan de perro 100g con 120g de carne + ensalada y salsa "La Medicina de Manteca"</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Matambre', 1200, 'img (2).webp')">
+            <button class="btn-primary" onclick="addToCart('Matahambre', 1500, 'https://cdn.pixabay.com/photo/2014/09/18/21/17/sandwich-451403_1280.jpg')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
         </div>
       </div>
       <div class="product-card">
-        <span class="price-badge">$2000</span>
-        <img class="product-image" src="img (3).webp" alt="Desmaya'o" onerror="handleImageError(this)">
+        <span class="price-badge">$2300</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/03/05/19/37/sandwich-1238615_1280.jpg" alt="Pa' la Resaca" onerror="handleImageError(this)">
         <div class="product-info">
-          <h3>Desmaya'o</h3>
-          <p class="product-description">Pan de flauta suave (120g) + carne asada (240g)</p>
+          <h3>Pa' la Resaca</h3>
+          <p class="product-description">Pan desmayao' 160g con 240g de carne + ensalada y salsa "La Medicina de Manteca"</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Desmaya\\'o', 2000, 'img (3).webp')">
+            <button class="btn-primary" onclick="addToCart('Pa\\' la Resaca', 2300, 'https://cdn.pixabay.com/photo/2016/03/05/19/37/sandwich-1238615_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$4500</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2018/04/13/17/14/vegetable-skewer-3317060_1280.jpg" alt="El Especial" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>El Especial</h3>
+          <p class="product-description">Pan de media libra con una libra de carne + ensalada y salsa "La Medicina de Manteca"</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('El Especial', 4500, 'https://cdn.pixabay.com/photo/2018/04/13/17/14/vegetable-skewer-3317060_1280.jpg')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
@@ -212,67 +218,220 @@
       </div>
     </div>
 
-    <!-- Bebidas -->
-    <div class="product-category" id="bebidas">
+    <!-- Asados -->
+    <div class="product-category" id="asados">
       <div class="product-card">
-        <span class="price-badge">$1.99</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg" alt="Refresco" onerror="handleImageError(this)">
+        <span class="price-badge">$450/libra</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2018/08/29/19/01/grill-3640740_1280.jpg" alt="Servicio de Asados" onerror="handleImageError(this)">
         <div class="product-info">
-          <h3>Refresco</h3>
-          <p class="product-description">Refresco frío de varios sabores</p>
+          <h3>Servicio de Asados</h3>
+          <p class="product-description">450 CUP / 1 USD por libra + costo de la pieza. ¡Por reserva! Elija su pieza preferida.</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Refresco', 1.99, 'https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg')">
+            <button class="btn-primary" onclick="addToCart('Servicio de Asados (por libra)', 450, 'https://cdn.pixabay.com/photo/2018/08/29/19/01/grill-3640740_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Completas -->
+    <div class="product-category" id="completas">
+      <!-- Completa de Olga -->
+      <div class="product-card">
+        <span class="price-badge">$2700</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg" alt="Completa de Olga Ligera" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Completa de Olga - Ligera</h3>
+          <p class="product-description">2 tamales + 120g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Completa de Olga - Ligera', 2700, 'https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
         </div>
       </div>
       <div class="product-card">
-        <span class="price-badge">$2.50</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2015/09/05/23/34/coffee-926837_1280.jpg" alt="Café" onerror="handleImageError(this)">
+        <span class="price-badge">$3600</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg" alt="Completa de Olga Media" onerror="handleImageError(this)">
         <div class="product-info">
-          <h3>Café</h3>
-          <p class="product-description">Café recién preparado caliente o frío</p>
+          <h3>Completa de Olga - Media</h3>
+          <p class="product-description">2 tamales + 240g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Café', 2.50, 'https://cdn.pixabay.com/photo/2015/09/05/23/34/coffee-926837_1280.jpg')">
+            <button class="btn-primary" onclick="addToCart('Completa de Olga - Media', 3600, 'https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
         </div>
       </div>
       <div class="product-card">
-        <span class="price-badge">$3.25</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/01/12/05/34/cocktail-1973567_1280.jpg" alt="Batido" onerror="handleImageError(this)">
+        <span class="price-badge">$4500</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg" alt="Completa de Olga Grande" onerror="handleImageError(this)">
         <div class="product-info">
-          <h3>Batido</h3>
-          <p class="product-description">Batido cremoso de frutas naturales</p>
+          <h3>Completa de Olga - Grande</h3>
+          <p class="product-description">2 tamales + 360g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Batido', 3.25, 'https://cdn.pixabay.com/photo/2017/01/12/05/34/cocktail-1973567_1280.jpg')">
+            <button class="btn-primary" onclick="addToCart('Completa de Olga - Grande', 4500, 'https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
         </div>
       </div>
       <div class="product-card">
-        <span class="price-badge">$2.25</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg" alt="Agua Mineral" onerror="handleImageError(this)">
+        <span class="price-badge">$5400</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg" alt="Completa de Olga Exagerada" onerror="handleImageError(this)">
         <div class="product-info">
-          <h3>Agua Mineral</h3>
-          <p class="product-description">Agua mineral natural o con gas</p>
+          <h3>Completa de Olga - Exagerada</h3>
+          <p class="product-description">2 tamales + 480g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Agua Mineral', 2.25, 'https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg')">
+            <button class="btn-primary" onclick="addToCart('Completa de Olga - Exagerada', 5400, 'https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Completa de Catalina -->
+      <div class="product-card">
+        <span class="price-badge">$2700</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg" alt="Completa de Catalina Ligera" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Completa de Catalina - Ligera</h3>
+          <p class="product-description">Yuca + 120g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Completa de Catalina - Ligera', 2700, 'https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$3600</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg" alt="Completa de Catalina Media" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Completa de Catalina - Media</h3>
+          <p class="product-description">Yuca + 240g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Completa de Catalina - Media', 3600, 'https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$4500</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg" alt="Completa de Catalina Grande" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Completa de Catalina - Grande</h3>
+          <p class="product-description">Yuca + 360g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Completa de Catalina - Grande', 4500, 'https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$5400</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg" alt="Completa de Catalina Exagerada" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Completa de Catalina - Exagerada</h3>
+          <p class="product-description">Yuca + 480g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Completa de Catalina - Exagerada', 5400, 'https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Completa del Moro -->
+      <div class="product-card">
+        <span class="price-badge">$2700</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg" alt="Completa del Moro Ligera" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Completa del Moro - Ligera</h3>
+          <p class="product-description">Arroz moro + 120g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Completa del Moro - Ligera', 2700, 'https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$3600</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg" alt="Completa del Moro Media" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Completa del Moro - Media</h3>
+          <p class="product-description">Arroz moro + 240g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Completa del Moro - Media', 3600, 'https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$4500</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg" alt="Completa del Moro Grande" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Completa del Moro - Grande</h3>
+          <p class="product-description">Arroz moro + 360g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Completa del Moro - Grande', 4500, 'https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$5400</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg" alt="Completa del Moro Exagerada" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Completa del Moro - Exagerada</h3>
+          <p class="product-description">Arroz moro + 480g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Completa del Moro - Exagerada', 5400, 'https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
@@ -282,66 +441,211 @@
 
     <!-- Combos -->
     <div class="product-category" id="combos">
+      <!-- Combos desde 10 hasta 70 personas -->
       <div class="product-card">
-        <span class="price-badge">$3507.98</span>
-        <img class="product-image" src="img.webp" alt="Combo Especial" onerror="handleImageError(this)">
+        <span class="price-badge">$45,000</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg" alt="Combo 10 Personas" onerror="handleImageError(this)">
         <div class="product-info">
-          <h3>Combo Especial</h3>
-          <p class="product-description">El Especial + Refresco grande</p>
+          <h3>Combo para 10 Personas</h3>
+          <p class="product-description">Carne asada, arroz moro, yuca, tamales, tostones, ensalada + salsas. ¡Delivery Vedado incluido!</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Combo Especial', 3507.98, 'img.webp')">
-              <i class="fas fa-plus-circle"></i> Añadir
+            <button class="btn-primary" onclick="addToCart('Combo para 10 Personas', 45000, 'https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
             </button>
           </div>
         </div>
       </div>
       <div class="product-card">
-        <span class="price-badge">$707.74</span>
-        <img class="product-image" src="img (1).webp" alt="Combo Carnaval" onerror="handleImageError(this)">
+        <span class="price-badge">$62,000</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg" alt="Combo 15 Personas" onerror="handleImageError(this)">
         <div class="product-info">
-          <h3>Combo Carnaval</h3>
-          <p class="product-description">De Carnaval + Ensalada pequeña</p>
+          <h3>Combo para 15 Personas</h3>
+          <p class="product-description">Carne asada, arroz moro, yuca, tamales, tostones, ensalada + salsas. ¡Delivery Vedado incluido!</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Combo Carnaval', 707.74, 'img (1).webp')">
-              <i class="fas fa-plus-circle"></i> Añadir
+            <button class="btn-primary" onclick="addToCart('Combo para 15 Personas', 62000, 'https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
             </button>
           </div>
         </div>
       </div>
       <div class="product-card">
-        <span class="price-badge">$1205.50</span>
-        <img class="product-image" src="img (2).webp" alt="Combo Matambre" onerror="handleImageError(this)">
+        <span class="price-badge">$83,000</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg" alt="Combo 20 Personas" onerror="handleImageError(this)">
         <div class="product-info">
-          <h3>Combo Matambre</h3>
-          <p class="product-description">Matambre + Café mediano</p>
+          <h3>Combo para 20 Personas</h3>
+          <p class="product-description">Carne asada, arroz moro, yuca, tamales, tostones, ensalada + salsas. ¡Delivery Vedado incluido!</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Combo Matambre', 1205.50, 'img (2).webp')">
-              <i class="fas fa-plus-circle"></i> Añadir
+            <button class="btn-primary" onclick="addToCart('Combo para 20 Personas', 83000, 'https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
             </button>
           </div>
         </div>
       </div>
       <div class="product-card">
-        <span class="price-badge">$2003.25</span>
-        <img class="product-image" src="img (3).webp" alt="Combo Desmaya'o" onerror="handleImageError(this)">
+        <span class="price-badge">$99,000</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg" alt="Combo 25 Personas" onerror="handleImageError(this)">
         <div class="product-info">
-          <h3>Combo Desmaya'o</h3>
-          <p class="product-description">Desmaya'o + Batido grande</p>
+          <h3>Combo para 25 Personas</h3>
+          <p class="product-description">Carne asada, arroz moro, yuca, tamales, tostones, ensalada + salsas. ¡Delivery Vedado incluido!</p>
           <div class="product-actions">
             <button class="btn-secondary">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Combo Desmaya\\'o', 2003.25, 'img (3).webp')">
-              <i class="fas fa-plus-circle"></i> Añadir
+            <button class="btn-primary" onclick="addToCart('Combo para 25 Personas', 99000, 'https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$115,000</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg" alt="Combo 30 Personas" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Combo para 30 Personas</h3>
+          <p class="product-description">Carne asada, arroz moro, yuca, tamales, tostones, ensalada + salsas. ¡Delivery Vedado incluido!</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Combo para 30 Personas', 115000, 'https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$128,000</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg" alt="Combo 35 Personas" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Combo para 35 Personas</h3>
+          <p class="product-description">Carne asada, arroz moro, yuca, tamales, tostones, ensalada + salsas. ¡Delivery Vedado incluido!</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Combo para 35 Personas', 128000, 'https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$142,000</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg" alt="Combo 40 Personas" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Combo para 40 Personas</h3>
+          <p class="product-description">Carne asada, arroz moro, yuca, tamales, tostones, ensalada + salsas. ¡Delivery Vedado incluido!</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Combo para 40 Personas', 142000, 'https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$153,000</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg" alt="Combo 45 Personas" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Combo para 45 Personas</h3>
+          <p class="product-description">Carne asada, arroz moro, yuca, tamales, tostones, ensalada + salsas. ¡Delivery Vedado incluido!</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Combo para 45 Personas', 153000, 'https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$164,000</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg" alt="Combo 50 Personas" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Combo para 50 Personas</h3>
+          <p class="product-description">Carne asada, arroz moro, yuca, tamales, tostones, ensalada + salsas. ¡Delivery Vedado incluido!</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Combo para 50 Personas', 164000, 'https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$175,000</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg" alt="Combo 55 Personas" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Combo para 55 Personas</h3>
+          <p class="product-description">Carne asada, arroz moro, yuca, tamales, tostones, ensalada + salsas. ¡Delivery Vedado incluido!</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Combo para 55 Personas', 175000, 'https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$187,000</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg" alt="Combo 60 Personas" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Combo para 60 Personas</h3>
+          <p class="product-description">Carne asada, arroz moro, yuca, tamales, tostones, ensalada + salsas. ¡Delivery Vedado incluido!</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Combo para 60 Personas', 187000, 'https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$196,000</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg" alt="Combo 65 Personas" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Combo para 65 Personas</h3>
+          <p class="product-description">Carne asada, arroz moro, yuca, tamales, tostones, ensalada + salsas. ¡Delivery Vedado incluido!</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Combo para 65 Personas', 196000, 'https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <span class="price-badge">$205,000</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg" alt="Combo 70 Personas" onerror="handleImageError(this)">
+        <div class="product-info">
+          <h3>Combo para 70 Personas</h3>
+          <p class="product-description">Carne asada, arroz moro, yuca, tamales, tostones, ensalada + salsas. ¡Delivery Vedado incluido!</p>
+          <div class="product-actions">
+            <button class="btn-secondary">
+              <i class="fas fa-info-circle"></i> Detalle
+            </button>
+            <button class="btn-primary" onclick="addToCart('Combo para 70 Personas', 205000, 'https://cdn.pixabay.com/photo/2016/11/18/17/20/barbecue-1836053_1280.jpg')">
+              <i class="fas fa-plus-circle"></i> Reservar
             </button>
           </div>
         </div>
@@ -388,9 +692,9 @@
         <i class="fas fa-city input-icon"></i>
         <select id="municipio" required>
           <option value="">Selecciona un municipio</option>
+          <option value="Vedado">Vedado - $0.00 (Delivery Gratis)</option>
           <option value="Playa">Playa - $2.00</option>
           <option value="Miramar">Miramar - $2.50</option>
-          <option value="Vedado">Vedado - $1.50</option>
           <option value="Habana Vieja">Habana Vieja - $1.00</option>
           <option value="Centro Habana">Centro Habana - $1.25</option>
           <option value="Cerro">Cerro - $1.75</option>
