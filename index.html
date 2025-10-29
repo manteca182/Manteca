@@ -238,68 +238,33 @@
       </div>
     </div>
 
-    <!-- Completas -->
+    <!-- Completas - Sistema con variantes -->
     <div class="product-category" id="completas">
       <!-- Completa de Olga -->
       <div class="product-card">
-        <span class="price-badge">$2700</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg" alt="Completa de Olga Ligera" onerror="handleImageError(this)">
+        <span class="price-badge">$2700 - $5400</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg" alt="Completa de Olga" onerror="handleImageError(this)">
         <div class="product-info">
-          <h3>Completa de Olga - Ligera</h3>
-          <p class="product-description">2 tamales + 120g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Completa de Olga - Ligera', 2700, 'https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
+          <h3>Completa de Olga</h3>
+          <p class="product-description">2 tamales + carne asada + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+          
+          <!-- Selector de tamaño -->
+          <div class="variant-selector">
+            <label for="olga-size">Tamaño:</label>
+            <select id="olga-size" class="size-select" data-product="Completa de Olga">
+              <option value="">Selecciona tamaño</option>
+              <option value="Ligera" data-price="2700">Ligera (120g carne) - $2700</option>
+              <option value="Media" data-price="3600">Media (240g carne) - $3600</option>
+              <option value="Grande" data-price="4500">Grande (360g carne) - $4500</option>
+              <option value="Exagerada" data-price="5400">Exagerada (480g carne) - $5400</option>
+            </select>
           </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$3600</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg" alt="Completa de Olga Media" onerror="handleImageError(this)">
-        <div class="product-info">
-          <h3>Completa de Olga - Media</h3>
-          <p class="product-description">2 tamales + 240g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+
           <div class="product-actions">
-            <button class="btn-secondary">
+            <button class="btn-secondary" onclick="showProductDetails('olga')">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Completa de Olga - Media', 3600, 'https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$4500</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg" alt="Completa de Olga Grande" onerror="handleImageError(this)">
-        <div class="product-info">
-          <h3>Completa de Olga - Grande</h3>
-          <p class="product-description">2 tamales + 360g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Completa de Olga - Grande', 4500, 'https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$5400</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg" alt="Completa de Olga Exagerada" onerror="handleImageError(this)">
-        <div class="product-info">
-          <h3>Completa de Olga - Exagerada</h3>
-          <p class="product-description">2 tamales + 480g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Completa de Olga - Exagerada', 5400, 'https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg')">
+            <button class="btn-primary" onclick="addCompleteToCart('olga')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
@@ -308,64 +273,29 @@
 
       <!-- Completa de Catalina -->
       <div class="product-card">
-        <span class="price-badge">$2700</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg" alt="Completa de Catalina Ligera" onerror="handleImageError(this)">
+        <span class="price-badge">$2700 - $5400</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg" alt="Completa de Catalina" onerror="handleImageError(this)">
         <div class="product-info">
-          <h3>Completa de Catalina - Ligera</h3>
-          <p class="product-description">Yuca + 120g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Completa de Catalina - Ligera', 2700, 'https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
+          <h3>Completa de Catalina</h3>
+          <p class="product-description">Yuca + carne asada + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+          
+          <!-- Selector de tamaño -->
+          <div class="variant-selector">
+            <label for="catalina-size">Tamaño:</label>
+            <select id="catalina-size" class="size-select" data-product="Completa de Catalina">
+              <option value="">Selecciona tamaño</option>
+              <option value="Ligera" data-price="2700">Ligera (120g carne) - $2700</option>
+              <option value="Media" data-price="3600">Media (240g carne) - $3600</option>
+              <option value="Grande" data-price="4500">Grande (360g carne) - $4500</option>
+              <option value="Exagerada" data-price="5400">Exagerada (480g carne) - $5400</option>
+            </select>
           </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$3600</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg" alt="Completa de Catalina Media" onerror="handleImageError(this)">
-        <div class="product-info">
-          <h3>Completa de Catalina - Media</h3>
-          <p class="product-description">Yuca + 240g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+
           <div class="product-actions">
-            <button class="btn-secondary">
+            <button class="btn-secondary" onclick="showProductDetails('catalina')">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Completa de Catalina - Media', 3600, 'https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$4500</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg" alt="Completa de Catalina Grande" onerror="handleImageError(this)">
-        <div class="product-info">
-          <h3>Completa de Catalina - Grande</h3>
-          <p class="product-description">Yuca + 360g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Completa de Catalina - Grande', 4500, 'https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$5400</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg" alt="Completa de Catalina Exagerada" onerror="handleImageError(this)">
-        <div class="product-info">
-          <h3>Completa de Catalina - Exagerada</h3>
-          <p class="product-description">Yuca + 480g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Completa de Catalina - Exagerada', 5400, 'https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg')">
+            <button class="btn-primary" onclick="addCompleteToCart('catalina')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
@@ -374,64 +304,29 @@
 
       <!-- Completa del Moro -->
       <div class="product-card">
-        <span class="price-badge">$2700</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg" alt="Completa del Moro Ligera" onerror="handleImageError(this)">
+        <span class="price-badge">$2700 - $5400</span>
+        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg" alt="Completa del Moro" onerror="handleImageError(this)">
         <div class="product-info">
-          <h3>Completa del Moro - Ligera</h3>
-          <p class="product-description">Arroz moro + 120g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Completa del Moro - Ligera', 2700, 'https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
+          <h3>Completa del Moro</h3>
+          <p class="product-description">Arroz moro + carne asada + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+          
+          <!-- Selector de tamaño -->
+          <div class="variant-selector">
+            <label for="moro-size">Tamaño:</label>
+            <select id="moro-size" class="size-select" data-product="Completa del Moro">
+              <option value="">Selecciona tamaño</option>
+              <option value="Ligera" data-price="2700">Ligera (120g carne) - $2700</option>
+              <option value="Media" data-price="3600">Media (240g carne) - $3600</option>
+              <option value="Grande" data-price="4500">Grande (360g carne) - $4500</option>
+              <option value="Exagerada" data-price="5400">Exagerada (480g carne) - $5400</option>
+            </select>
           </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$3600</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg" alt="Completa del Moro Media" onerror="handleImageError(this)">
-        <div class="product-info">
-          <h3>Completa del Moro - Media</h3>
-          <p class="product-description">Arroz moro + 240g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
+
           <div class="product-actions">
-            <button class="btn-secondary">
+            <button class="btn-secondary" onclick="showProductDetails('moro')">
               <i class="fas fa-info-circle"></i> Detalle
             </button>
-            <button class="btn-primary" onclick="addToCart('Completa del Moro - Media', 3600, 'https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$4500</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg" alt="Completa del Moro Grande" onerror="handleImageError(this)">
-        <div class="product-info">
-          <h3>Completa del Moro - Grande</h3>
-          <p class="product-description">Arroz moro + 360g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Completa del Moro - Grande', 4500, 'https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg')">
-              <i class="fas fa-plus-circle"></i> Añadir
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <span class="price-badge">$5400</span>
-        <img class="product-image" src="https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg" alt="Completa del Moro Exagerada" onerror="handleImageError(this)">
-        <div class="product-info">
-          <h3>Completa del Moro - Exagerada</h3>
-          <p class="product-description">Arroz moro + 480g carne + tostones + ensalada + salsa "La Medicina de Manteca"</p>
-          <div class="product-actions">
-            <button class="btn-secondary">
-              <i class="fas fa-info-circle"></i> Detalle
-            </button>
-            <button class="btn-primary" onclick="addToCart('Completa del Moro - Exagerada', 5400, 'https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg')">
+            <button class="btn-primary" onclick="addCompleteToCart('moro')">
               <i class="fas fa-plus-circle"></i> Añadir
             </button>
           </div>
@@ -804,12 +699,50 @@
     <button class="form-btn btn-primary" id="closeConfirmationBtn">Aceptar</button>
   </div>
 
-  <script src="scripts.js"></script>
-  <script>
-    // Inicializar cuando la página cargue
+  <!-- Modal de detalles de producto -->
+  <div class="product-details-modal" id="productDetailsModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeProductDetails()">&times;</span>
+      <h4 id="detailProductName">Nombre del Producto</h4>
+      
+      <div class="details-content">
+        <div class="details-image">
+          <img id="detailProductImage" src="" alt="">
+        </div>
+        
+        <div class="details-info">
+          <h5>Descripción Completa</h5>
+          <p id="detailProductDescription"></p>
+          
+          <div class="details-variants">
+            <h6>Variantes Disponibles:</h6>
+            <div class="variant-list" id="variantList">
+              <!-- Las variantes se insertarán aquí -->
+            </div>
+          </div>
+          
+          <div class="details-includes">
+            <h6>Incluye:</h6>
+            <ul id="includesList">
+              <!-- Los elementos incluidos se insertarán aquí -->
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="details-actions">
+        <button class="form-btn btn-primary" onclick="closeProductDetails()">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Al final del body, reemplazar todo el script por: -->
+<script src="scripts.js"></script>
+<script>
+    // Solo la inicialización básica
     document.addEventListener('DOMContentLoaded', function() {
-      document.body.classList.add('loaded');
+        document.body.classList.add('loaded');
     });
-  </script>
+</script>  
 </body>
 </html>
