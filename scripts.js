@@ -1,4 +1,4 @@
-// scripts.js - Gestión completa de la aplicación de menú (VERSIÓN MEJORADA CON TOTAL ACTUALIZADO)
+// scripts.js - Gestión completa de la aplicación de menú (VERSIÓN MEJORADA CON COMPLETAS)
 
 // Variables globales
 let cartItems = [];
@@ -18,6 +18,64 @@ const notificationPanel = document.getElementById('notificationPanel');
 const historyPanel = document.getElementById('historyPanel');
 const summaryModal = document.getElementById('summaryModal');
 const confirmationAnimation = document.getElementById('confirmationAnimation');
+
+// Datos de las completas
+const completeProducts = {
+    olga: {
+        name: "Completa de Olga",
+        image: "https://cdn.pixabay.com/photo/2017/03/10/13/57/tamale-2132273_1280.jpg",
+        base: "2 tamales",
+        description: "Una deliciosa combinación de sabores tradicionales con nuestra carne asada especial",
+        variants: [
+            { name: "Ligera", price: 2700, meat: "120g de carne asada desmenuzada" },
+            { name: "Media", price: 3600, meat: "240g de carne asada desmenuzada" },
+            { name: "Grande", price: 4500, meat: "360g de carne asada desmenuzada" },
+            { name: "Exagerada", price: 5400, meat: "480g (más de 1lb) de carne asada desmenuzada" }
+        ],
+        includes: [
+            "Tostones crujientes",
+            "Ensalada de vegetales frescos",
+            "Salsa 'La Medicina de Manteca'",
+            "Base de 2 tamales tradicionales"
+        ]
+    },
+    catalina: {
+        name: "Completa de Catalina",
+        image: "https://cdn.pixabay.com/photo/2016/03/05/19/57/yuca-1238617_1280.jpg",
+        base: "Yuca",
+        description: "La combinación perfecta entre la suavidad de la yuca y el sabor intenso de nuestra carne asada",
+        variants: [
+            { name: "Ligera", price: 2700, meat: "120g de carne asada desmenuzada" },
+            { name: "Media", price: 3600, meat: "240g de carne asada desmenuzada" },
+            { name: "Grande", price: 4500, meat: "360g de carne asada desmenuzada" },
+            { name: "Exagerada", price: 5400, meat: "480g (más de 1lb) de carne asada desmenuzada" }
+        ],
+        includes: [
+            "Tostones crujientes",
+            "Ensalada de vegetales frescos",
+            "Salsa 'La Medicina de Manteca'",
+            "Yuca cocida al punto perfecto"
+        ]
+    },
+    moro: {
+        name: "Completa del Moro",
+        image: "https://cdn.pixabay.com/photo/2017/06/30/22/39/rice-2461129_1280.jpg",
+        base: "Arroz moro",
+        description: "El sabor único del arroz moro combinado con nuestra exquisita carne asada",
+        variants: [
+            { name: "Ligera", price: 2700, meat: "120g de carne asada desmenuzada" },
+            { name: "Media", price: 3600, meat: "240g de carne asada desmenuzada" },
+            { name: "Grande", price: 4500, meat: "360g de carne asada desmenuzada" },
+            { name: "Exagerada", price: 5400, meat: "480g (más de 1lb) de carne asada desmenuzada" }
+        ],
+        includes: [
+            "Tostones crujientes",
+            "Ensalada de vegetales frescos",
+            "Salsa 'La Medicina de Manteca'",
+            "Arroz moro con frijoles negros"
+        ]
+    }
+};
 
 // Inicialización cuando el DOM está listo
 document.addEventListener('DOMContentLoaded', function() {
@@ -94,6 +152,21 @@ function initializeEventListeners() {
 
     confirmationAnimation.addEventListener('click', function(e) {
         e.stopPropagation();
+    });
+
+    // Modal de detalles de producto
+    document.getElementById('productDetailsModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeProductDetails();
+        }
+    });
+
+    // Cerrar modal con ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeProductDetails();
+            closeModal();
+        }
     });
 
     // Redimensionamiento de ventana
@@ -288,7 +361,7 @@ function updateCartList() {
                 <div>Tu carrito está vacío</div>
             </div>
         `;
-        cartTotal.textContent = `Total: $0.00`;
+        cartTotal.innerHTML = `<i class="fas fa-receipt"></i> Total: $0.00`;
         cartTotal.classList.add('empty');
         cartTotal.classList.remove('updated');
         return;
@@ -334,8 +407,8 @@ function updateCartList() {
         });
     });
 
-    // Actualizar total con nuevos estilos mejorados
-    cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+    // Actualizar total con icono y nuevos estilos
+    cartTotal.innerHTML = `<i class="fas fa-receipt"></i> Total: $${total.toFixed(2)}`;
     cartTotal.classList.remove('empty');
     cartTotal.classList.add('updated');
     
@@ -449,6 +522,84 @@ function showCheckoutForm() {
     document.getElementById('cartTotal').style.display = 'none';
     document.querySelector('.form-actions').style.display = 'none';
     checkoutForm.style.display = 'flex';
+}
+
+// Funciones para las completas
+function showProductDetails(productKey) {
+    const product = completeProducts[productKey];
+    if (!product) return;
+
+    const modal = document.getElementById('productDetailsModal');
+    const productName = document.getElementById('detailProductName');
+    const productImage = document.getElementById('detailProductImage');
+    const productDescription = document.getElementById('detailProductDescription');
+    const variantList = document.getElementById('variantList');
+    const includesList = document.getElementById('includesList');
+
+    // Llenar la información del producto
+    productName.textContent = product.name;
+    productImage.src = product.image;
+    productImage.alt = product.name;
+    productDescription.textContent = product.description;
+
+    // Llenar las variantes
+    variantList.innerHTML = '';
+    product.variants.forEach(variant => {
+        const variantItem = document.createElement('div');
+        variantItem.className = 'variant-item';
+        variantItem.innerHTML = `
+            <div>
+                <div class="variant-name">${variant.name}</div>
+                <small>${variant.meat}</small>
+            </div>
+            <div class="variant-price">$${variant.price.toLocaleString()}</div>
+        `;
+        variantList.appendChild(variantItem);
+    });
+
+    // Llenar los elementos incluidos
+    includesList.innerHTML = '';
+    product.includes.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        includesList.appendChild(li);
+    });
+
+    // Mostrar el modal
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProductDetails() {
+    const modal = document.getElementById('productDetailsModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function addCompleteToCart(productKey) {
+    const product = completeProducts[productKey];
+    if (!product) return;
+
+    const selectId = `${productKey}-size`;
+    const select = document.getElementById(selectId);
+    const selectedOption = select.options[select.selectedIndex];
+
+    // Validar que se haya seleccionado un tamaño
+    if (!selectedOption.value) {
+        alert('Por favor selecciona un tamaño antes de añadir al carrito');
+        select.focus();
+        return;
+    }
+
+    const variantName = selectedOption.value;
+    const price = parseFloat(selectedOption.dataset.price);
+    const productName = `${product.name} - ${variantName}`;
+
+    // Añadir al carrito
+    addToCart(productName, price, product.image);
+
+    // Resetear el selector
+    select.selectedIndex = 0;
 }
 
 // Nuevas funciones para el flujo mejorado de checkout
@@ -607,6 +758,9 @@ window.showCartItems = showCartItems;
 window.closeItemModal = closeItemModal;
 window.saveItemCustomization = saveItemCustomization;
 window.handleImageError = handleImageError;
+window.showProductDetails = showProductDetails;
+window.closeProductDetails = closeProductDetails;
+window.addCompleteToCart = addCompleteToCart;
 
 // Inicializar manejadores de errores de imágenes
 document.addEventListener('DOMContentLoaded', function() {
