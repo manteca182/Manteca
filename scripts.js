@@ -1,4 +1,4 @@
-// scripts.js - Gestión completa de la aplicación de menú (VERSIÓN MEJORADA Y CORREGIDA)
+// scripts.js - Gestión completa de la aplicación de menú (VERSIÓN MEJORADA CON TOTAL ACTUALIZADO)
 
 // Variables globales
 let cartItems = [];
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartList();
     positionPanels();
     initBannerSlider();
-    adjustForMobile(); // Ajustes iniciales para móvil
+    adjustForMobile();
 });
 
 // Configuración de todos los event listeners
@@ -288,7 +288,9 @@ function updateCartList() {
                 <div>Tu carrito está vacío</div>
             </div>
         `;
-        cartTotal.textContent = 'Total: $0.00';
+        cartTotal.textContent = `Total: $0.00`;
+        cartTotal.classList.add('empty');
+        cartTotal.classList.remove('updated');
         return;
     }
 
@@ -332,7 +334,15 @@ function updateCartList() {
         });
     });
 
+    // Actualizar total con nuevos estilos mejorados
     cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+    cartTotal.classList.remove('empty');
+    cartTotal.classList.add('updated');
+    
+    // Remover la clase de animación después de que termine
+    setTimeout(() => {
+        cartTotal.classList.remove('updated');
+    }, 400);
 }
 
 function editItem(index) {
